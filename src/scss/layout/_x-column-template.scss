@@ -1,0 +1,132 @@
+.post-template-default,
+.page-template-one-column-template,
+.page-template-two-column-template,
+.page-template-archives,
+.archive,
+.error404,
+.page-template-archives,
+.page-id-179,
+.single-eventbrite_events {
+
+  .hero-image {
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 60vh;
+    background-position: bottom;
+    position: relative;
+    overflow: hidden;
+    .wave {
+      position: absolute;
+      z-index:1;
+      bottom: -200px;
+      left:25%;
+      right:25%;
+      display: block;
+      width: auto;
+      overflow: hidden;
+      transform: scaleX(3.5);
+      height:350px;
+    }
+  }
+
+  h1 {
+    color: $cyan;
+    text-align: center;
+  }
+
+  img {
+    max-width: 100%;
+    height: auto;
+  }
+
+  a {
+    &.content-cta {
+      font-weight: bold;
+      display: block;
+      height: 60px;
+      max-width: 200px;
+      border: 1px solid white;
+      background-color: #4b3f72;
+      text-align: center;
+      color: white;
+      padding-top: 15px;
+      border-radius: 6px;
+      margin: 30px auto;
+    }
+  }
+
+  .person {
+    font-size: 16px;
+    height: auto;
+    margin-bottom:20px;
+    p {
+      margin-bottom: 2px;
+    }
+    .person-image{
+      font-weight: bold;
+      text-align: center;
+      height:100%;
+      width: 20%;
+      img{
+        width:100%;
+        height: auto;
+      }
+    }
+    .person-content{
+      margin-left: 10px;
+      width: 75%;
+    }
+  }
+
+  main.sidewave {
+    background-position: right -150px bottom -300px;
+    background-repeat: no-repeat;
+    overflow:hidden;
+  }
+
+  .sidebar-menu {
+    text-decoration: none;
+    color: black;
+    font-size: 24px;
+
+    ul {
+      list-style: none;
+      padding-left: 0px;
+      li {
+        a{
+          color: black;
+        }
+      }
+    }
+    .current-menu-item {
+      font-weight: bold;
+    }
+  }
+
+}
+
+@media (max-width: 992px) {
+  .page-template-one-column-template,
+  .page-template-two-column-template{
+    .sidebar-menu {
+      text-align:center;
+      padding-top: 10px;
+    }
+    h1 {
+      margin-bottom: 10px;
+    }
+    .events-column .event {
+      max-width: 75%;
+      margin: 20px auto;
+    }
+  }
+}
+
+span.social-title {
+  font-size: 1.5rem;
+  font-weight: 500;
+}
+
+
+
+

@@ -1,0 +1,125 @@
+.events-date {
+  font-size: 18px;
+
+  .dashicons {
+    margin-left: 5px;
+  }
+
+  .controls {
+    font-size: 1.25rem;
+    margin: 20px 0px 40px 0px;
+    width: 100%;
+    text-align: center;
+
+    #spouse-fc-prevyear {
+      display:inline-block;
+      &:hover {
+        font-weight: bold;
+        cursor: pointer;
+      }
+    }
+    #spouse-fc-nextyear{
+      display:inline-block;
+      &:hover {
+        font-weight: bold;
+        cursor: pointer;
+      }
+    }
+    #current-year {
+      text-align:center;
+      display:inline-block;
+      min-width: 100px;
+    }
+    button {
+      background-color: inherit;
+      border:0;
+    }
+  }
+
+  .months {
+    span.month .count{
+      float:right;
+    }
+    button {
+      background-color: inherit;
+      border: 0;
+      display: block;
+      width:100%;
+      &.active {
+        background: rgba(170, 170, 170, 0.3);
+      }
+    }
+  }
+}
+
+#events-calendar {
+  margin-bottom: 40px;
+
+  .fc-toolbar {
+    padding-top:10px;
+
+    button {
+      background-color: $white;
+      border: 0;
+      background-image: none;
+      font-size: 24px;
+      &:focus {
+        border: none;
+        outline:0;
+      }
+    }
+    h2{
+      min-width: 250px;
+      margin-top: 10px;
+      font-size: 2rem;
+    }
+  }
+
+  .fc-today {
+    background-color: #f0ea55;
+  }
+
+  .fc-view-container {
+    .fc-event-container a {
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      display:block;
+      margin: 0 auto;
+    }
+
+    td.fc-day-number{
+      text-align: center;
+      vertical-align: middle;
+    }
+
+    a.fc-day-grid-event {
+      color: transparent;
+      padding: 10px;
+      margin-bottom:15px;
+      &:hover {
+        color:transparent;
+      }
+    }
+  }
+}
+
+@media (max-width: 1200px) {
+  #events-calendar .fc-toolbar h2 {
+    min-width: 150px;
+    font-size: 1.5rem;
+  }
+  .events-date {
+    .controls {
+      h2 {
+        font-size: 1.5rem;
+      }
+      h3 {
+        font-size: 1.25rem;
+      }
+      #current-year {
+        min-width: 25px;
+      }
+    }
+  }
+}

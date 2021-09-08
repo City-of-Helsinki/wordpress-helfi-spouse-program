@@ -1,0 +1,35 @@
+.single-eventbrite_events{
+  h1 {
+    font-size: 32px;
+  }
+  .single-event-content {
+    margin-top: 20px;
+
+    .iee_event_meta{
+      display: none;
+    }
+  }
+}
+
+.single-event-registration {
+  background-color: $cyan;
+  padding-top: 50px;
+  background-image: url('./src/scss/icons/background-purple.svg');
+  background-size: cover;
+  min-height: 100%;
+}
+
+.single-event-meta {
+  color: black;
+  a {
+    color: #005EC2;
+  }
+}
+
+.iee_event_meta div.titlemain {
+  color: black;
+}
+
+a:hover {
+  color: #006CE0;
+}
