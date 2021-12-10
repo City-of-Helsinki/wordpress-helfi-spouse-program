@@ -54,14 +54,6 @@
           echo '</div>';
         endif;
         ?>
-        <?php
-            $postmeta = get_post_meta(get_the_ID(),'slack-chat', FALSE);
-            if($postmeta){
-              foreach($postmeta as $shortcode){
-                do_shortcode($shortcode);
-              }
-            }
-        ?>
         </div>
           <?php
           if(spouse_is_restricted_page()){
