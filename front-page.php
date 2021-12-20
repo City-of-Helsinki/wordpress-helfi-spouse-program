@@ -10,8 +10,8 @@ get_header();
 ?>
 
 <main id="main-content" role="main">
-  <div class="container-fluid">
-      <div class="row">
+  <div class="container">
+      <div class="row flex-column">
           <div class="col-12 col-sm-12 col-xl-5 cta-column">
               <div class="cta-background" style="background-image: url(<?php echo get_the_post_thumbnail_url(get_the_ID(), 'full'); ?>);">
                   <?php $buttonEnabled = get_field('enable_cta-button') ?>
@@ -45,7 +45,7 @@ get_header();
                       </div>
                   </div>
               </div>
-              <img role="presentation" class="overflow-wave d-none d-xl-block" src="<?php echo get_template_directory_uri(); ?>/src/scss/icons/background-white.svg">
+              <!-- <img role="presentation" class="overflow-wave d-none d-xl-block" src="<?php echo get_template_directory_uri(); ?>/src/scss/icons/background-white.svg"> -->
           </div>
           <div class="col-12 col-sm-12 col-lg-6 col-xl-3 events-column">
               <h2>Upcoming events</h2>
