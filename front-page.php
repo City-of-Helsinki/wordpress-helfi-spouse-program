@@ -12,7 +12,7 @@ get_header();
 <main id="main-content" role="main">
   <div class="container">
       <div class="row flex-column">
-          <div class="col-12 col-sm-12 col-xl-5 cta-column">
+          <div class="col-12 col-sm-12 cta-column">
               <div class="cta-background" style="background-image: url(<?php echo get_the_post_thumbnail_url(get_the_ID(), 'full'); ?>);">
                   <?php $buttonEnabled = get_field('enable_cta-button') ?>
                   <?php if($buttonEnabled): ?>
@@ -20,7 +20,7 @@ get_header();
                   <?php endif; ?>
               </div>
           </div>
-          <div class="col-12 col-sm-12 col-lg-6 col-xl-4 main-content">
+          <div class="col-12 col-sm-12 main-content">
               <div class="main-content-container">
                 <?php
                 if (have_posts()) :
@@ -47,9 +47,11 @@ get_header();
               </div>
               <!-- <img role="presentation" class="overflow-wave d-none d-xl-block" src="<?php echo get_template_directory_uri(); ?>/src/scss/icons/background-white.svg"> -->
           </div>
-          <div class="col-12 col-sm-12 col-lg-6 col-xl-3 events-column">
+          <div class="col-12 col-sm-12 events-column">
               <h2>Upcoming events</h2>
-              <?php echo do_shortcode('[spouse-events]'); ?>
+                <div class="row">
+                      <?php echo do_shortcode('[spouse-events]'); ?>
+                </div>
           </div>
       </div>
   </div>
