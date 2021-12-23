@@ -23,7 +23,6 @@
     flex-flow: column;
     min-height: 80px;
     height: auto;
-    // border: 1px solid $yellow;
     box-shadow: $box-shadow-medium;
     background-color: white;
     border-radius: 6px;
@@ -40,9 +39,12 @@
       display:flex;
       flex-flow: row;
 
+      img {
+        max-width: max-content;
+      }
+
       .event-content {
-        width: 95%;
-        padding: 5px 5px 5px 20px;
+        width: 100%;
 
         .event-text {
           width: auto;

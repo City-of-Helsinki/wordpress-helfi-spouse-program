@@ -45,13 +45,14 @@ get_header();
                       </div>
                   </div>
               </div>
-              <!-- <img role="presentation" class="overflow-wave d-none d-xl-block" src="<?php echo get_template_directory_uri(); ?>/src/scss/icons/background-white.svg"> -->
           </div>
           <div class="col-12 col-sm-12 events-column">
+            <div class="container line">
               <h2>Upcoming events</h2>
                 <div class="row">
                       <?php echo do_shortcode('[spouse-events]'); ?>
                 </div>
+            </div>
           </div>
       </div>
   </div>

@@ -2,18 +2,12 @@
 
 <?php get_header(); ?>
 
-<?php if(get_field('additional_graphical_elements')): ?>
-<main class="container-fluid sidewave" style="background-image:url(<?php echo get_template_directory_uri(); ?>/src/scss/icons/sidedecoration.svg)" role="main">
-<?php else: ?>
-<main class="container-fluid" role="main">
-<?php endif; ?>
     <div class="row">
         <?php if($thumbnail = get_the_post_thumbnail_url(get_the_ID(), 'full')):
         $position = get_field('hero_image_position');
         $style = "background-position: $position";
         ?>
         <div class="col-12 hero-image" style='background-image:url(<?php echo $thumbnail; ?>); <?php echo $style ?>'>
-          <img role="presentation" alt="" class="wave" src="<?php echo get_template_directory_uri(); ?>/src/scss/icons/background-white-horizontal.svg">
         </div>
         <?php endif; ?>
         <div class="col-12">
@@ -77,6 +71,7 @@
           </div>
       </div>
   <?php endif; ?>
+  <?php get_template_part( 'partials/user' ) ?>
 </main>
 
 <?php get_footer(); ?>

@@ -54,6 +54,10 @@
     background-size: cover;
     height:100%;
     width: 100%;
+    p:first-of-type {
+      text-align: start;
+      font-size: 2rem;
+    }
   }
 
   & > img {
