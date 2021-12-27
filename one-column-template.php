@@ -71,7 +71,6 @@
           </div>
       </div>
   <?php endif; ?>
-  <?php get_template_part( 'partials/user' ) ?>
 </main>
 
 <?php get_footer(); ?>
