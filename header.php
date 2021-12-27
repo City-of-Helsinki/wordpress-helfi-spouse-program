@@ -25,34 +25,7 @@ wp_body_open();
 ?>
 
 <header id="site-header" role="banner">
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-4 col-sm-6 col-md-9 p-0 mobilenav">
-                <div class="header-main-content nav justify-content-end">
-                  <?php wp_nav_menu( array( 'menu' => 2) ); ?>
-                </div>
-            </div>
-            <div class="pull-right header-right-content col-8 col-sm-6 col-md-3 p-0">
-                <?php
-                global $current_user; wp_get_current_user();
-                /** Popups created with wow modal window -plugin */
-                if (!is_user_logged_in()):
-                ?>
-                <a href="#" onclick="spouse_focus(event)" data-modal="wow-modal" class="wow-modal-id-2">Log in</a>
-                |
-                <a href="#" onclick="spouse_focus(event)" data-modal="wow-modal" class="wow-modal-id-1">Sign up</a>
-                <?php
-                else:
-                  ?>
-                    <a class="user-link" href="<?php echo get_edit_profile_url( $current_user->id ); ?>"><?php echo $current_user->user_login; ?></a>
-                    |
-                    <a href="<?php echo wp_logout_url(home_url()); ?>">Logout</a>
-                <?php
-                endif;
-                ?>
-            </div>
-        </div>
-    </div>
+        <?php get_template_part('partials/main-menu'); ?>
 </header><!-- #site-header -->
 
 <?php echo do_shortcode('[spouse_notice]'); ?>

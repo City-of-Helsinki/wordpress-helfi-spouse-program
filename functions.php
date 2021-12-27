@@ -1,14 +1,28 @@
 <?php
+require_once('functions/main-menu.php');
 
-add_theme_support( 'widgets' );
-add_theme_support( 'post-thumbnails' );
 
-// add main menu
-function spouse_menu() {
-  register_nav_menu('main-menu', __( 'Main menu' ));
-  register_nav_menu('sidebar-menu', __('Sidebar menu on main page') );
+function spouse_setup_theme(){
+  add_theme_support( 'widgets' );
+  add_theme_support( 'post-thumbnails' );
+  add_theme_support( 'title-tag' ); 
+  add_theme_support( 'custom-logo', array(
+    'flex-height' => true,
+    'flex-width'  => true
+) );
 }
-add_action( 'init', 'spouse_menu' );
+
+add_action('after_setup_theme', 'spouse_setup_theme');
+
+add_filter( 'get_custom_logo', 'change_logo_class' );
+
+function change_logo_class( $html ) {
+
+    $html = str_replace( 'custom-logo', 'd-inline-block align-top', $html );
+    $html = str_replace( 'custom-logo-link', 'navbar-brand', $html );
+
+    return $html;
+}
 
 // add styles and javascripts
 function spouse_enqueue_scripts() {
