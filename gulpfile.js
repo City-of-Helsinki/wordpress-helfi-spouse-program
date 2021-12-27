@@ -81,8 +81,15 @@ var changeEvent = function(evt) {
 function browserSyncInit() {
   browserSync.init({
     files: [path.styles.assets + '**/*.css', path.scripts.assets + '**/*.js'],
-    // proxy: 'http://druid.fi.docker.amazee.io/',
-    browser: 'firefox',
+    proxy: 'http://appserver',
+    socket: {
+      domain: 'http://bs.spouse-program.lndo.site',
+      port: 80
+    },
+    injectChanges: true,
+    open: false,
+    logLevel: "debug",
+    logConnections: true
   });
 }
 
