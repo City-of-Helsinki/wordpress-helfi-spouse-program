@@ -15,17 +15,22 @@
     background-position: bottom;
     position: relative;
     overflow: hidden;
-    .wave {
-      position: absolute;
-      z-index:1;
-      bottom: -200px;
-      left:25%;
-      right:25%;
-      display: block;
-      width: auto;
-      overflow: hidden;
-      transform: scaleX(3.5);
-      height:350px;
+  }
+
+  .hero-text {
+    .text-container {
+      background-color: $black;
+      display: inline-block;
+      padding: 0.5rem;
+      font-size: 3rem;
+      font-weight: bold;
+      font-family: 'Roboto', sans-serif;
+      color: $white;
+      padding: 1rem 3rem 1rem 3rem;
+
+      .highlight {
+        color: $opal;
+      }
     }
   }
 
@@ -76,12 +81,6 @@
       margin-left: 10px;
       width: 75%;
     }
-  }
-
-  main.sidewave {
-    background-position: right -150px bottom -300px;
-    background-repeat: no-repeat;
-    overflow:hidden;
   }
 
   .sidebar-menu {
