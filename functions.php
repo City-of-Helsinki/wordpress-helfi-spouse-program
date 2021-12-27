@@ -18,7 +18,7 @@ add_filter( 'get_custom_logo', 'change_logo_class' );
 
 function change_logo_class( $html ) {
 
-    $html = str_replace( 'custom-logo', 'd-inline-block align-top', $html );
+    $html = str_replace( 'custom-logo', 'logo d-inline-block align-top', $html );
     $html = str_replace( 'custom-logo-link', 'navbar-brand', $html );
 
     return $html;
@@ -27,6 +27,8 @@ function change_logo_class( $html ) {
 // add styles and javascripts
 function spouse_enqueue_scripts() {
   wp_enqueue_style('bootstrap', get_template_directory_uri() . '/dist/bootstrap/dist/css/bootstrap.css');
+  wp_enqueue_script('bootstrap-js', get_template_directory_uri() . '/dist/bootstrap/dist/js/bootstrap.min.js');
+
   wp_enqueue_style('style', get_stylesheet_uri());
 
   if ( is_page_template('archives.php') ) {

@@ -29,7 +29,3 @@ wp_body_open();
 </header><!-- #site-header -->
 
 <?php echo do_shortcode('[spouse_notice]'); ?>
-
-<?php
-// Output the menu modal.
-get_template_part( 'template-parts/modal-menu' );

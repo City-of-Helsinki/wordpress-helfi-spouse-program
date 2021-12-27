@@ -1,12 +1,12 @@
-<nav class="navbar navbar-expand-sm navbar-light bg-light" role="navigation">
+<nav class="navbar navbar-expand-sm navbar-light" role="navigation">
   <div class="container">
     <!-- Brand and toggle get grouped for better mobile display -->
     <button class="navbar-toggler" 
             type="button" data-toggle="collapse" 
-            data-target="#bs-example-navbar-collapse-1" 
-            aria-controls="bs-example-navbar-collapse-1" 
+            data-target="#main-menu" 
+            aria-controls="main-menu" 
             aria-expanded="false" 
-            aria-label="<?php esc_attr_e( 'Toggle navigation', 'your-theme-slug' ); ?>">
+            aria-label="<?php esc_attr_e( 'Toggle navigation'); ?>">
         <span class="navbar-toggler-icon"></span>
     </button>
     <?php 
@@ -14,17 +14,24 @@
                 the_custom_logo();
         endif; 
     ?>
-        <?php
-        wp_nav_menu( array(
-            'theme_location'    => 'main-menu',
-            'depth'             => 2,
-            'container'         => 'div',
-            'container_class'   => 'collapse navbar-collapse',
-            'container_id'      => 'bs-example-navbar-collapse-1',
-            'menu_class'        => 'nav navbar-nav',
-            'fallback_cb'       => 'WP_Bootstrap_Navwalker::fallback',
-            'walker'            => new WP_Bootstrap_Navwalker(),
-        ) );
-        ?>
+        <div id="main-menu" class="collapse navbar-collapse">
+            <?php
+            wp_nav_menu( array(
+                'theme_location'    => 'main-menu',
+                'depth'             => 2,
+                'container'         => false,
+                'menu_class'        => 'nav navbar-nav',
+                'fallback_cb'       => 'WP_Bootstrap_Navwalker::fallback',
+                'walker'            => new WP_Bootstrap_Navwalker(),
+            ) );
+            ?>
+            <div class="navbar-nav ml-auto ">
+                <?php if (is_user_logged_in()):
+                    get_template_part('partials/main-menu-logout');
+                else:
+                    get_template_part('partials/main-menu-login');
+                endif; ?> 
+            </div>
+        </div>
     </div>
 </nav>
