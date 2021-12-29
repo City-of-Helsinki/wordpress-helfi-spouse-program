@@ -35,8 +35,9 @@
   }
 
   h1 {
-    color: $cyan;
-    text-align: center;
+    font-family: 'Roboto', sans-serif;
+    color: $black;
+    text-align: start;
   }
 
   img {
@@ -125,7 +126,6 @@ span.social-title {
   font-size: 1.5rem;
   font-weight: 500;
 }
-
 
 
 
