@@ -1,0 +1,25 @@
+.hero-image {
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 60vh;
+    background-position: bottom;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero-text {
+    .text-container {
+      background-color: $black;
+      display: inline-block;
+      padding: 0.5rem;
+      font-size: 3rem;
+      font-weight: bold;
+      font-family: 'Roboto', sans-serif;
+      color: $white;
+      padding: 1rem 3rem 1rem 3rem;
+
+      .highlight {
+        color: $opal;
+      }
+    }
+  }
