@@ -77,7 +77,7 @@ function spouse_print_events($events = []){
       $ariaTitle .= $userLoggedIn ? '' : __('Sign in to see more');
     }
     ?>
-
+    <div class="col-lg-4 col-12 col-sm-12 d-flex">
     <?php if($userLoggedIn): ?>
       <a href="<?php echo get_permalink($event) ?>" <?php if($ariaTitle): ?>aria-label="<?php echo $ariaTitle; ?>" <?php endif; ?>>
           <div class="event clearfix">
@@ -85,16 +85,21 @@ function spouse_print_events($events = []){
           <div <?php if(!$userLoggedIn): ?>tabindex="0"<?php endif; ?> <?php if($ariaTitle): ?>aria-label="<?php echo $ariaTitle; ?>" <?php endif; ?> class="event clearfix">
     <?php endif; ?>
 
-      <div class="event-content-wrap">
+      <div class="event-content-wrap card border-0 shadow flex-fill">
           <div class="event-color" <?php if(isset($color) && $color): ?>style="background-color:<?php echo $color; ?>" <?php endif; ?>></div>
-
           <div class="event-content">
-              <div class="text-content">
-                  <p><?php echo $startDate; ?></p>
-                  <p class=""><?php echo $category ?></p>
-                  <p class=""><?php echo $event->post_title ?></p>
-                  <p><?php echo $startTime; ?> - <?php echo $endTime; ?></p>
-                <?php if(!$userLoggedIn):?>
+            <div class="container row">
+                  <?php the_post_thumbnail("medium") ?>
+                  <p class="event-category"><?php echo $category ?></p>
+                </div>
+              <div class="text-content card-body">
+                
+                  <div class="event-schedule">
+                    <p class="start-date"> <?php echo $startDate; ?></p>
+                    <p class="duration"> <?php echo $startTime; ?> - <?php echo $endTime; ?></p>
+                  </div>
+                    <?php if(!$userLoggedIn):?>
+                  <p class="post-title"><?php echo $event->post_title ?></p>
                     <p><?php echo __('Sign in to see more') ?></p>
                 <?php endif; ?>
               </div>
@@ -107,7 +112,7 @@ function spouse_print_events($events = []){
     <?php else: ?>
     </div>
     <?php endif; ?>
-
+    </div>
     <?php
 
   }
