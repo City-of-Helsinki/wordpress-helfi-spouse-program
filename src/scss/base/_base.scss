@@ -26,8 +26,16 @@ h1 {
   font-weight: 700;
 }
 
-a:hover {
-  color: #83b4af !important;
+a {
+  &:hover {
+    color: #83b4af !important;
+  }
+
+  &:focus, &:focus-visible {
+    
+    outline: 1px solid black !important;
+  }
+
 }
 
 @media (max-width: 992px) {

@@ -90,7 +90,7 @@
                 }
 
                 &:focus {
-                    border: 2px solid black;
+                    outline: 2px solid black;
                 }
             }
         }
@@ -107,6 +107,7 @@
             }
 
             &:focus, &:focus-visible {
+                border: none;
                 outline: 2px solid black !important;
             }
         }
@@ -114,9 +115,15 @@
         .login-form-bottom {
             margin-top: 2rem;
             text-align: center;
+            display: flex;
+            flex-direction: column;
 
-            .create-account {
-                color: #91C8C2;
+            .container {
+                margin: 0.5rem 0;
+
+                a {
+                    color: #91C8C2;
+                }
             }
         }
     }
