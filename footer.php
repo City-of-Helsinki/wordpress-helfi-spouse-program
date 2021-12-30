@@ -1,7 +1,7 @@
     <footer id="site-footer">
-        <div class="container-fluid">
+        <div class="container">
             <div class="row justify-content-center py-3">
-                <div class="col-12 col-lg-3">
+                <div class="col-12 col-lg-4">
 
                   <?php if( is_active_sidebar( 'footer_content_left' ) ) : ?>
                       <div class="widgetized-page-before-content-widget-area">
@@ -10,7 +10,7 @@
                   <?php endif; ?>
 
                 </div>
-                <div class="col-12 col-lg-3">
+                <div class="col-12 col-lg-4">
 
                   <?php if( is_active_sidebar( 'footer_content' ) ) : ?>
                       <div class="widgetized-page-before-content-widget-area">
@@ -19,7 +19,7 @@
                   <?php endif; ?>
 
                 </div>
-                <div class="col-12 col-lg-3">
+                <div class="col-12 col-lg-4">
 
                   <?php if( is_active_sidebar( 'footer_content_right' ) ) : ?>
                       <div class="widgetized-page-before-content-widget-area">

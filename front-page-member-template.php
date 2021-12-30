@@ -1,10 +1,11 @@
-<?php /*Template Name: One-column-template */ ?>
+<?php /*Template Name: Front-page-member-template */ ?>
 
 <?php get_header(); ?>
 
       <div class="row">
           <?php get_template_part("partials/hero"); ?>
           <div class="container">
+            <?php get_template_part("partials/user"); ?>
           <div class="col-12">
               <h1 class="pt-3"><?php the_title(); ?></h1>
           </div>
@@ -17,7 +18,7 @@
           <?php
           // center
           if (have_rows('left_column_content')):
-            echo '<div class="container row p-0">';
+            echo '<div class="container row">';
             while (have_rows('left_column_content')) : the_row();
               $type = get_sub_field('content_type');
               get_template_part('partials/'.$type);

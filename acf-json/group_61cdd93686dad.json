@@ -1,0 +1,50 @@
+{
+    "key": "group_61cdd93686dad",
+    "title": "intro",
+    "fields": [
+        {
+            "key": "field_61cdda3b6fcf3",
+            "label": "intro_text",
+            "name": "intro_text",
+            "type": "text",
+            "instructions": "Write a welcome for the logged in user",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": "Here you will find all available services and upcoming events. Don't be shy and become an active member of our Spouse Community!",
+            "prepend": "",
+            "append": "",
+            "maxlength": ""
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "post_type",
+                "operator": "==",
+                "value": "page"
+            }
+        ],
+        [
+            {
+                "param": "page_template",
+                "operator": "==",
+                "value": "front-page-member-template.php"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": true,
+    "description": "",
+    "modified": 1640880832
+}
