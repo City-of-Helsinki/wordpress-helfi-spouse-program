@@ -4,7 +4,7 @@
 spl_autoload_register('spouse_class_autoloader');
 
 function spouse_class_autoloader($class) {
-  $baseDir = __DIR__ . '/../classes/';
+  $baseDir = get_template_directory() . DIRECTORY_SEPARATOR . 'classes' . DIRECTORY_SEPARATOR;
   $namespace = 'Spouse\\';
 	if (strpos($class, $namespace) !== 0) {
 		return;
