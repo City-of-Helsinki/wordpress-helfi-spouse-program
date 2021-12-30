@@ -1,5 +1,7 @@
 <?php 
 
+namespace Spouse;
+
 abstract class LoginFormHandler{
     abstract public static function init(LoginHandler $loginHandler);
     public function doActions(){}

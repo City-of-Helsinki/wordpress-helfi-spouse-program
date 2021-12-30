@@ -1,6 +1,5 @@
 <?php
-require_once("RegisterFormAttachment.php");
-require_once("RegisterFormFields.php");
+namespace Spouse;
 
 class RegisterForm{
     private $fields = null;
