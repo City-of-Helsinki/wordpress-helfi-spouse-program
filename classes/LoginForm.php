@@ -4,6 +4,7 @@ namespace Spouse;
 
 class LoginForm extends LoginFormHandler{
     public $slugKey = 'login';
+    public $template = 'template-login.php';
 
     public static function init(LoginHandler $loginHandler){
         $self = new self();
@@ -12,6 +13,7 @@ class LoginForm extends LoginFormHandler{
         add_action('template_redirect', array($self, 'setupForm'), 10);
     }
     public function doActions(){
+        parent::doActions();
         remove_action('spouse_after_body_open', 'spouse_render_main_menu', 10);
     }
     function renderForm() {

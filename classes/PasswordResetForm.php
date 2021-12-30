@@ -4,6 +4,7 @@ namespace Spouse;
 
 class PasswordResetForm extends LoginFormHandler{
     public $slugKey = 'password-reset';
+    public $template = 'template-login.php';
 
     public static function init(LoginHandler $loginHandler){
         $self = new self();
