@@ -1,0 +1,53 @@
+{
+    "key": "group_additional_graphical_elements",
+    "title": "Additional graphical elements",
+    "id": "acf_additional-graphical-elements",
+    "location": [
+        [
+            {
+                "param": "page_template",
+                "operator": "==",
+                "value": "one-column-template.php",
+                "order_no": 0,
+                "group_no": 0
+            }
+        ],
+        [
+            {
+                "param": "page_template",
+                "operator": "==",
+                "value": "two-column-template.php",
+                "order_no": 0,
+                "group_no": 1
+            }
+        ]
+    ],
+    "options": {
+        "position": "side",
+        "layout": "default",
+        "hide_on_screen": []
+    },
+    "menu_order": 0,
+    "fields": [
+        {
+            "key": "field_5ee34fa86a2aa",
+            "label": "Add additional graphical elements",
+            "name": "additional_graphical_elements",
+            "type": "true_false",
+            "instructions": "Add background wave elements to the layout",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "message": "",
+            "default_value": 1,
+            "ui": 0,
+            "ui_on_text": "",
+            "ui_off_text": ""
+        }
+    ],
+    "modified": 1640853060
+}
