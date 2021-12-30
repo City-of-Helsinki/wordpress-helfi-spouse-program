@@ -6,6 +6,9 @@
 
 <?php echo $args["form"] ?>
 
-<a class="forgot-password" href="<?php echo wp_lostpassword_url(); ?>">
-        <?php _e( 'Forgot your password?', 'personalize-login' ); ?>
-</a>
+<div class="login-form-bottom">
+  Not registered yet? 
+  <a class="create-account" href="<?php echo wp_lostpassword_url(); ?>">
+    <?php _e( 'Create an account.', 'personalize-login' ); ?>
+  </a>
+</div>
