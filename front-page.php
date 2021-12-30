@@ -10,16 +10,16 @@ get_header();
 ?>
 
 <main id="main-content" role="main">
+  <div class="col-12 col-sm-12 cta-column container-fluid">
+      <div class="cta-background" style="background-image: url(<?php echo get_the_post_thumbnail_url(get_the_ID(), 'full'); ?>);">
+          <?php $buttonEnabled = get_field('enable_cta-button') ?>
+          <?php if($buttonEnabled): ?>
+            <?php get_template_part('partials/cta'); ?>
+          <?php endif; ?>
+      </div>
+  </div>
   <div class="container">
       <div class="row flex-column">
-          <div class="col-12 col-sm-12 cta-column">
-              <div class="cta-background" style="background-image: url(<?php echo get_the_post_thumbnail_url(get_the_ID(), 'full'); ?>);">
-                  <?php $buttonEnabled = get_field('enable_cta-button') ?>
-                  <?php if($buttonEnabled): ?>
-                    <?php get_template_part('partials/cta'); ?>
-                  <?php endif; ?>
-              </div>
-          </div>
           <div class="col-12 col-sm-12 main-content">
               <div class="main-content-container">
                 <?php
@@ -47,7 +47,7 @@ get_header();
               </div>
           </div>
           <div class="col-12 col-sm-12 events-column">
-            <div class="container line">
+            <div class="container line position-relative">
               <h2>Upcoming events</h2>
                 <div class="row">
                       <?php echo do_shortcode('[spouse-events]'); ?>
