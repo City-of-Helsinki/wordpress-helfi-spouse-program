@@ -2,13 +2,14 @@
 
 abstract class LoginFormHandler{
     abstract public static function init(LoginHandler $loginHandler);
-
+    public function doActions(){}
     public function setupForm(){
         $slug = get_post_field( 'post_name', get_post() );
         $page = LoginStaticPagesGenerator::get($this->slugKey);
 
         if ($slug == $page['slug']){
             add_action('spouse_after_content', array($this, 'renderForm'), 5);
+            $this->doActions();
         }
     }
 
