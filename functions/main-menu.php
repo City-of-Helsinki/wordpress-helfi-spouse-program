@@ -20,3 +20,9 @@ function spouse_main_menu(){
       'walker'          => new WP_Bootstrap_Navwalker()
   ) );
 }
+
+function spouse_render_main_menu(){
+    get_template_part('partials/after-body-open');
+}
+
+add_action('spouse_after_body_open', 'spouse_render_main_menu', 10);
