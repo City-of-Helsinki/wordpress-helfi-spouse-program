@@ -11,7 +11,7 @@
           <?php if(is_user_logged_in()): ?>
               <div id="main-content" class="col-12 col-sm-12 col-md-12">
           <?php else: ?>
-          <div id="main-content" class="col-12 text-center">
+          <div id="main-content" class="col-12 text-start p-0">
           <?php endif; ?>
               
           <?php
