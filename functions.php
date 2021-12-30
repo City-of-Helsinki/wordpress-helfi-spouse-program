@@ -344,12 +344,6 @@ function my_acf_op_init() {
     }
 }
 
-function spouse_render_main_menu(){
-  get_template_part('partials/after-body-open');
-}
-add_action('spouse_after_body_open', 'spouse_render_main_menu', 10);
-
-
 function get_the_background_image_style( $size = 'full'){
   if ( has_post_thumbnail()){
     echo sprintf('style="background-image: url(%s);"', get_the_post_thumbnail_url(get_the_ID(), $size));
