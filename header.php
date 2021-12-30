@@ -1,7 +1,5 @@
 <!DOCTYPE html>
 
-<?php spouse_access_control_check(); ?>
-
 <html class="no-js" <?php language_attributes(); ?>>
 
 <head>
@@ -23,10 +21,5 @@
 
 <?php
 wp_body_open();
-?>
 
-<header id="site-header" role="banner">
-        <?php get_template_part('partials/main-menu'); ?>
-</header><!-- #site-header -->
-
-<?php echo do_shortcode('[spouse_notice]'); ?>
+do_action("spouse_after_body_open");
