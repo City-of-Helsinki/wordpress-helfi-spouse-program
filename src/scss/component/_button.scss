@@ -25,3 +25,39 @@
   background-color: $purple;
   color: $white;
 }
+
+.btn{
+  padding-left: 1rem;
+  padding-right: 1rem;
+  &.btn-primary{
+    background-color: $btn-primary; 
+    border-color: $btn-primary;
+    color: $black;
+    &:hover, &:focus{
+      background-color: darken($btn-primary, 5%);
+      outline: $black 2px solid;
+    }
+  }
+  &.btn-icon{
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    padding: .5em 1em;
+
+    i{
+      height: 1.2rem;
+      width: 1.2rem;
+      display: block;
+      background-position: center center;
+      background-repeat: no-repeat;
+      background-size: contain;
+      margin-left: 4px;
+    }
+  }
+}
+
+.icon-login{
+  background-image: url(./src/scss/icons/log-in-outline.svg)
+}

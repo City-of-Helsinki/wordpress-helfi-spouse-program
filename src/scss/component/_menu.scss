@@ -112,3 +112,15 @@ html {
     padding-left: 0px;
   }
 }
+
+@media (max-width: 1023px) {
+  header{
+    .navbar{
+      .container {
+        width: 100%;
+        max-width: none;
+      }
+    }
+  }
+
+}

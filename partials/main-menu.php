@@ -14,7 +14,7 @@
                 the_custom_logo();
         endif; 
     ?>
-        <div id="main-menu" class="collapse navbar-collapse">
+        <div id="main-menu" class="collapse navbar-collapse ml-2">
             <?php
             wp_nav_menu( array(
                 'theme_location'    => 'main-menu',
@@ -25,7 +25,7 @@
                 'walker'            => new WP_Bootstrap_Navwalker(),
             ) );
             ?>
-            <div class="navbar-nav ml-auto ">
+            <div class="navbar-login-nav ml-auto ">
                 <?php if (is_user_logged_in()):
                     get_template_part('partials/main-menu-logout');
                 else:

@@ -11,7 +11,9 @@ class LoginLostPasswordHandler extends LoginFormHandler{
             add_action('template_redirect', array($self, 'setupForm'), 10);
             add_action( 'login_form_lostpassword', array( $self, 'do_password_lost' ) );
     }
-
+    public function doActions(){
+        remove_action('spouse_after_body_open', 'spouse_render_main_menu', 10);
+    }
     public function redirectCustomLostPassword() {
         if ( 'GET' == $_SERVER['REQUEST_METHOD'] ) {
             if ( is_user_logged_in() ) {

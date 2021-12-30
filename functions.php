@@ -34,7 +34,7 @@ function spouse_enqueue_scripts() {
   if ( is_page_template('archives.php') ) {
     wp_enqueue_script('news-visited', get_template_directory_uri() . '/js/news-visited.js');
   }
-  wp_enqueue_script('wow-modal-focus', get_template_directory_uri() . '/js/wow-modal-focus.js');
+  wp_enqueue_script('main', get_template_directory_uri() . '/js/main.js');
   wp_enqueue_script('target-blank-accessible', get_template_directory_uri() . '/js/targetblank.js');
 }
 add_action('wp_enqueue_scripts', 'spouse_enqueue_scripts');
@@ -342,4 +342,21 @@ function my_acf_op_init() {
             'redirect'      => false
         ));
     }
+}
+
+function spouse_render_main_menu(){
+  get_template_part('partials/after-body-open');
+}
+add_action('spouse_after_body_open', 'spouse_render_main_menu', 10);
+
+
+function get_the_background_image_style( $size = 'full'){
+  if ( has_post_thumbnail()){
+    echo sprintf('style="background-image: url(%s);"', get_the_post_thumbnail_url(get_the_ID(), $size));
+  }
+}
+
+function get_hero_text(){
+  $hero = get_field('hero_text');
+  return preg_replace('/_(.*?)_/', '<span class="highlight">$1</span>', $hero);
 }
