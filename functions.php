@@ -2,9 +2,6 @@
 
 require_once('functions/autoloader.php');
 
-require_once('functions/main-menu.php');
-
-
 function spouse_setup_theme(){
   add_theme_support( 'widgets' );
   add_theme_support( 'post-thumbnails' );
