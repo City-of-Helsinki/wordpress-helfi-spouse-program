@@ -8,8 +8,6 @@ class RegisterFormFields{
 
     public function addCustomRegistrationTag() {
         wpcf7_add_form_tag( 'registration', array($this, 'registrationTagHandler' ));
-        wpcf7_add_form_tag( 'user_email', array($this, 'userEmailTagHandler' ));
-        wpcf7_add_form_tag( 'user_password_url', array($this, 'userPasswordUrlTagHandler' ));
     }
 
  
@@ -18,14 +16,6 @@ class RegisterFormFields{
         $form = wpcf7_do_shortcode( $form );
     
         return $form;
-    }
-
-    public function userEmailTagHandler(){
-        return "mikko@testaa.com";
-    }
-
-    public function userPasswordUrlTagHandler(){
-        return "foobaa";
     }
 
     public function getFormTags(){
@@ -62,7 +52,7 @@ class RegisterFormFields{
     private function generateForm(){
         $form = '<div class="row">';
         $ID = LoginStaticPagesGenerator::getPostId('register');
-
+        
         if( have_rows('form', $ID ) ):
           while ( have_rows('form', $ID) ) : the_row();
               if( get_row_layout() == 'textfield' || get_row_layout() == 'email' ){
@@ -86,7 +76,31 @@ class RegisterFormFields{
                     $sizeClass = sprintf('class="%s"', 'col-md-6');
                   }
                   $form .= sprintf('<div %s><label>%s [%s %s]</label></div>', $sizeClass, $label, $field, sanitize_title($label)); 
-              } else if( get_row_layout() == 'note'){
+                } else if( get_row_layout() == 'select'){
+                    $isRequired = $this->isRequired(get_the_ID());
+
+                    $label = get_sub_field('label');
+
+                    $field = 'select';
+                    if ($isRequired){
+                        $field .= '*';
+                    }
+                    $id = sprintf('form-%s', sanitize_title($label));
+                    $select = $this->getSelectFields(get_the_ID());
+                    $values = array_column($select, 'value');
+                    $form .= '<div class="form-group col-12 form-select-with-messages">';
+                    $form .= sprintf('<label for="%s">%s</label>', $id, $label);
+                    $form .= sprintf('[%s %s id:%s include_blank class:form-control class:select-has-messages %s]', $field, sanitize_title($label), $id, implode(" ", $values));
+
+                        $form .= '<div class="select-messages">';
+                        foreach ($select as $s){
+                                $form .= sprintf('<div class="select-message d-none">%s</div>', $s["message"]);
+                        }
+                        $form .= '</div>';
+                        
+                    $form .= '</div>';
+
+                } else if( get_row_layout() == 'note'){
                 $form .= sprintf('<div class="col-12">%s</div>', get_sub_field("message"));
               }
           endwhile;
@@ -94,5 +108,20 @@ class RegisterFormFields{
         $form .= '</div>';
       
         return $form;
+      }
+      private function isRequired($post_id){
+        return get_sub_field('is_required', $post_id);
+      }
+
+      private function getSelectFields($post_id){
+
+            if( have_rows('options', $post_id) ):
+                while( have_rows('options', $post_id) ) : the_row();
+                    $value = get_sub_field('value');
+                    $message = get_sub_field('message');
+                    $values[] = array("value" => sprintf('"%s"', $value), "message" => $message);
+                endwhile;
+            endif;
+            return $values;
       }
 }
