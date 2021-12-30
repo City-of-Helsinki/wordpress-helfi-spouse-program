@@ -14,7 +14,7 @@ class LoginHandler{
         add_filter( 'authenticate', array( $self, 'maybe_redirect_at_authenticate' ), 101, 3 );
         add_action( 'wp_logout', array( $self, 'redirect_after_logout' ) );
         add_filter( 'login_redirect', array( $self, 'redirect_after_login' ), 10, 3 );
-
+        add_filter('wpcf7_form_elements', array($self, 'addBtnClassesToCF7Buttons') );
         $registerForm = new RegisterForm();
         $registerForm->init();
 
@@ -95,5 +95,17 @@ class LoginHandler{
     public function redirect_after_logout() {
         wp_safe_redirect( home_url()  );
         exit;
+    }
+
+    public function addBtnClassesToCF7Buttons($elements){
+        return str_replace(
+            array(
+                'wpcf7-submit',
+            ),
+            array(
+                'wpcf7-submit wpcf7-submit btn btn-primary',
+            ),
+            $elements
+        );
     }
 }
