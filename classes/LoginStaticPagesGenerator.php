@@ -1,5 +1,7 @@
 <?php
 
+namespace Spouse;
+
 class LoginStaticPagesGenerator{
         // Information needed for creating the plugin's pages
     const page_definitions = array(

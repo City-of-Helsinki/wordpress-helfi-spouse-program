@@ -1,5 +1,7 @@
 <?php
 
+namespace Spouse;
+
 class RegisterFormFields{
     public function init(){
         add_action( 'wpcf7_init', array($this, 'addCustomRegistrationTag' ), 10 );

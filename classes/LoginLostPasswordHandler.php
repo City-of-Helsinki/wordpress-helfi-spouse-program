@@ -1,5 +1,7 @@
 <?php
 
+namespace Spouse;
+
 class LoginLostPasswordHandler extends LoginFormHandler{
     private $loginHandler = null;
     public $slugKey = 'password-lost';

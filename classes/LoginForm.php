@@ -1,5 +1,7 @@
 <?php
 
+namespace Spouse;
+
 class LoginForm extends LoginFormHandler{
     public $slugKey = 'login';
 

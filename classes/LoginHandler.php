@@ -1,11 +1,6 @@
 <?php
-require_once('LoginStaticPagesGenerator.php');
-require_once('LoginFormHandler.php');
-require_once('RegisterForm.php');
-require_once('LoginForm.php');
-require_once('LoginLostPasswordHandler.php');
-require_once('PasswordResetForm.php');
 
+namespace Spouse;
 
 class LoginHandler{
     public static function init(){

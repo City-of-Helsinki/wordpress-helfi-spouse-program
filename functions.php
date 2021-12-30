@@ -1,6 +1,6 @@
 <?php
-require_once('functions/main-menu.php');
 
+require_once('functions/autoloader.php');
 
 function spouse_setup_theme(){
   add_theme_support( 'widgets' );
@@ -316,15 +316,14 @@ function wp_custom_archive($args = '') {
   echo $output;
 }
 
-require_once(__DIR__ .'/classes/LoginHandler.php');
-LoginHandler::init();
+\Spouse\LoginHandler::init();
 
 function spouse_login_url(){
-  return LoginStaticPagesGenerator::url('login');
+  return \Spouse\LoginStaticPagesGenerator::url('login');
 }
 
 function spouse_register_url(){
-  return LoginStaticPagesGenerator::url('register');
+  return \Spouse\LoginStaticPagesGenerator::url('register');
 }
 
 add_action('acf/init', 'my_acf_op_init');

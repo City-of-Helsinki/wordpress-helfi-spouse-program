@@ -1,5 +1,7 @@
 <?php
 
+namespace Spouse;
+
 class PasswordResetForm extends LoginFormHandler{
     public $slugKey = 'password-reset';
 
