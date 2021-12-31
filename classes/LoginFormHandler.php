@@ -4,7 +4,10 @@ namespace Spouse;
 
 abstract class LoginFormHandler{
     abstract public static function init(LoginHandler $loginHandler);
-    public function doActions(){}
+    public function doActions(){
+        if (!empty($this->template))
+            add_filter( 'template_include', array($this, 'loadTemplate'), 99 );
+    }
     public function setupForm(){
         $slug = get_post_field( 'post_name', get_post() );
         $page = LoginStaticPagesGenerator::get($this->slugKey);
@@ -13,6 +16,15 @@ abstract class LoginFormHandler{
             add_action('spouse_after_content', array($this, 'renderForm'), 5);
             $this->doActions();
         }
+    }
+
+    function loadTemplate( $template ) {
+        $new_template = locate_template( array( $this->template ) );
+        if ( '' != $new_template ) {
+            return $new_template ;
+        }
+
+        return $template;
     }
 
     public function get_error_message($code){

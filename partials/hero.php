@@ -3,10 +3,11 @@
         $style = "background-position: $position";
         ?>
             <div class="col-12 hero-image d-flex align-items-center justify-content-center" style='background-image:url(<?php echo $thumbnail; ?>); <?php echo $style ?>'>
-                <?php if($hero_text = get_hero_text()): ?>
+                
+                <?php if($hero_text = get_field('hero_text')): ?>
                     <div class="container hero-text d-flex align-self-center justify-content-center">
                         <div class="text-container align-self-center justify-content-center">
-                            <?php echo $hero_text ?>
+                            <?php echo $hero_text; ?>
                         </div>
                     </div>
                 <?php endif ?>

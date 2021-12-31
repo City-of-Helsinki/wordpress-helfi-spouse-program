@@ -1,6 +1,6 @@
     <footer id="site-footer">
         <div class="container-fluid">
-            <div class="row justify-content-center py-4">
+            <div class="row justify-content-center py-3">
                 <div class="col-12 col-lg-3">
 
                   <?php if( is_active_sidebar( 'footer_content_left' ) ) : ?>

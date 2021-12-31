@@ -5,6 +5,7 @@ namespace Spouse;
 class LoginLostPasswordHandler extends LoginFormHandler{
     private $loginHandler = null;
     public $slugKey = 'password-lost';
+    public $template = 'template-login.php';
 
     public static function init(LoginHandler $loginHandler){
         $self = new self();
