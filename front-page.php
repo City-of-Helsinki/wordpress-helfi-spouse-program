@@ -30,20 +30,7 @@ get_header();
                 endwhile;
                 endif;
                 ?>
-                  <div class="small-images clearfix">
-                      <div class="d-flex flex-row flex-wrap align-items-center">
-                        <?php
-                        while ( have_rows('images') ) : the_row();
-                          $img = get_sub_field('image');
-                          ?>
-                            <div class="p-2 w-25">
-                                <img src="<?php echo $img['url']; ?>" alt="<?php echo $img['alt']; ?>"/>
-                            </div>
-                        <?php
-                        endwhile;
-                        ?>
-                      </div>
-                  </div>
+                <?php get_template_part('partials/front-page-small-images') ?>
               </div>
           </div>
           <div class="col-12 col-sm-12 events-column">

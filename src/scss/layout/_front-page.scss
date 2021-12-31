@@ -82,12 +82,30 @@
   }
 
   .small-images {
-    img {
-      width: 100%;
-      height: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap:  wrap;
+    &__image{
+      flex: 0 0 100%;
+      @include media-breakpoint-up('sm') {
+        flex-basis: 40%;
+      }
+      @include media-breakpoint-up('lg') {
+        flex-basis: 33.333%;
+      }
+
+      text-align: center;
+      img {
+        max-width: 250px;
+        max-height: 120px;
+        height: auto;
+        width:auto;
+      }
     }
   }
 }
+
 
 .line:before {
   content: "";
