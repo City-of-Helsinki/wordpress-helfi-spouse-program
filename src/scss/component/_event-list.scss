@@ -22,13 +22,16 @@
     display: block !important;
   }
 
-  
+  .event-img {
+    width: 100%;
+    min-height: 200px;
+    background-size: cover;
+  }
 
   .event {
     display: flex;
     flex-flow: column;
-    min-height: 80px;
-    height: auto;
+    height: 425px;
     box-shadow: $box-shadow-medium;
     background-color: white;
     border-radius: 6px;
@@ -45,6 +48,7 @@
 
       .event-content {
         width: 100%;
+        padding: 1rem;
 
         .event-text {
           width: auto;
@@ -53,24 +57,37 @@
         .event-schedule {
           font-size: 1.333rem;
           font-weight: bold;
+          margin-bottom: 0.5rem;
+
           .start-date {
+            display:flex;
+            align-items: center;
+            flex-direction: row;
+
             &::before {
               display: inline-block;
               content: "";
+              margin-right: 0.75rem;
               background: url('./src/scss/icons/calendar-clear-outline.svg');
               height: 1.333rem;
               width: 1.333rem;
             }
           }
+
           .duration {
+            display:flex;
+            align-items: center;
+            flex-direction: row;
             &::before {
               display: inline-block;
+              margin-right: 0.75rem;
               content: "";
               background: url('./src/scss/icons/time-outline.svg');
               height: 1.333rem;
               width: 1.333rem;
             }
           }
+
         }
 
         .event-category {
@@ -83,72 +100,18 @@
         }
 
         p {
-          margin-bottom: 0px;
+          margin: 0;
         }
 
-      .event-icon {
-        width: 30px;
-        margin: 5px 10px 0px 0px;
-        img {
-          width: 100%;
-          height: auto;
+        .event-icon {
+          width: 30px;
+          margin: 5px 10px 0px 0px;
+          img {
+            width: 100%;
+            height: auto;
+          }
         }
-      }
-    }
-
-  }
-}
-
-.events-column {
-  .page-template-one-column-template,
-  .page-template-two-column-template {
-    background-color: white;
-
-    h2 {
-      color: $cyan;
-    }
-
-    .event {
-      border: 3px solid $cyan;
-      position: relative;
+      } 
     }
   }
-
-  .event {
-    position: relative;
-
-    .popuptext {
-      display: none;
-    }
-
-    &.popup-hover:hover .popuptext {
-      z-index: 99;
-        display: block;
-        width: 100%;
-        height: 100%;
-        position: absolute;
-        background-color: white;
-        text-align: center;
-        padding-top: 7%;
-    }
-  }
-}
-
-.home {
-  .events-column {
-    background-color: $cyan;
-
-    h2 {
-      color: white;
-    }
-
-    .event {
-      border: 1px solid $cyan;
-    }
-
-    .event-color {
-      border-right: 1px solid gray;
-    }
-  }
-}
 }
