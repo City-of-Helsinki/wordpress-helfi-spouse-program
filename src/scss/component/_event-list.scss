@@ -1,15 +1,15 @@
 .events-column {
   color: black;
-  padding: 0px 20px;
+  padding: 0;
   background-size: cover;
   min-height: 100%;
   overflow-y: auto;
+  margin-bottom: 2rem;
 
   h2 {
     color: $black;
     text-align: start;
-    margin-top: 10px;
-    padding-top:10px;
+    margin: 2rem 0;
   }
 
   a {
@@ -17,6 +17,12 @@
     font-style: normal;
     color: black;
   }
+
+  .d-flex {
+    display: block !important;
+  }
+
+  
 
   .event {
     display: flex;
@@ -29,12 +35,6 @@
     margin: 25px 0px;
     overflow: hidden;
 
-    .event-color {
-      width: 10px;
-      overflow: hidden;
-      height: 100%;
-      position: absolute;
-    }
     .event-content-wrap {
       display:flex;
       flex-flow: row;
