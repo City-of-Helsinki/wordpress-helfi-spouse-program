@@ -1,9 +1,13 @@
+body, html {
+  padding: 0;
+}
+
 body {
-  font-family: 'Nunito', serif;
+  font-family: 'Roboto', sans-serif !important;
   font-size: 18px;
 
   .mob-menu-left-bg-holder {
-    font-family: 'Nunito', serif;
+    font-family: 'Roboto', sans-serif !important;
     font-size: 22px;
   }
 

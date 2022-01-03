@@ -20,6 +20,7 @@
 
   .d-flex {
     display: block !important;
+    margin: 0 0 2rem 0;
   }
 
   .event-img {
@@ -31,11 +32,10 @@
   .event {
     display: flex;
     flex-flow: column;
-    height: 425px;
+    height: 100%;
     box-shadow: $box-shadow-medium;
     background-color: white;
     border-radius: 6px;
-    margin: 25px 0px;
     overflow: hidden;
 
     .event-content-wrap {
