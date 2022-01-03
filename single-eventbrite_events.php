@@ -35,7 +35,6 @@
     </div>
     <div class="col-12 col-sm-4">
         <div class="single-event-content">
-
             <p><?php echo apply_filters( 'the_content', $post->post_content); ?></p>
             <?php echo get_field('description') ?>
         </div>

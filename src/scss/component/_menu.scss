@@ -1,126 +1,25 @@
-.sidebar-menu-wrap {
-    list-style: none;
-    color: $black;
-    padding-left:25px;
-    border-right: 2px dotted #999;
-
-    h2 {
-      color: $cyan;
-    }
-
-    ul {
-      text-decoration: none;
-
-      li {
-        a {
-          color: $black;
-          &:hover {
-            color: $cyan;
-          }
-        }
-        .current-menu-item a{
-          color: $cyan;
-        }
-      }
-    }
-}
-
-.mobmenu-content{
-  li {
-    a:hover {
-      font-weight: 700 !important;
-      background-color: unset !important;
-    }
-    a:focus {
-      border: 2px solid $tertiary-color;
-    }
-    &:hover {
-      background-color: unset !important;
-    }
-  }
-
-  a{
-    color: black !important;
-    font-family: Nunito;
-    font-size: 18px !important;
-  }
-
-  a:hover{
-    font-weight: 700;
-  }
-
-  ul.leftmbottom {
-    padding-left: 0px;
-    li {
-      padding: 0px;
-      ul {
-        padding-left: 0px;
-        li {
-          padding-left: 0px;
-        }
-      }
-      &:hover{
-        background-color: white;
-      }
-    }
+.btn-sign-up {
+  &:hover, &:active {
+    color: $opal;
+    text-decoration: underline;
   }
 }
 
-.leftmbottom {
-  display: none;
-}
-
-.logged-in {
-  .leftmbottom {
-    display: block;
+.btn-sign-in {
+  background-color: $opal;
+  &:hover, &:active {
+    background-color: $opal-dark;
   }
 }
 
-.slicknav_menu {
-  padding: 0;
-  position: absolute;
-  z-index: 99;
-  width: auto;
-  top: 20px!important;
+.btn-logout {
+  background-color: $red;
 
-  .slicknav_nav {
-    width: 97vw;
-    background-color: $primary-color;
+  &:hover, &:active {
+    background-color: $red-dark;
   }
 
-}
-
-.slicknav_nav ul {
-  margin-left: 0px;
-
-  li {
-    a {
-      text-transform: underline;
-    }
+  .icon-logout {
+    transform: rotate(180deg);
   }
-}
-
-html {
-  padding-top: 0px;
-}
-
-@media (max-width: 1300px) {
-  header .header-main-content ul li {
-    padding-left: 5px;
-  }
-  #menu-menu-1 {
-    padding-left: 0px;
-  }
-}
-
-@media (max-width: 1023px) {
-  header{
-    .navbar{
-      .container {
-        width: 100%;
-        max-width: none;
-      }
-    }
-  }
-
 }

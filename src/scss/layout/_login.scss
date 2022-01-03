@@ -22,6 +22,10 @@
 
         .back-link {
             text-align: right;
+
+            a:hover {
+                color: $opal;
+            }
         }
 
         h1 {
@@ -55,8 +59,8 @@
 
             input[type="checkbox"] {
                 position: relative;
-                width: 1.5em;
-                height: 1.5em;
+                width: 1.3em;
+                height: 1.3em;
                 border: 1px solid gray;
                 border-radius: 4px;
                 appearance: none;
@@ -98,8 +102,8 @@
         #wp-submit {
             background-color: #91C8C2;
             border: none;
-            height: 4rem;
-            font-size: 1.33rem;
+            height: 3.5rem;
+            font-size: 1rem;
             transition: all 0.3s ease-in-out;
 
             &:hover {
