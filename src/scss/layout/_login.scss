@@ -83,8 +83,8 @@
                 }
                 &:checked {
                     color: white;
-                    border-color: #83b4af;
-                    background: #83b4af;
+                    border-color: $opal;
+                    background: $opal;
                     &::before {
                     opacity: 1;
                     }
@@ -100,14 +100,14 @@
         }
 
         #wp-submit {
-            background-color: #91C8C2;
+            background-color: $opal;
             border: none;
             height: 3.5rem;
             font-size: 1rem;
             transition: all 0.3s ease-in-out;
 
             &:hover {
-                background-color: #83b4af;
+                background-color: $opal-dark;
             }
 
             &:focus, &:focus-visible {
@@ -126,7 +126,7 @@
                 margin: 0.5rem 0;
 
                 a {
-                    color: #91C8C2;
+                    color: $opal;
                 }
             }
         }
