@@ -1,7 +1,7 @@
 .cta-column {
   padding: 0;
-  min-height: 800px;
-  height:90vh;
+  min-height: 600px;
+  height:25vh;
   position: relative;
   .cta-background {
     height: 100%;
@@ -37,28 +37,9 @@
 .main-content {
   position: relative;
   background-color: $white;
-
-  min-height:750px;
-  padding: 0;
+  height: auto;
   font-size: 18px;
-
-
-  .main-content-container {
-    position: absolute;
-    float: left;
-    z-index:9;
-    top:0;
-    left: 0;
-    padding: 10px 10px 10px 5px;
-    background-repeat: no-repeat;
-    background-size: cover;
-    height:100%;
-    width: 100%;
-    p:first-of-type {
-      text-align: start;
-      font-size: 2rem;
-    }
-  }
+  margin-top: 3rem;
 
   & > img {
     z-index:1;
@@ -78,7 +59,7 @@
   }
 
   p {
-    margin-bottom: 5px;
+    padding-left: 0;
   }
 
   .small-images {
@@ -104,15 +85,6 @@
       }
     }
   }
-}
-
-
-.line:before {
-  content: "";
-  position: absolute;
-  height: 1px;
-  width: 5rem;
-  background-color: #bcbcbc;
 }
 
 
@@ -167,7 +139,6 @@
 
   .main-content {
     font-size: 16px;
-    min-height: 750px;
 
     .main-content-container {
       h1 {

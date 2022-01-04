@@ -1,9 +1,13 @@
+body, html {
+  padding: 0;
+}
+
 body {
-  font-family: 'Nunito', serif;
+  font-family: 'Roboto', sans-serif !important;
   font-size: 18px;
 
   .mob-menu-left-bg-holder {
-    font-family: 'Nunito', serif;
+    font-family: 'Roboto', sans-serif !important;
     font-size: 22px;
   }
 
@@ -16,15 +20,20 @@ body {
   }
 }
 
-h1, h2, h3 .h1, .h2, .h3 {
-  font-family: 'Roboto', sans-serif;
+h1, h2, h3, .h1, .h2, .h3, p {
+  font-family: 'Roboto', sans-serif !important;
 }
 
 h1 {
   margin: 10px 0px 40px 0px;
   font-size: 62px;
   font-weight: 700;
-  font-family: 'Bitter', serif;
+}
+
+a {
+  &:focus, &:focus-visible { 
+    outline: 1px solid black !important;
+  }
 }
 
 @media (max-width: 992px) {

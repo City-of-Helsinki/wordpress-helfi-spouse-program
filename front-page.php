@@ -34,7 +34,7 @@ get_header();
               </div>
           </div>
           <div class="col-12 col-sm-12 events-column">
-            <div class="container line position-relative">
+            <div class="container position-relative">
               <h2>Upcoming events</h2>
                 <div class="row">
                       <?php echo do_shortcode('[spouse-events]'); ?>

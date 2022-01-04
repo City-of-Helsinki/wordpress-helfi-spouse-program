@@ -1,4 +1,13 @@
 #site-header {
+  position: fixed;
+  z-index: 999;
+  background-color: white;
+  width: 100%;
+  box-shadow:
+  0px 1.5px 5.4px rgba(0, 0, 0, 0.035),
+  0px 12px 43px rgba(0, 0, 0, 0.07)
+;
+
   .logo{
     img{
       display: block;
