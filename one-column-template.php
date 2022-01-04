@@ -5,10 +5,10 @@
       <div class="row">
           <?php get_template_part("partials/hero"); ?>
           <div class="container">
-              <div id="main-content" class="col-12 col-sm-12 col-md-12 col-lg-8 offset-lg-2">
+              <div id="main-content" class="col-12 col-sm-12 col-md-12">
                 <div class="row">
                     <div class="col-12">
-                      <h1 class="pt-3 text-center"><?php the_title(); ?></h1>
+                      <h1 class="pt-3"><?php the_title(); ?></h1>
                     </div>
                 </div>
           <?php
