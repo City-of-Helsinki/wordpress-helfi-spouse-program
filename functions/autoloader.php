@@ -22,7 +22,6 @@ function spouse_program_core_init() {
 	$files = array(
 		'cf7-custom',
 		'event-previewbox',
-		'loginredirect-custom',
 		'spouse-emailfrom',
 		'spouse-notice',
     'main-menu'

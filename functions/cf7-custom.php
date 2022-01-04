@@ -4,11 +4,11 @@
  */
 
 
-function spouse_create_event_on_form_submission(&$contact_form){
+function spouse_create_event_on_form_submission($contact_form){
   global $current_user;
 
   if ($contact_form->id() != 593) {
-    return;
+    return $contact_form;
   }
 
   $form = WPCF7_Submission::get_instance();
@@ -26,7 +26,6 @@ function spouse_create_event_on_form_submission(&$contact_form){
   );
 
   wp_insert_post($eventdata);
-
 }
 
 // Catch sign in form submission

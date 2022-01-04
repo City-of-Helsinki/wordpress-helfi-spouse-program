@@ -1,4 +1,5 @@
 <?php
+namespace Spouse;
 require_once( get_stylesheet_directory() . '/lib/SimpleXLSXGen.php');
 
 class RegisterFormAttachment{
@@ -9,7 +10,7 @@ class RegisterFormAttachment{
             }
 
             $data = $this->tableHeadersFromArrayKeys($posted_data);
-            $xlsx = SimpleXLSXGen::fromArray( $data );
+            $xlsx = \SimpleXLSXGen::fromArray( $data );
     
     
             $tmpfname = $this->generateTempFileName();

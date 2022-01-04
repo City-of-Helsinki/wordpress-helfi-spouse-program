@@ -22,7 +22,7 @@ class RegisterFormFields{
 
     public function getFormTags(){
         $tags = $this->generateForm();
-        $manager = WPCF7_FormTagsManager::get_instance();
+        $manager = \WPCF7_FormTagsManager::get_instance();
     
         $scan = $manager->scan( $tags);
         return $scan;
@@ -35,7 +35,7 @@ class RegisterFormFields{
                 return $field->name;
             }
         }
-
+        
         return false;
     }
 

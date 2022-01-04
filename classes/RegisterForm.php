@@ -16,7 +16,7 @@ class RegisterForm{
     }
 
     public function getForm(){
-        return WPCF7_ContactForm::get_current();
+        return \WPCF7_ContactForm::get_current();
     }
 
     public function isRegistrationForm(){
@@ -46,7 +46,7 @@ class RegisterForm{
     }
 
     private function getFormSubmission(){
-        return WPCF7_Submission::get_instance();
+        return \WPCF7_Submission::get_instance();
     }
 
     private function getEmailFromSubmission(){
@@ -113,7 +113,7 @@ class RegisterForm{
         }
 
         $wp_new_user_notification_email["message"] = $message;
-
+        
         return $wp_new_user_notification_email;
     }
 }
