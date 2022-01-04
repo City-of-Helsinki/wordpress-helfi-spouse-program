@@ -2,7 +2,6 @@
   color: black;
   padding: 0;
   background-size: cover;
-  min-height: 100%;
   overflow-y: auto;
   margin-bottom: 2rem;
 
@@ -33,10 +32,19 @@
     display: flex;
     flex-flow: column;
     height: 100%;
-    box-shadow: $box-shadow-medium;
+    box-shadow:
+      0.7px 0.7px 5.3px rgba(0, 0, 0, 0.032),
+      2.2px 2.2px 17.9px rgba(0, 0, 0, 0.02),
+      5px 5px 15px rgba(0, 0, 0, 0.08)
+    ;
+    max-width: 100% !important;
     background-color: white;
     border-radius: 6px;
     overflow: hidden;
+
+    .card-body {
+      padding: 2rem;
+    }
 
     .event-content-wrap {
       display:flex;
@@ -48,7 +56,6 @@
 
       .event-content {
         width: 100%;
-        padding: 1rem;
 
         .event-text {
           width: auto;
