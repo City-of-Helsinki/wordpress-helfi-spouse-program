@@ -88,20 +88,14 @@ function spouse_print_events($events = []){
       <div class="event-content-wrap card border-0 shadow flex-fill">
           <div class="event-color" <?php if(isset($color) && $color): ?>style="background-color:<?php echo $color; ?>" <?php endif; ?>></div>
           <div class="event-content">
-            <div class="container row">
-                  <?php the_post_thumbnail("medium") ?>
-                  <p class="event-category"><?php echo $category ?></p>
-                </div>
+            <div class="event-img"  style="background-image: url(<?php echo get_the_post_thumbnail_url($event->ID, 'medium') ?>);"></div>
+              <p class="event-category"><?php echo $category ?></p>
               <div class="text-content card-body">
-                
                   <div class="event-schedule">
                     <p class="start-date"> <?php echo $startDate; ?></p>
                     <p class="duration"> <?php echo $startTime; ?> - <?php echo $endTime; ?></p>
                   </div>
-                    <?php if(!$userLoggedIn):?>
                   <p class="post-title"><?php echo $event->post_title ?></p>
-                    <p><?php echo __('Sign in to see more') ?></p>
-                <?php endif; ?>
               </div>
           </div>
           <div class="event-icon"><img src="<?php echo $icon ?>"></div>
