@@ -67,40 +67,28 @@ foreach($data as $post) {
   window.spouse_events = JSON.parse('<?php echo json_encode($events)?>');
 </script>
 
-<main class="container-fluid">
+<main class="container">
   <div class="row">
-    <div class="col-12 text-center">
-        <h1>Events</h1>
+    <div class="col-12">
+        <h1 class="text-center"><?php _e("Events") ?></h1>
     </div>
   </div>
 
   <div class="row">
-    <aside class="d-none d-md-none d-lg-block order-lg-first order-1 col-lg-3 col-xl-2 menu">
-      <div class="sidebar-menu-wrap">
-        <h2>Menu</h2>
-        <nav aria-label="Submenu">
-            <?php
-            wp_nav_menu( array(
-                'theme_location' => 'sidebar-menu',
-                'container_class' => 'sidebar-menu' ) );
-            ?>
-        </nav>
-      </div>
-    </aside>
-    <div class="d-none d-lg-block order-3 order-lg-first order-2 col-lg-2 col-xl-2">
+    <div class="d-none d-lg-block col-lg-3 col-xl-3">
       <div class="events-date">
           <div class="controls">
-              <h2>Calendar control</h2>
-              <h3>Select year</h3>
-              <button id="spouse-fc-prevyear" aria-label="previous year">
+              <h2><?php _e("Calendar control")?></h2>
+              <h3><?php _e("Select year")?></h3>
+              <button id="spouse-fc-prevyear" aria-label="<?php _e("previous year")?>">
                   <
               </button>
               <div id="current-year" aria-live="polite"><?php echo date('Y'); ?></div>
-              <button id="spouse-fc-nextyear" aria-label="next year">
+              <button id="spouse-fc-nextyear" aria-label="<?php _e("next year")?>">
                   >
               </button>
           </div>
-          <h3>Select month</h3>
+          <h3><?php _e("Select month")?></h3>
           <div class="months">
               <?php
               $months = [];
@@ -120,14 +108,14 @@ foreach($data as $post) {
       </div>
     </div>
 
-    <div class="col-12 order-2 col-lg-4 col-xl-5">
+    <div class="col-12 order-2 col-lg-4 col-xl-6">
       <div id="events-calendar" class="events-calendar">
       </div>
     </div>
 
     <div class="col-12 order-1 col-lg-3 order-lg-last col-xl-3 no-padding">
       <div class="events-column">
-        <h2>Events</h2>
+        <h2><?php _e("Events")?></h2>
         <div class="event-list">
         </div>
       </div>

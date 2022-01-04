@@ -5,19 +5,16 @@
       <div class="row">
           <?php get_template_part("partials/hero"); ?>
           <div class="container">
-          <div class="col-12">
-              <h1 class="pt-3"><?php the_title(); ?></h1>
-          </div>
-          <?php if(is_user_logged_in()): ?>
-              <div id="main-content" class="col-12 col-sm-12 col-md-12">
-          <?php else: ?>
-          <div id="main-content" class="col-12 text-center">
-          <?php endif; ?>
-              
+              <div id="main-content" class="col-12 col-sm-12 col-md-12 col-lg-8 offset-lg-2">
+                <div class="row">
+                    <div class="col-12">
+                      <h1 class="pt-3 text-center"><?php the_title(); ?></h1>
+                    </div>
+                </div>
           <?php
           // center
           if (have_rows('left_column_content')):
-            echo '<div class="container row">';
+            echo '<div class="row">';
             while (have_rows('left_column_content')) : the_row();
               $type = get_sub_field('content_type');
               get_template_part('partials/'.$type);
@@ -30,7 +27,7 @@
             if(spouse_is_restricted_page()){
               ?>
                 <div class="col-12 col-sm-12 col-lg-3 col-xl-3 events-column">
-                    <h2>Upcoming events</h2>
+                    <h2><?php _e("Upcoming events") ?></h2>
                   <?php echo do_shortcode('[spouse-events]'); ?>
                 </div>
               <?php
