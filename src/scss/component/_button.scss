@@ -35,7 +35,7 @@
     color: $black;
     &:hover, &:focus{
       background-color: darken($btn-primary, 5%);
-      outline: $black 2px solid;
+      outline: $black 1px solid;
     }
   }
   &.btn-icon{
