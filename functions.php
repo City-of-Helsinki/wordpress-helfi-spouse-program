@@ -27,7 +27,7 @@ function change_logo_class( $html ) {
 // add styles and javascripts
 function spouse_enqueue_scripts() {
   wp_enqueue_style('bootstrap', get_template_directory_uri() . '/dist/bootstrap/dist/css/bootstrap.css');
-  wp_enqueue_script('bootstrap-js', get_template_directory_uri() . '/dist/bootstrap/dist/js/bootstrap.min.js');
+  wp_enqueue_script('bootstrap-js', get_template_directory_uri() . '/dist/bootstrap/dist/js/bootstrap.min.js', array('jquery'));
 
   wp_enqueue_style('style', get_stylesheet_uri());
 
