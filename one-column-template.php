@@ -5,7 +5,6 @@
       <div class="row">
           <?php get_template_part("partials/hero"); ?>
           <div class="container">
-            <?php get_template_part("partials/user"); ?>
           <div class="col-12">
               <h1 class="pt-3"><?php the_title(); ?></h1>
           </div>
