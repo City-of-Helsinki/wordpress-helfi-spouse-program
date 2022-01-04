@@ -11,7 +11,7 @@ get_header();
 
 <main id="main-content" role="main">
   <div class="col-12 col-sm-12 cta-column container-fluid">
-      <div class="cta-background" style="background-image: url(<?php echo get_the_post_thumbnail_url(get_the_ID(), 'full'); ?>);">
+      <div class="cta-background" style="background-image: url(<?php echo get_the_post_thumbnail_url(get_the_ID(), 'full'); ?>); background-position: center center;">
           <?php $buttonEnabled = get_field('enable_cta-button') ?>
           <?php if($buttonEnabled): ?>
             <?php get_template_part('partials/cta'); ?>

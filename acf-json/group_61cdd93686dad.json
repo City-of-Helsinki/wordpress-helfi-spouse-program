@@ -1,0 +1,88 @@
+{
+    "key": "group_61cdd93686dad",
+    "title": "intro",
+    "fields": [
+        {
+            "key": "field_61cdda3b6fcf3",
+            "label": "intro_text",
+            "name": "intro_text",
+            "type": "text",
+            "instructions": "Write a welcome for the logged in user",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "Here you will find all available services and upcoming events. Don't be shy and become an active member of our Spouse Community! &#128578;",
+            "placeholder": "Here you will find all available services and upcoming events. Don't be shy and become an active member of our Spouse Community! &#128578;",
+            "prepend": "",
+            "append": "",
+            "maxlength": ""
+        },
+        {
+            "key": "field_61d2e18aec0c5",
+            "label": "slack_link",
+            "name": "slack_link",
+            "type": "text",
+            "instructions": "Join-link for Slack",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": "",
+            "maxlength": ""
+        },
+        {
+            "key": "field_61d2e90c602c8",
+            "label": "button_text",
+            "name": "button_text",
+            "type": "text",
+            "instructions": "Text that is displayed the Join-button",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "Join us on Slack!",
+            "placeholder": "Join us on Slack!",
+            "prepend": "",
+            "append": "",
+            "maxlength": ""
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "post_type",
+                "operator": "==",
+                "value": "page"
+            }
+        ],
+        [
+            {
+                "param": "page_template",
+                "operator": "==",
+                "value": "front-page-member-template.php"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": true,
+    "description": "",
+    "modified": 1641213767
+}

@@ -1,4 +1,4 @@
-    <footer id="site-footer" <?php if(is_user_logged_in()): ?>style="background-color: #F0C3B8;" <?php endif; ?>>
+    <footer id="site-footer">
         <div class="container">
             <div class="footer-box-container">
                 <div class="footer-box">
