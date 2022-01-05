@@ -2,7 +2,7 @@
 get_header();
 ?>
   <main id="main-content" role="main">
-    <div class="container-fluid">
+    <div class="container">
       <div class="row">
         <div class="col-12 text-center archive">
           <h1><?php echo single_cat_title() ?></h1>
@@ -19,7 +19,7 @@ get_header();
           <?php endif; ?>
         </aside>
 
-      <div class="col-12 offset-0 col-lg-6">
+      <div class="col-12">
         <?php
         if (have_posts()) :
           while (have_posts()) :
