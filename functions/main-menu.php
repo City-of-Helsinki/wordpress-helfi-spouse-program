@@ -16,7 +16,7 @@ function spouse_main_menu(){
     $wrap .= '<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">%s</a>';
     $wrap .= '<ul class="dropdown-menu">%s</ul>';
     $wrap .= '</li>'; 
-    $nav = sprintf($wrap, __("Start"), spouse_get_nav_primary(false));
+    $nav = sprintf($wrap, __("Spouse Program"), spouse_get_nav_primary(false));
     $nav .= spouse_get_nav_secondary();
     return $nav;
 }

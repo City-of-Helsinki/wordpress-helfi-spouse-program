@@ -5,6 +5,10 @@ body, html {
 body {
   font-family: 'Roboto', sans-serif !important;
   font-size: 18px;
+  padding-top: 60px;
+  &.page-template-login{
+    padding-top: 0;
+  }
 
   .mob-menu-left-bg-holder {
     font-family: 'Roboto', sans-serif !important;
