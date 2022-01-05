@@ -5,8 +5,10 @@ namespace Spouse;
 abstract class LoginFormHandler{
     abstract public static function init(LoginHandler $loginHandler);
     public function doActions(){
-        if (!empty($this->template))
+        if (!empty($this->template)){
+            add_filter( 'body_class', array($this, 'addBodyClass') );
             add_filter( 'template_include', array($this, 'loadTemplate'), 99 );
+        }
     }
     public function setupForm(){
         $slug = get_post_field( 'post_name', get_post() );
@@ -25,6 +27,16 @@ abstract class LoginFormHandler{
         }
 
         return $template;
+    }
+
+    public function addBodyClass($classes){
+        return array_map(function($class) {
+            $query = 'page-template-';
+            if ( substr($class, 0, strlen($query)) === $query ){
+                return 'page-' . str_replace('.php', '', $this->template);
+            }
+            return $class;
+        }, $classes);
     }
 
     public function get_error_message($code){

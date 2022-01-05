@@ -7,7 +7,7 @@ get_header();
 ?>
 
 <main id="main-content" role="main">
-  <div class="container-fluid">
+  <div class="container">
       <div class="row">
           <div class="col-12 text-center">
             <h1><?php echo get_the_title(); ?></h1>
@@ -15,7 +15,7 @@ get_header();
       </div>
     <div class="row">
 
-        <aside class="col-12 order-last order-lg-first col-lg-3 archive">
+        <aside class="col-12 order-last order-lg-first archive">
             <h2>Filter news by year</h2>
             <?php
             wp_custom_archive();

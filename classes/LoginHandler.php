@@ -46,8 +46,11 @@ class LoginHandler{
                 $redirect_url = $requested_redirect_to;
             }
         } else {
-            // Non-admin users always go to their account page after login
-            $redirect_url = home_url( 'member-account' );
+            if ( $requested_redirect_to == '' ) {
+                $redirect_url = LoginStaticPagesGenerator::url('main-page');
+            } else {
+                $redirect_url = $requested_redirect_to;
+            }
         }
      
         return wp_validate_redirect( $redirect_url, home_url() );

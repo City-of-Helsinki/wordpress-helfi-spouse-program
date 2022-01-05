@@ -67,7 +67,7 @@ foreach($data as $post) {
   window.spouse_events = JSON.parse('<?php echo json_encode($events)?>');
 </script>
 
-<main class="container">
+<main class="container" id="main-content">
   <div class="row">
     <div class="col-12">
         <h1 class="text-center"><?php _e("Events") ?></h1>
