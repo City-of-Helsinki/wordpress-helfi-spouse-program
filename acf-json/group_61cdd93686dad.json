@@ -34,7 +34,7 @@
                 "class": "",
                 "id": ""
             },
-            "default_value": "",
+            "default_value": "https:\/\/join.slack.com\/t\/spouseprogram\/shared_invite\/zt-svp8sqab-cLrBUmv8QWVGmjMD9slsRw",
             "placeholder": "",
             "prepend": "",
             "append": "",
@@ -84,5 +84,5 @@
     "hide_on_screen": "",
     "active": true,
     "description": "",
-    "modified": 1641213767
+    "modified": 1641290994
 }
