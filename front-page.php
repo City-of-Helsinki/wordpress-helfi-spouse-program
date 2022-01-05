@@ -33,14 +33,7 @@ get_header();
                 <?php get_template_part('partials/front-page-small-images') ?>
               </div>
           </div>
-          <div class="col-12 col-sm-12 events-column">
-            <div class="container position-relative">
-              <h2>Upcoming events</h2>
-                <div class="row">
-                      <?php echo do_shortcode('[spouse-events]'); ?>
-                </div>
-            </div>
-          </div>
+          <?php get_template_part("partials/upcoming-events") ?>
       </div>
   </div>
 </main><!-- #site-content -->
