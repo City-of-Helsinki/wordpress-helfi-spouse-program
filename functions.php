@@ -142,12 +142,16 @@ add_action( 'init', 'spouse_create_posttypes' );
 
 function spouse_access_control_check(){
     global $post;
+    global $wp;
     if($check = get_field('authenticated_users_only', $post)){
         if(!is_user_logged_in()){
-          wp_redirect('front-page');
+          $current = home_url( $wp->request );
+          $redirect_url = add_query_arg( 'redirect_to', $current, spouse_login_url() );
+          wp_redirect($redirect_url);
         }
     }
 }
+add_action( 'template_redirect', 'spouse_access_control_check' );
 
 function spouse_is_restricted_page(){
   global $post;

@@ -18,17 +18,22 @@ class LoginStaticPagesGenerator{
         'account' => array(
             'slug' => 'member-account',
             'title' => 'Your Account',
-            'content' => '[account-info]'
+            'content' => ''
         ),
         'password-lost' => array(
             'slug' => 'password-lost',
             'title' => 'Forgot Your Password?',
-            'content' => '[custom-password-lost-form]'
+            'content' => ''
         ),
         'password-reset' => array(
             'slug' => 'member-password-reset',
             'title' => 'Pick a New Password',
-            'content' => '[custom-password-reset-form]'
+            'content' => ''
+        ),
+        'main-page' => array(
+            'slug' => 'main-page',
+            'title' => 'Welcome',
+            'content' => ''
         )
     );
     public static function getPostId($slug){
