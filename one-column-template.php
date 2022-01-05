@@ -25,16 +25,7 @@
       endif;
       ?>
       </div>
-        <?php
-        if(spouse_is_restricted_page()){
-          ?>
-            <div class="col-12 col-sm-12 col-lg-3 col-xl-3 events-column">
-                <h2><?php _e("Upcoming events") ?></h2>
-              <?php echo do_shortcode('[spouse-events]'); ?>
-            </div>
-          <?php
-        }
-        ?>
+        <?php get_template_part("partials/upcoming-events") ?>
   </div>
   <?php
   // show social sharing only if the page is not behind login
