@@ -252,6 +252,7 @@ function spouse_remove_menu_pages() {
     remove_menu_page( 'admin.php?page=mobile-menu-options' );
     remove_menu_page( 'admin.php?page=sharing-plus' );
     remove_menu_page( 'admin.php?page=wow-company' );
+    remove_menu_page( 'index.php' );
 }
 
 //List archives by year, then month
@@ -376,3 +377,29 @@ add_filter('wp_calculate_image_srcset', function($sources){
   }
   return $sources;
 });
+
+
+add_action( 'admin_head', function () {
+  if (!current_user_can('manage_options')){
+    remove_action( 'admin_color_scheme_picker', 'admin_color_scheme_picker' );
+    ob_start( function( $subject ) {
+        $subject = preg_replace( '#<h[0-9]>'.__("Personal Options").'</h[0-9]>.+?/table>#s', '', $subject, 1 );
+        return $subject;
+    });
+  }
+});
+
+add_action( 'admin_footer', function(){
+  if (!current_user_can('manage_options')){
+    ob_end_flush();
+  }
+});
+
+function spouse_customize_app_password_availability( $available, $user) {
+  if ( ! user_can( $user, 'manage_options' ) ) {
+      $available = false;
+  }
+
+  return $available;
+}
+add_filter('wp_is_application_passwords_available_for_user', 'spouse_customize_app_password_availability', 10, 2);
