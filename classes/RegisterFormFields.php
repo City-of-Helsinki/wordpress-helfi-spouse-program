@@ -42,15 +42,31 @@ class RegisterFormFields{
     public function validationFilter( $result, $tag ) {
         $tags = $this->getFormTags();
         foreach($tags as $tag){
-          if (in_array($tag->type, array('text', 'text*', 'email', 'email*') ) ) {
+          if (in_array($tag->type, array('text', 'text*', 'email') ) ) {
             wpcf7_text_validation_filter( $result, $tag );
           } elseif ( in_array($tag->type, array('textarea', 'textarea*'))){
             wpcf7_textarea_validation_filter($result, $tag);
+          } elseif ( in_array($tag->type, array('email*'))){
+            $result = wpcf7_text_validation_filter( $result, $tag );
+            $this->validate_registration_email($result, $tag);
           }
         }
       
         return $result;
     }
+    public function validate_registration_email($result, $tag){
+      $name = $tag->name;
+
+      $value = isset( $_POST[$name] )
+        ? trim( wp_unslash( strtr( (string) $_POST[$name], "\n", " " ) ) )
+        : '';
+
+      if ( email_exists($value) )
+        $result->invalidate( $tag, "Email already exists" );
+      
+      return $result;
+    }
+
     private function generateForm(){
         $form = '<div class="row">';
         $ID = LoginStaticPagesGenerator::getPostId('register');

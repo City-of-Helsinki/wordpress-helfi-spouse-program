@@ -6,9 +6,9 @@ class RegisterForm{
 
 
     public  function init(){
-        add_filter('wpcf7_validate_email*', array($this, 'custom_email_confirmation_validation_filter'), 5, 2 );
         add_action("wpcf7_before_send_mail", array($this, "create_user"));
         add_filter( 'wp_new_user_notification_email', array($this, 'customizeNotificationEmail'), 10, 3 );
+        wpcf7_add_form_tag( 'user_email', array($this, 'getRegistrationEmail' ));
 
         $rff = new RegisterFormFields();
         $rff->init();
@@ -30,21 +30,6 @@ class RegisterForm{
         return false;
     }
 
-    public function custom_email_confirmation_validation_filter( $result, $tag ) {
-       
-        if (!$this->isRegistrationForm() ) {
-          return $result;
-        }
-        $emailField = $this->fields->getEmailField();
-
-        if ($emailField == $tag->name) {
-            if ( $this->checkIfEmailExists() )
-                $result->invalidate( $tag, "Email already exists" );
-        }
-      
-        return $result;
-    }
-
     private function getFormSubmission(){
         return \WPCF7_Submission::get_instance();
     }
@@ -62,10 +47,8 @@ class RegisterForm{
         return false;
     }
 
-    private function checkIfEmailExists(){
-        $email = $this->getEmailFromSubmission();
-    
-        return email_exists($email);
+    private function getRegistrationEmail(){
+        return $this->getEmailFromSubmission();
     }
 
     private function getPostedData(){
