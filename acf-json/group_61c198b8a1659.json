@@ -1,6 +1,6 @@
 {
     "key": "group_61c198b8a1659",
-    "title": "Registeration form",
+    "title": "Form builder",
     "fields": [
         {
             "key": "field_61c1991f6cc77",
@@ -245,7 +245,15 @@
                                     "type": "textarea",
                                     "instructions": "",
                                     "required": 0,
-                                    "conditional_logic": 0,
+                                    "conditional_logic": [
+                                        [
+                                            {
+                                                "field": "field_61dd79cb43bdd",
+                                                "operator": "==",
+                                                "value": "select"
+                                            }
+                                        ]
+                                    ],
                                     "wrapper": {
                                         "width": "",
                                         "class": "",
@@ -258,6 +266,32 @@
                                     "new_lines": ""
                                 }
                             ]
+                        },
+                        {
+                            "key": "field_61dd79cb43bdd",
+                            "label": "Type",
+                            "name": "type",
+                            "type": "select",
+                            "instructions": "",
+                            "required": 1,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "choices": {
+                                "select": "Select",
+                                "radio": "Radio",
+                                "checkbox": "Checkbox"
+                            },
+                            "default_value": false,
+                            "allow_null": 0,
+                            "multiple": 0,
+                            "ui": 0,
+                            "return_format": "value",
+                            "ajax": 0,
+                            "placeholder": ""
                         }
                     ],
                     "min": "",
@@ -301,9 +335,9 @@
     "location": [
         [
             {
-                "param": "page",
+                "param": "page_template",
                 "operator": "==",
-                "value": "30784"
+                "value": "template-formbuilder.php"
             }
         ]
     ],
@@ -315,5 +349,5 @@
     "hide_on_screen": "",
     "active": true,
     "description": "",
-    "modified": 1641294740
+    "modified": 1641913123
 }

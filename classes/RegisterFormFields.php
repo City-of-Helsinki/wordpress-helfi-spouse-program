@@ -51,7 +51,7 @@ class RegisterFormFields{
             $this->validate_registration_email($result, $tag);
           }
         }
-      
+
         return $result;
     }
     public function validate_registration_email($result, $tag){
@@ -68,9 +68,13 @@ class RegisterFormFields{
     }
 
     private function generateForm(){
+        $ID = get_the_ID();
+        if (empty($ID)){
+          $submission = \WPCF7_Submission::get_instance();
+          $ID = $submission->get_meta('container_post_id');
+        }
+
         $form = '<div class="row">';
-        $ID = LoginStaticPagesGenerator::getPostId('register');
-        
         if( have_rows('form', $ID ) ):
           while ( have_rows('form', $ID) ) : the_row();
               if( get_row_layout() == 'textfield' || get_row_layout() == 'email' ){
@@ -99,16 +103,21 @@ class RegisterFormFields{
 
                     $label = get_sub_field('label');
 
-                    $field = 'select';
-                    if ($isRequired){
+                    $field = get_sub_field('type');
+                    $element = 'legend';
+                    if ($field == 'select'){
+                      $element = 'label';
+                    }
+                    
+                    if ($isRequired && $field != 'radio'){
                         $field .= '*';
                     }
                     $id = sprintf('form-%s', sanitize_title($label));
                     $select = $this->getSelectFields(get_the_ID());
                     $values = array_column($select, 'value');
                     $form .= '<div class="form-group col-12 form-select-with-messages">';
-                    $form .= sprintf('<label for="%s">%s</label>', $id, $label);
-                    $form .= sprintf('[%s %s id:%s include_blank class:form-control class:select-has-messages %s]', $field, sanitize_title($label), $id, implode(" ", $values));
+                    $form .= sprintf('<%1$s for="%2$s">%3$s</%1$s>', $element, $id, $label);
+                    $form .= sprintf('[%s %s id:%s include_blank use_label_element class:form-control class:select-has-messages %s]', $field, sanitize_title($label), $id, implode(" ", $values));
 
                         $form .= '<div class="select-messages">';
                         foreach ($select as $s){

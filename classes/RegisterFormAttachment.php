@@ -24,6 +24,13 @@ class RegisterFormAttachment{
         $tmp[0] = array_keys($data);
         $tmp[1] = array_values($data);
 
+        $tmp[1] = array_map(function($val){
+            if (is_array($val)){
+                return implode(', ', $val);
+            }
+            return $val;
+        }, $tmp[1]);
+
         return $tmp;
     }
 

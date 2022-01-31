@@ -6,7 +6,7 @@ class RegisterForm{
 
 
     public  function init(){
-        add_action("wpcf7_before_send_mail", array($this, "create_user"));
+        add_action("wpcf7_before_send_mail", array($this, "handleSubmission"));
         add_filter( 'wp_new_user_notification_email', array($this, 'customizeNotificationEmail'), 10, 3 );
         wpcf7_add_form_tag( 'user_email', array($this, 'getRegistrationEmail' ));
 
@@ -20,11 +20,15 @@ class RegisterForm{
     }
 
     public function isRegistrationForm(){
+        return $this->hasOption('registration_form');
+    }
+
+    public function hasOption($option){
         $form = $this->getForm();
         if (!$form)
             return false;
 
-        if ($form->is_true('registration_form') )
+        if ($form->is_true($option) )
             return true;
 
         return false;
@@ -40,7 +44,6 @@ class RegisterForm{
         $emailField = $this->fields->getEmailField();
 
         $email = sanitize_email($values[$emailField]);
-
         if ($email)
             return $email;
 
@@ -57,11 +60,20 @@ class RegisterForm{
         return $posted_data;
     }
 
-    public function create_user($contact_form){
-        if (! $this->isRegistrationForm() ) {
-            return;
+    public function handleSubmission($contact_form){
+
+        if ($this->isRegistrationForm() ) {
+            $this->create_user($contact_form);
         }
-      
+
+        if ($this->hasOption('data_as_attachment') ){
+            $this->dataAsAttachment();
+        }
+        
+        return $contact_form;
+    }
+
+    public function create_user($contact_form){     
         $password = wp_generate_password( 20, false );
         $email = $this->getEmailFromSubmission();
 
@@ -74,13 +86,15 @@ class RegisterForm{
         $user_id = wp_insert_user( $user_data );
         wp_new_user_notification( $user_id, $password );
 
+        return $contact_form;
+    }
+
+    public function dataAsAttachment(){
         $attachment = new RegisterFormAttachment();
         $attachmentPath = $attachment->generateExcelFromSubmission( $this->getPostedData() );
 
         $submission = $this->getFormSubmission();
         $submission->add_extra_attachments($attachmentPath);
-
-        return $contact_form;
     }
 
     public function customizeNotificationEmail($wp_new_user_notification_email, $user, $blogname){
