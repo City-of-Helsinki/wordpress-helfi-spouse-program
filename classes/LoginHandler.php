@@ -16,7 +16,6 @@ class LoginHandler{
         LoginLostPasswordHandler::init( $self );
         LoginForm::init( $self );
         PasswordResetForm::init( $self );
-        LoginStaticPagesGenerator::generate();
     }
 
     public function redirect_logged_in_user( $redirect_to = null ) {
@@ -57,6 +56,7 @@ class LoginHandler{
     }
 
     public function redirect_to_custom_login() {
+        LoginStaticPagesGenerator::generate();
         if ( $_SERVER['REQUEST_METHOD'] == 'GET' ) {
             $redirect_to = isset( $_REQUEST['redirect_to'] ) ? $_REQUEST['redirect_to'] : null;
      
