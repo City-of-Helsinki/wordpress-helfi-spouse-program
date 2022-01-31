@@ -1,4 +1,4 @@
-label {
+label, legend{
   font-size: 1rem;
   width: 100%;
   margin-top: 10px;
@@ -6,7 +6,7 @@ label {
     width: 50%;
   }
 }
-input {
+input[type='text'], input[type='email'], input[type='password'], input[type='submit']{
   border-width: 1px;
   width: 100%;
   border-radius: 6px;
@@ -157,5 +157,25 @@ form.wpcf7-form[data-status='invalid'] .wpcf7-response-output {
     padding: 1rem;
     background: $yellow;
     border-radius: 4px
+  }
+}
+.form-control{
+  &.wpcf7-checkbox, &.wpcf7-radio{
+    border: none; 
+    height: auto;
+    .wpcf7-list-item{
+      margin: 0;
+      display: block;
+      label{
+        margin-top: 0px;
+        margin-bottom: 0px;
+        display: flex;
+        align-items: center;
+        .wpcf7-list-item-label{
+          margin-top: 5px;
+          margin-left: 15px;
+        }
+      }
+    }
   }
 }
