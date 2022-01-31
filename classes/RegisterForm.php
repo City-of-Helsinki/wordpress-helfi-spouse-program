@@ -11,7 +11,7 @@ class RegisterForm{
         wpcf7_add_form_tag( 'user_email', array($this, 'getRegistrationEmail' ));
 
         $rff = new RegisterFormFields();
-        $rff->init();
+        $rff->init( $this->isRegistrationForm() );
         $this->fields = $rff;
     }
 
@@ -95,6 +95,8 @@ class RegisterForm{
 
         $submission = $this->getFormSubmission();
         $submission->add_extra_attachments($attachmentPath);
+
+        return $attachmentPath;
     }
 
     public function customizeNotificationEmail($wp_new_user_notification_email, $user, $blogname){

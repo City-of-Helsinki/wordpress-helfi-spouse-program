@@ -3,7 +3,11 @@
 namespace Spouse;
 
 class RegisterFormFields{
-    public function init(){
+
+    protected $isRegistrationForm; 
+
+    public function init( $isRegistrationForm = false ){
+        $this->isRegistrationForm = $isRegistrationForm;
         add_action( 'wpcf7_init', array($this, 'addCustomRegistrationTag' ), 10 );
         add_filter( 'wpcf7_validate_registration', array($this, 'validationFilter'), 20, 2 );
     }
@@ -48,7 +52,9 @@ class RegisterFormFields{
             wpcf7_textarea_validation_filter($result, $tag);
           } elseif ( in_array($tag->type, array('email*'))){
             $result = wpcf7_text_validation_filter( $result, $tag );
-            $this->validate_registration_email($result, $tag);
+            if ($this->isRegistrationForm){
+              $this->validate_registration_email($result, $tag);
+            }
           }
         }
 
