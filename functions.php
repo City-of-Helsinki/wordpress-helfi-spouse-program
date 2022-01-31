@@ -359,14 +359,6 @@ function get_hero_text(){
   return preg_replace('/_(.*?)_/', '<span class="highlight">$1</span>', $hero);
 }
 
-add_filter('wp_calculate_image_srcset', function($sources){
-  foreach($sources as &$source){
-      $source['url'] = rewrite_wp_get_attachment_url($source['url']);
-  }
-  return $sources;
-});
-
-
 add_action( 'admin_head', function () {
   if (!current_user_can('manage_options')){
     remove_action( 'admin_color_scheme_picker', 'admin_color_scheme_picker' );
