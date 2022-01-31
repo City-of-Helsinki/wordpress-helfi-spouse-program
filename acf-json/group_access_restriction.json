@@ -1,33 +1,6 @@
 {
     "key": "group_access_restriction",
     "title": "Access restriction",
-    "id": "acf_access-restriction",
-    "location": [
-        [
-            {
-                "param": "post_type",
-                "operator": "==",
-                "value": "post",
-                "order_no": 0,
-                "group_no": 0
-            }
-        ],
-        [
-            {
-                "param": "post_type",
-                "operator": "==",
-                "value": "page",
-                "order_no": 0,
-                "group_no": 1
-            }
-        ]
-    ],
-    "options": {
-        "position": "side",
-        "layout": "default",
-        "hide_on_screen": []
-    },
-    "menu_order": 0,
     "fields": [
         {
             "key": "field_5edf306a34694",
@@ -49,5 +22,43 @@
             "ui_off_text": ""
         }
     ],
-    "modified": 1640853060
+    "location": [
+        [
+            {
+                "param": "post_type",
+                "operator": "==",
+                "value": "post"
+            }
+        ],
+        [
+            {
+                "param": "post_type",
+                "operator": "==",
+                "value": "page"
+            }
+        ],
+        [
+            {
+                "param": "post_type",
+                "operator": "==",
+                "value": "rl_gallery"
+            }
+        ],
+        [
+            {
+                "param": "post_type",
+                "operator": "==",
+                "value": "eventbrite_events"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "side",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": true,
+    "description": "",
+    "modified": 1641891184
 }
