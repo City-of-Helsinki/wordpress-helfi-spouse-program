@@ -15,6 +15,12 @@ Author: Druid Oy
 
 // @charset 'UTF-8';
 
+@import '../../dist/bootstrap/scss/_functions';
+@import '../../dist/bootstrap/scss/_variables';
+@import '../../dist/bootstrap/scss/mixins/_breakpoints';
+
+@import 'lib/variables/*';
+
 @import 'lib/variables/*';
 // @import 'lib/mixins/*';
 // @import 'lib/classes/*';

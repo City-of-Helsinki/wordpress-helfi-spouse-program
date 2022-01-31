@@ -1,0 +1,72 @@
+{
+    "key": "group_front_page",
+    "title": "Front page",
+    "id": "acf_front-page",
+    "location": [
+        [
+            {
+                "param": "page",
+                "operator": "==",
+                "value": "19",
+                "order_no": 0,
+                "group_no": 0
+            }
+        ]
+    ],
+    "options": {
+        "position": "normal",
+        "layout": "no_box",
+        "hide_on_screen": []
+    },
+    "menu_order": 0,
+    "fields": [
+        {
+            "key": "field_5eddea75f0bbb",
+            "label": "images",
+            "name": "images",
+            "type": "repeater",
+            "instructions": "logo images of partners",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "row_min": "",
+            "row_limit": 9,
+            "layout": "table",
+            "button_label": "Add image",
+            "sub_fields": [
+                {
+                    "key": "field_5eddead0f0bbc",
+                    "label": "image",
+                    "name": "image",
+                    "type": "image",
+                    "instructions": "",
+                    "required": false,
+                    "conditional_logic": false,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "preview_size": "medium",
+                    "library": "all",
+                    "return_format": "array",
+                    "min_width": 0,
+                    "min_height": 0,
+                    "min_size": 0,
+                    "max_width": 0,
+                    "max_height": 0,
+                    "max_size": 0,
+                    "mime_types": ""
+                }
+            ],
+            "min": 0,
+            "max": 0,
+            "collapsed": ""
+        }
+    ],
+    "modified": 1640853060
+}

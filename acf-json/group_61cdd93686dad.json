@@ -1,0 +1,59 @@
+{
+    "key": "group_61cdd93686dad",
+    "title": "Slack",
+    "fields": [
+        {
+            "key": "field_61d2e18aec0c5",
+            "label": "Slack link",
+            "name": "slack_link",
+            "type": "url",
+            "instructions": "Join-link for Slack",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": ""
+        },
+        {
+            "key": "field_61d2e90c602c8",
+            "label": "Button text",
+            "name": "button_text",
+            "type": "text",
+            "instructions": "Text that is displayed the Join-button",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "Join us on Slack!",
+            "placeholder": "Join us on Slack!",
+            "prepend": "",
+            "append": "",
+            "maxlength": ""
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "page_template",
+                "operator": "==",
+                "value": "front-page-member-template.php"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": true,
+    "description": "",
+    "modified": 1641904544
+}

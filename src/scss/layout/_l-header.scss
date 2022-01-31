@@ -1,37 +1,87 @@
-header {
-  font-family: 'Nunito', sans-serif;
-  padding-top: 25px;
-  height: 75px;
-  background-color: $cyan;
-  color: white;
-  text-transform: uppercase;
-  text-decoration: none;
+.admin-bar .navbar.fixed-top {
+  top: 32px;
+  @media screen and (max-width: 782px){
+    top: 46px;
+  }
+}
 
-  a {
-    text-decoration: none;
-    color: $white;
+#site-header {
+  width: 100%;;
 
-    &:hover {
-      font-weight: 700;
-      color: white;
+  .logo{
+    img{
+      display: block;
+      height: auto;
+      max-width: 200px;
+      max-height: 48px;
+      width: 100%;
     }
   }
-
-  .header-main-content {
-    padding-right: 25px;
-
-    ul li {
-      display: inline-block;
-      padding-left: 30px;
-
-      &.current_page_item a {
-        text-decoration: underline;
-        text-underline: black;
-        color: white;
+  .navbar{
+    background: $white !important;
+    box-shadow:
+    0px 1.5px 5.4px rgba(0, 0, 0, 0.035),
+    0px 12px 43px rgba(0, 0, 0, 0.07)
+  }
+  .profile-actions{
+    @include media-breakpoint-down(md){
+      padding-top: 20px;
+      margin-top: 20px;
+      justify-content: space-evenly;
+      border-top: 1px $gray solid;
+    }
+  }
+  .navbar-nav{
+    font-family: Source Sans Pro,sans-serif;
+    li{
+      margin-left: 0.5rem;
+      margin-right: 0.5rem;
+      a {
+        text-decoration: none;
+        text-transform: uppercase;
+        font-size: .9rem;
+        border-bottom: 3px solid transparent;
+        line-height: 1;
+        padding-bottom: 1rem;
+        padding-top: 1rem;
+        &:hover{
+          border-bottom-color: #01a090;
+        }
+        &.dropdown-toggle{
+          &:after{
+            margin-left: 0.5rem;
+          }
+        }
       }
-
+      &.active{
+        a{
+          border-bottom-color: #01a090;
+        }
+      }
+    }
+    .dropdown-menu{
+      padding: 0;
+      li{
+        margin-left: 0;
+        margin-right: 0;
+        a{
+          border-bottom: none;
+          border-left: 5px solid transparent;
+          padding-bottom: 0.75rem;
+          padding-top: 0.75rem;
+          &:hover{
+            border-color: $opal;
+          }
+        }
+        &.active, &.current_page_item{
+          a{
+            border-color: $opal;
+          }
+        }
+      }
     }
   }
+
 }
 
 .mob-menu-logo-holder {
@@ -42,6 +92,15 @@ header {
   header {
     .header-main-content ul li {
       padding-left: 15px;
+    }
+  }
+}
+
+
+.navbar-light {
+  .navbar-nav{
+    .nav-link{
+      color: $black;
     }
   }
 }

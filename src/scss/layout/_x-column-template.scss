@@ -1,6 +1,7 @@
 .post-template-default,
 .page-template-one-column-template,
 .page-template-two-column-template,
+.page-template-front-page-member-template,
 .page-template-archives,
 .archive,
 .error404,
@@ -15,23 +16,29 @@
     background-position: bottom;
     position: relative;
     overflow: hidden;
-    .wave {
-      position: absolute;
-      z-index:1;
-      bottom: -200px;
-      left:25%;
-      right:25%;
-      display: block;
-      width: auto;
-      overflow: hidden;
-      transform: scaleX(3.5);
-      height:350px;
+  }
+
+  .hero-text {
+    .text-container {
+      background-color: $black;
+      display: inline-block;
+      padding: 0.5rem;
+      font-size: 3rem;
+      font-weight: bold;
+      font-family: 'Roboto', sans-serif;
+      color: $white;
+      padding: 1rem 3rem 1rem 3rem;
+
+      .highlight {
+        color: $opal;
+      }
     }
   }
 
   h1 {
-    color: $cyan;
-    text-align: center;
+    font-family: 'Roboto', sans-serif;
+    color: $black;
+    text-align: start;
   }
 
   img {
@@ -43,13 +50,12 @@
     &.content-cta {
       font-weight: bold;
       display: block;
-      height: 60px;
-      max-width: 200px;
+      max-width: 280px;
       border: 1px solid white;
       background-color: #4b3f72;
       text-align: center;
       color: white;
-      padding-top: 15px;
+      padding: 15px 10px;
       border-radius: 6px;
       margin: 30px auto;
     }
@@ -76,12 +82,6 @@
       margin-left: 10px;
       width: 75%;
     }
-  }
-
-  main.sidewave {
-    background-position: right -150px bottom -300px;
-    background-repeat: no-repeat;
-    overflow:hidden;
   }
 
   .sidebar-menu {
@@ -126,7 +126,6 @@ span.social-title {
   font-size: 1.5rem;
   font-weight: 500;
 }
-
 
 
 

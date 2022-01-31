@@ -9,7 +9,7 @@ echo '<div class="row row-cols-2 row-cols-md-4 mx-auto justify-content-center te
       if(!$image){
         continue;
       }
-      echo '<div class="col icons">';
+      echo '<div class="col icons p-4">';
         $url = get_sub_field('url');
         if($url):
             echo '<a href="'.$url.'">';

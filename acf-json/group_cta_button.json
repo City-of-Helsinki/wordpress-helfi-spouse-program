@@ -1,0 +1,207 @@
+{
+    "key": "group_cta_button",
+    "title": "Cta-button",
+    "id": "acf_cta-button",
+    "location": [
+        [
+            {
+                "param": "page_type",
+                "operator": "==",
+                "value": "front_page",
+                "order_no": 0,
+                "group_no": 0
+            }
+        ]
+    ],
+    "options": {
+        "position": "normal",
+        "layout": "default",
+        "hide_on_screen": []
+    },
+    "menu_order": 0,
+    "fields": [
+        {
+            "key": "field_5eddf5b97b11f",
+            "label": "Enable cta-button",
+            "name": "enable_cta-button",
+            "type": "true_false",
+            "instructions": "Is action button enabled ?",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "message": "",
+            "default_value": 0,
+            "ui": 0,
+            "ui_on_text": "",
+            "ui_off_text": ""
+        },
+        {
+            "key": "field_5eddf15013a56",
+            "label": "Functionality",
+            "name": "functionality",
+            "type": "radio",
+            "instructions": "What is this button for?",
+            "required": false,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_5eddf5b97b11f",
+                        "operator": "==",
+                        "value": "1"
+                    }
+                ]
+            ],
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "choices": {
+                "Internal link": "Internal link",
+                "External link": "External link",
+                "Sign in button": "Sign in button",
+                "Advanced functionality": "Advanced functionality"
+            },
+            "other_choice": 0,
+            "save_other_choice": 0,
+            "default_value": "",
+            "layout": "horizontal",
+            "allow_null": 0,
+            "return_format": "value"
+        },
+        {
+            "key": "field_5eddf04f39dcb",
+            "label": "Button text",
+            "name": "button_text",
+            "type": "text",
+            "instructions": "Text on the button. Short and descriptive name, for example: \"read more\" or \"sign in\" or whatever this button is supposed to do.",
+            "required": false,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_5eddf5b97b11f",
+                        "operator": "==",
+                        "value": "1"
+                    }
+                ]
+            ],
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": "",
+            "formatting": "html",
+            "maxlength": ""
+        },
+        {
+            "key": "field_5eddee3e7c573",
+            "label": "Button url",
+            "name": "button_url",
+            "type": "page_link",
+            "instructions": "Select content where you would like the button to lead",
+            "required": false,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_5eddf15013a56",
+                        "operator": "==",
+                        "value": "Internal link"
+                    },
+                    {
+                        "field": "field_5eddf5b97b11f",
+                        "operator": "==",
+                        "value": "1"
+                    }
+                ]
+            ],
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "post_type": [
+                "post",
+                "page"
+            ],
+            "allow_null": 0,
+            "multiple": 0,
+            "taxonomy": [],
+            "allow_archives": 1
+        },
+        {
+            "key": "field_5eddeeb67c575",
+            "label": "External url",
+            "name": "external_url",
+            "type": "text",
+            "instructions": "Url to external content",
+            "required": false,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_5eddf15013a56",
+                        "operator": "==",
+                        "value": "External link"
+                    },
+                    {
+                        "field": "field_5eddf5b97b11f",
+                        "operator": "==",
+                        "value": "1"
+                    }
+                ]
+            ],
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": "https:\/\/www......",
+            "prepend": "",
+            "append": "",
+            "formatting": "html",
+            "maxlength": ""
+        },
+        {
+            "key": "field_5eddf3579b411",
+            "label": "Class",
+            "name": "class",
+            "type": "text",
+            "instructions": "Add class for wow-modal popup",
+            "required": false,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_5eddf15013a56",
+                        "operator": "==",
+                        "value": "Advanced functionality"
+                    },
+                    {
+                        "field": "field_5eddf5b97b11f",
+                        "operator": "==",
+                        "value": "1"
+                    }
+                ]
+            ],
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": "",
+            "formatting": "html",
+            "maxlength": ""
+        }
+    ],
+    "modified": 1640853060
+}

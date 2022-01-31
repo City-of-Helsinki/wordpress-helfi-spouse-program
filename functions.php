@@ -1,24 +1,40 @@
 <?php
 
-add_theme_support( 'widgets' );
-add_theme_support( 'post-thumbnails' );
+require_once('functions/autoloader.php');
 
-// add main menu
-function spouse_menu() {
-  register_nav_menu('main-menu', __( 'Main menu' ));
-  register_nav_menu('sidebar-menu', __('Sidebar menu on main page') );
+function spouse_setup_theme(){
+  add_theme_support( 'widgets' );
+  add_theme_support( 'post-thumbnails' );
+  add_theme_support( 'title-tag' ); 
+  add_theme_support( 'custom-logo', array(
+    'flex-height' => true,
+    'flex-width'  => true
+) );
 }
-add_action( 'init', 'spouse_menu' );
+
+add_action('after_setup_theme', 'spouse_setup_theme');
+
+add_filter( 'get_custom_logo', 'change_logo_class' );
+
+function change_logo_class( $html ) {
+
+    $html = str_replace( 'custom-logo', 'logo d-inline-block align-top', $html );
+    $html = str_replace( 'custom-logo-link', 'navbar-brand', $html );
+
+    return $html;
+}
 
 // add styles and javascripts
 function spouse_enqueue_scripts() {
   wp_enqueue_style('bootstrap', get_template_directory_uri() . '/dist/bootstrap/dist/css/bootstrap.css');
+  wp_enqueue_script('bootstrap-js', get_template_directory_uri() . '/dist/bootstrap/dist/js/bootstrap.min.js', array('jquery'));
+
   wp_enqueue_style('style', get_stylesheet_uri());
 
   if ( is_page_template('archives.php') ) {
     wp_enqueue_script('news-visited', get_template_directory_uri() . '/js/news-visited.js');
   }
-  wp_enqueue_script('wow-modal-focus', get_template_directory_uri() . '/js/wow-modal-focus.js');
+  wp_enqueue_script('main', get_template_directory_uri() . '/js/main.js');
   wp_enqueue_script('target-blank-accessible', get_template_directory_uri() . '/js/targetblank.js');
 }
 add_action('wp_enqueue_scripts', 'spouse_enqueue_scripts');
@@ -126,12 +142,16 @@ add_action( 'init', 'spouse_create_posttypes' );
 
 function spouse_access_control_check(){
     global $post;
+    global $wp;
     if($check = get_field('authenticated_users_only', $post)){
         if(!is_user_logged_in()){
-          wp_redirect('front-page');
+          $current = home_url( $wp->request );
+          $redirect_url = add_query_arg( 'redirect_to', $current, spouse_login_url() );
+          wp_redirect($redirect_url);
         }
     }
 }
+add_action( 'template_redirect', 'spouse_access_control_check' );
 
 function spouse_is_restricted_page(){
   global $post;
@@ -232,6 +252,7 @@ function spouse_remove_menu_pages() {
     remove_menu_page( 'admin.php?page=mobile-menu-options' );
     remove_menu_page( 'admin.php?page=sharing-plus' );
     remove_menu_page( 'admin.php?page=wow-company' );
+    remove_menu_page( 'index.php' );
 }
 
 //List archives by year, then month
@@ -299,3 +320,86 @@ function wp_custom_archive($args = '') {
 
   echo $output;
 }
+
+\Spouse\LoginHandler::init();
+
+function spouse_login_url(){
+  return \Spouse\LoginStaticPagesGenerator::url('login');
+}
+
+function spouse_register_url(){
+  return \Spouse\LoginStaticPagesGenerator::url('register');
+}
+
+add_action('acf/init', 'my_acf_op_init');
+function my_acf_op_init() {
+
+    // Check function exists.
+    if( function_exists('acf_add_options_page') ) {
+
+        // Register options page.
+        $option_page = acf_add_options_page(array(
+            'page_title'    => __('Theme General Settings'),
+            'menu_title'    => __('Theme Settings'),
+            'menu_slug'     => 'theme-general-settings',
+            'capability'    => 'edit_posts',
+            'redirect'      => false
+        ));
+    }
+}
+
+function get_the_background_image_style( $size = 'full'){
+  if ( has_post_thumbnail()){
+    echo sprintf('style="background-image: url(%s);"', get_the_post_thumbnail_url(get_the_ID(), $size));
+  }
+}
+
+function get_hero_text(){
+  $hero = get_field('hero_text');
+  return preg_replace('/_(.*?)_/', '<span class="highlight">$1</span>', $hero);
+}
+
+add_filter('wp_get_attachment_url', 'rewrite_wp_get_attachment_url', 10, 2);
+function rewrite_wp_get_attachment_url($url, $postID = null){
+  $upload_dir = wp_upload_dir();
+  $path = preg_replace('%(https?://)?(?<!@)(spouse-program\.)?lndo\.site/wp-content/uploads%im', '', $url );
+  
+  if (file_exists($upload_dir["basedir"] . DIRECTORY_SEPARATOR . $path)){
+    return $url;
+  }
+  $rep = 'https://www.spouseprogram.fi/content/uploads' . $path;
+  return $rep;
+}
+
+add_filter('wp_calculate_image_srcset', function($sources){
+  foreach($sources as &$source){
+      $source['url'] = rewrite_wp_get_attachment_url($source['url']);
+  }
+  return $sources;
+});
+
+
+add_action( 'admin_head', function () {
+  if (!current_user_can('manage_options')){
+    remove_action( 'admin_color_scheme_picker', 'admin_color_scheme_picker' );
+    ob_start( function( $subject ) {
+        $subject = preg_replace( '#<h[0-9]>'.__("Personal Options").'</h[0-9]>.+?/table>#s', '', $subject, 1 );
+        return $subject;
+    });
+  }
+});
+
+add_action( 'admin_footer', function(){
+  if (!current_user_can('manage_options')){
+    ob_end_flush();
+  }
+});
+
+function spouse_customize_app_password_availability( $available, $user) {
+  if ( ! user_can( $user, 'manage_options' ) ) {
+      $available = false;
+  }
+
+  return $available;
+}
+add_filter('wp_is_application_passwords_available_for_user', 'spouse_customize_app_password_availability', 10, 2);

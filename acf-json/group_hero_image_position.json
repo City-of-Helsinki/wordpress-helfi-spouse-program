@@ -1,0 +1,51 @@
+{
+    "key": "group_hero_image_position",
+    "title": "Hero image position",
+    "id": "acf_hero-image-position",
+    "location": [
+        [
+            {
+                "param": "post_type",
+                "operator": "==",
+                "value": "page",
+                "order_no": 0,
+                "group_no": 0
+            }
+        ]
+    ],
+    "options": {
+        "position": "side",
+        "layout": "default",
+        "hide_on_screen": []
+    },
+    "menu_order": 0,
+    "fields": [
+        {
+            "key": "field_5ee8ca95a5d90",
+            "label": "Featured image position",
+            "name": "hero_image_position",
+            "type": "select",
+            "instructions": "Horizontally align the hero image: which part of the image should be most visible in the hero area",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "choices": {
+                "Top": "Top",
+                "Center": "Center",
+                "Bottom": "Bottom"
+            },
+            "default_value": "Center",
+            "allow_null": 0,
+            "multiple": 0,
+            "ui": 0,
+            "ajax": 0,
+            "placeholder": "",
+            "return_format": "value"
+        }
+    ],
+    "modified": 1640853060
+}

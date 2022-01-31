@@ -1,9 +1,17 @@
+body, html {
+  padding: 0;
+}
+
 body {
-  font-family: 'Nunito', serif;
+  font-family: 'Roboto', sans-serif !important;
   font-size: 18px;
+  padding-top: 60px;
+  &.page-template-login{
+    padding-top: 0;
+  }
 
   .mob-menu-left-bg-holder {
-    font-family: 'Nunito', serif !important;
+    font-family: 'Roboto', sans-serif !important;
     font-size: 22px;
   }
 
@@ -16,11 +24,20 @@ body {
   }
 }
 
+h1, h2, h3, .h1, .h2, .h3, p {
+  font-family: 'Roboto', sans-serif !important;
+}
+
 h1 {
   margin: 10px 0px 40px 0px;
   font-size: 62px;
   font-weight: 700;
-  font-family: 'Bitter', serif;
+}
+
+a {
+  &:focus, &:focus-visible { 
+    outline: 1px solid black !important;
+  }
 }
 
 @media (max-width: 992px) {
@@ -33,6 +50,9 @@ h1 {
   }
 }
 
+#main-content{
+  padding-bottom: 3rem;
+}
 iframe {
   width: 100%;
   max-width: 100%;

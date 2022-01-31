@@ -1,7 +1,7 @@
 .cta-column {
   padding: 0;
-  min-height: 800px;
-  height:90vh;
+  min-height: 600px;
+  height:25vh;
   position: relative;
   .cta-background {
     height: 100%;
@@ -37,24 +37,9 @@
 .main-content {
   position: relative;
   background-color: $white;
-
-  min-height:750px;
-  padding: 0;
+  height: auto;
   font-size: 18px;
-
-
-  .main-content-container {
-    position: absolute;
-    float: left;
-    z-index:9;
-    top:0;
-    left: 0;
-    padding: 10px 10px 10px 5px;
-    background-repeat: no-repeat;
-    background-size: cover;
-    height:100%;
-    width: 100%;
-  }
+  margin-top: 3rem;
 
   & > img {
     z-index:1;
@@ -69,22 +54,38 @@
 
   h1 {
     font-size: 42px;
-    text-align: center;
+    text-align: start;
     margin: 10px 0px 20px 0px;
   }
 
   p {
-    margin-bottom: 5px;
+    padding-left: 0;
   }
 
   .small-images {
-    img {
-      width: 100%;
-      height: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap:  wrap;
+    &__image{
+      flex: 0 0 100%;
+      @include media-breakpoint-up('sm') {
+        flex-basis: 40%;
+      }
+      @include media-breakpoint-up('lg') {
+        flex-basis: 33.333%;
+      }
+
+      text-align: center;
+      img {
+        max-width: 250px;
+        max-height: 120px;
+        height: auto;
+        width:auto;
+      }
     }
   }
 }
-
 
 
 @media (max-width: 1900px) {
@@ -138,7 +139,6 @@
 
   .main-content {
     font-size: 16px;
-    min-height: 750px;
 
     .main-content-container {
       h1 {
