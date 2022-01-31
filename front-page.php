@@ -30,10 +30,11 @@ get_header();
                 endwhile;
                 endif;
                 ?>
+                <?php get_template_part("partials/upcoming-events") ?>
                 <?php get_template_part('partials/front-page-small-images') ?>
               </div>
           </div>
-          <?php get_template_part("partials/upcoming-events") ?>
+          
       </div>
   </div>
 </main><!-- #site-content -->
