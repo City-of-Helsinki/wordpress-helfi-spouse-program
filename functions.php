@@ -359,18 +359,6 @@ function get_hero_text(){
   return preg_replace('/_(.*?)_/', '<span class="highlight">$1</span>', $hero);
 }
 
-add_filter('wp_get_attachment_url', 'rewrite_wp_get_attachment_url', 10, 2);
-function rewrite_wp_get_attachment_url($url, $postID = null){
-  $upload_dir = wp_upload_dir();
-  $path = preg_replace('%(https?://)?(?<!@)(spouse-program\.)?lndo\.site/wp-content/uploads%im', '', $url );
-  
-  if (file_exists($upload_dir["basedir"] . DIRECTORY_SEPARATOR . $path)){
-    return $url;
-  }
-  $rep = 'https://www.spouseprogram.fi/content/uploads' . $path;
-  return $rep;
-}
-
 add_filter('wp_calculate_image_srcset', function($sources){
   foreach($sources as &$source){
       $source['url'] = rewrite_wp_get_attachment_url($source['url']);
