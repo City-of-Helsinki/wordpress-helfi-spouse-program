@@ -4,6 +4,12 @@
 </div>
 <?php endif; ?>
 
+<?php if ($args["checkemail"]): ?>
+<div class="alert alert-warning" role="alert"> 
+  <?php _e( 'Check your email for the confirmation link.' ) ?>
+</div>
+<?php endif; ?>
+
 <?php echo $args["form"] ?>
 
 <div class="login-form-bottom">

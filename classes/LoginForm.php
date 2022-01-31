@@ -39,6 +39,10 @@ class LoginForm extends LoginFormHandler{
         if($_REQUEST['login'] == "invalid"){
             $attr["valid"] = false;
         }
+        $attr["checkemail"] = false;
+        if($_REQUEST['checkemail'] == "confirm"){
+            $attr["checkemail"] = true;
+        }
         $attr["form"] = $form;
         get_template_part('partials/login/login-form', null, $attr);
       }
