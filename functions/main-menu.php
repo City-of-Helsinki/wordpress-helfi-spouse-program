@@ -7,16 +7,49 @@ function spouse_menu() {
   register_nav_menu('sidebar-menu', __('Sidebar menu on main page') );
 }
 add_action( 'init', 'spouse_menu' );
+add_filter( 'wp_nav_menu_objects', 'spouse_add_main_menu_to_dropdpwn', 10, 2 );
+
+function spouse_add_main_menu_to_dropdpwn( $items, $args ) {
+
+    // check we are in the right menu
+    if( $args->theme_location == "main-menu" && is_user_logged_in() ) {
+    
+        $new_links = array();
+        // Create a nav_menu_item object
+
+        $menu_class = array( 'menu-item' );
+        $parent_id = PHP_INT_MAX;
+        foreach($items as &$item){
+            $item->menu_item_parent = $parent_id;
+            if ($item->current == true){
+                $item->current_item_ancestor = $parent_id;
+                $menu_class[] = 'active';
+            }
+        }
+
+        $newItem = array(
+            'title'            => __("Spouse Program"),
+            'ID'               => 'spouse_main_drop_down',
+            'db_id'            => $parent_id,
+            'url'              => "#",
+            'classes'          => $menu_class
+        );
+
+        $items[] = (object) $newItem;   // add to end of existing object.    
+        return $items;
+    }
+
+    return $items;
+}
+
 
 function spouse_main_menu(){
+
     if (!is_user_logged_in()){
         return spouse_get_nav_primary();
     }
-    $wrap  = '<li class="nav-item dropdown">';
-    $wrap .= '<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">%s</a>';
-    $wrap .= '<ul class="dropdown-menu">%s</ul>';
-    $wrap .= '</li>'; 
-    $nav = sprintf($wrap, __("Spouse Program"), spouse_get_nav_primary(false));
+
+    $nav = spouse_get_nav_primary(false);
     $nav .= spouse_get_nav_secondary();
     return $nav;
 }
@@ -33,15 +66,10 @@ function spouse_get_nav_primary($hasWrapper = true){
     );
     if (!$hasWrapper){
         $args['items_wrap'] = '%3$s';
-        $args['walker'] = null;
-        $args['depth'] = 1;
+        $args['depth'] = 2;
     }
 
     $menu = wp_nav_menu($args);
-
-    if (!$hasWrapper){
-        $menu = preg_replace('/<a /', '<a class="nav-link"', $menu);
-    }
 
     return $menu;
 }
