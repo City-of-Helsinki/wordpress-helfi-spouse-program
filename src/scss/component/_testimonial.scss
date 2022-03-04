@@ -2,9 +2,21 @@
   .row {
     .card {
       .card-body {
-        .first-quote-mark {
-          color: $opal;
-          font-size: 5rem;
+        blockquote {
+          .quote-text {
+            ::before {
+              display: inline-block;
+              content: "“";
+              color: $opal;
+            }
+
+          }
+          .footer {
+            .author {
+              font-size: 1.5rem;
+              color: $gray;
+            }
+          }
         }
         .quote-name {
           color: $gray;
