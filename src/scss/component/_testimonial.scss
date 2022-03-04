@@ -1,0 +1,15 @@
+.testimonials {
+  .row {
+    .card {
+      .card-body {
+        .first-quote-mark {
+          color: $opal;
+          font-size: 5rem;
+        }
+        .quote-name {
+          color: $gray;
+        }
+      }
+    }
+  }
+}

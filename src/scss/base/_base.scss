@@ -3,7 +3,7 @@ body, html {
 }
 
 body {
-  font-family: 'Roboto', sans-serif !important;
+  font-family: 'Lexend', sans-serif !important;
   font-size: 18px;
   padding-top: 60px;
   &.page-template-login{
@@ -11,7 +11,7 @@ body {
   }
 
   .mob-menu-left-bg-holder {
-    font-family: 'Roboto', sans-serif !important;
+    font-family: 'Lexend', sans-serif !important;
     font-size: 22px;
   }
 
@@ -24,8 +24,12 @@ body {
   }
 }
 
-h1, h2, h3, .h1, .h2, .h3, p {
-  font-family: 'Roboto', sans-serif !important;
+h1, h2, h3, .h1, .h2, .h3 {
+  font-family: 'Sora', Arial, sans-serif !important;
+}
+
+p {
+  font-family: 'Lexend', Arial, sans-serif !important;
 }
 
 h1 {
