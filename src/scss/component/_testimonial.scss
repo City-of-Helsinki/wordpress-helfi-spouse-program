@@ -1,17 +1,42 @@
 .testimonials {
   .row {
     .card {
+      display: flex;
+      flex-flow: column;
+      height: 100%;
+      box-shadow:
+        0.7px 0.7px 5.3px rgba(0, 0, 0, 0.032),
+        2.2px 2.2px 17.9px rgba(0, 0, 0, 0.02),
+        5px 5px 15px rgba(0, 0, 0, 0.08)
+      ;
+      max-width: 100% !important;
+      background-color: white;
+      border-radius: 6px;
+      overflow: hidden;
+      margin-bottom: 2rem;
       .card-body {
         blockquote {
-          .quote-text {
-            ::before {
-              display: inline-block;
+          .quote-text{
+            position: relative;
+            padding-top: 4rem;
+              &::before {
               content: "“";
+              display: block;
               color: $opal;
+              font-size: 5rem;
+              position: absolute;
+              top: 5px;
+              left: 5px;
             }
-
           }
           .footer {
+            img {
+              height: 3rem;
+              width: 3rem;
+              &.placeholder {
+                content: url('./src/scss/icons/user.svg');
+              }
+            }
             .author {
               font-size: 1.5rem;
               color: $gray;
