@@ -31,8 +31,10 @@
           }
           .footer {
             img {
+              object-fit: cover;
               height: 3rem;
               width: 3rem;
+
               &.placeholder {
                 content: url('./src/scss/icons/user.svg');
               }
