@@ -1,4 +1,4 @@
-<div class="testimonials">
+<div class="testimonials my-5">
   <div class="grid">
       <div class="row">
         <?php 

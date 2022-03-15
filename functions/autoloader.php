@@ -33,7 +33,8 @@ function spouse_program_init(){
 			'cf7-custom',
 			'event-previewbox',
 			'spouse-emailfrom',
-			'spouse-notice'
+			'spouse-notice',
+			'shortcode'
 		);
 	}
 	$files = array_merge($files, array(
