@@ -45,21 +45,118 @@ class RegisterFormFields{
 
     public function validationFilter( $result, $tag ) {
         $tags = $this->getFormTags();
+        
         foreach($tags as $tag){
           if (in_array($tag->type, array('text', 'text*', 'email') ) ) {
-            wpcf7_text_validation_filter( $result, $tag );
+            $result = $this->wpcf7_text_validation_filter( $result, $tag );
           } elseif ( in_array($tag->type, array('textarea', 'textarea*'))){
-            wpcf7_textarea_validation_filter($result, $tag);
+            $result = $this->wpcf7_textarea_validation_filter($result, $tag);
           } elseif ( in_array($tag->type, array('email*'))){
-            $result = wpcf7_text_validation_filter( $result, $tag );
+            $result = $this->wpcf7_text_validation_filter( $result, $tag );
             if ($this->isRegistrationForm){
               $this->validate_registration_email($result, $tag);
             }
           }
         }
+        
 
         return $result;
     }
+
+    private function wpcf7_textarea_validation_filter( $result, $tag ) {
+      $type = $tag->type;
+      $name = $tag->name;
+    
+      $value = isset( $_POST[$name] )
+        ? wp_unslash( (string) $_POST[$name] )
+        : '';
+    
+      if ( $tag->is_required() and '' === $value ) {
+        $result->invalidate( $tag, wpcf7_get_message( 'invalid_required' ) );
+      }
+    
+      if ( '' !== $value ) {
+        $maxlength = $tag->get_maxlength_option();
+        $minlength = $tag->get_minlength_option();
+    
+        if ( $maxlength and $minlength
+        and $maxlength < $minlength ) {
+          $maxlength = $minlength = null;
+        }
+    
+        $code_units = wpcf7_count_code_units( $value );
+    
+        if ( false !== $code_units ) {
+          if ( $maxlength and $maxlength < $code_units ) {
+            $result->invalidate( $tag, wpcf7_get_message( 'invalid_too_long' ) );
+          } elseif ( $minlength and $code_units < $minlength ) {
+            $result->invalidate( $tag, wpcf7_get_message( 'invalid_too_short' ) );
+          }
+        }
+      }
+    
+      return $result;
+    }
+
+    private function wpcf7_text_validation_filter( $result, $tag ) {
+      $name = $tag->name;
+    
+      $value = isset( $_POST[$name] )
+        ? trim( wp_unslash( strtr( (string) $_POST[$name], "\n", " " ) ) )
+        : '';
+    
+      if ( 'text' == $tag->basetype ) {
+        if ( $tag->is_required() and '' === $value ) {
+          $result->invalidate( $tag, wpcf7_get_message( 'invalid_required' ) );
+        }
+      }
+    
+      if ( 'email' == $tag->basetype ) {
+        if ( $tag->is_required() and '' === $value ) {
+          $result->invalidate( $tag, wpcf7_get_message( 'invalid_required' ) );
+        } elseif ( '' !== $value and ! wpcf7_is_email( $value ) ) {
+          $result->invalidate( $tag, wpcf7_get_message( 'invalid_email' ) );
+        }
+      }
+    
+      if ( 'url' == $tag->basetype ) {
+        if ( $tag->is_required() and '' === $value ) {
+          $result->invalidate( $tag, wpcf7_get_message( 'invalid_required' ) );
+        } elseif ( '' !== $value and ! wpcf7_is_url( $value ) ) {
+          $result->invalidate( $tag, wpcf7_get_message( 'invalid_url' ) );
+        }
+      }
+    
+      if ( 'tel' == $tag->basetype ) {
+        if ( $tag->is_required() and '' === $value ) {
+          $result->invalidate( $tag, wpcf7_get_message( 'invalid_required' ) );
+        } elseif ( '' !== $value and ! wpcf7_is_tel( $value ) ) {
+          $result->invalidate( $tag, wpcf7_get_message( 'invalid_tel' ) );
+        }
+      }
+    
+      if ( '' !== $value ) {
+        $maxlength = $tag->get_maxlength_option();
+        $minlength = $tag->get_minlength_option();
+    
+        if ( $maxlength and $minlength and $maxlength < $minlength ) {
+          $maxlength = $minlength = null;
+        }
+    
+        $code_units = wpcf7_count_code_units( $value );
+    
+        if ( false !== $code_units ) {
+          if ( $maxlength and $maxlength < $code_units ) {
+            $result->invalidate( $tag, wpcf7_get_message( 'invalid_too_long' ) );
+          } elseif ( $minlength and $code_units < $minlength ) {
+            $result->invalidate( $tag, wpcf7_get_message( 'invalid_too_short' ) );
+          }
+        }
+      }
+    
+      return $result;
+    }
+    
     public function validate_registration_email($result, $tag){
       $name = $tag->name;
 
