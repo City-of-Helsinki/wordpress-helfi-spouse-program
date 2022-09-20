@@ -3,13 +3,13 @@
 namespace Spouse;
 
 class RegisterFormFields{
+    private ?RegisterForm $rForm = null;
 
-    protected $isRegistrationForm; 
-
-    public function init( $isRegistrationForm = false ){
-        $this->isRegistrationForm = $isRegistrationForm;
+    public function init( RegisterForm $rForm ){
+        $this->rForm = $rForm;
         add_action( 'wpcf7_init', array($this, 'addCustomRegistrationTag' ), 10 );
         add_filter( 'wpcf7_validate_registration', array($this, 'validationFilter'), 20, 2 );
+
     }
 
     public function addCustomRegistrationTag() {
@@ -27,7 +27,6 @@ class RegisterFormFields{
     public function getFormTags(){
         $tags = $this->generateForm();
         $manager = \WPCF7_FormTagsManager::get_instance();
-    
         $scan = $manager->scan( $tags);
         return $scan;
     }
@@ -53,7 +52,7 @@ class RegisterFormFields{
             $result = $this->wpcf7_textarea_validation_filter($result, $tag);
           } elseif ( in_array($tag->type, array('email*'))){
             $result = $this->wpcf7_text_validation_filter( $result, $tag );
-            if ($this->isRegistrationForm){
+            if ( $this->rForm->isRegistrationForm() ){
               $this->validate_registration_email($result, $tag);
             }
           }
@@ -164,17 +163,41 @@ class RegisterFormFields{
         ? trim( wp_unslash( strtr( (string) $_POST[$name], "\n", " " ) ) )
         : '';
 
-      if ( email_exists($value) )
+      if ( email_exists($value) ){
         $result->invalidate( $tag, "Email already exists" );
+      }
       
       return $result;
     }
 
-    private function generateForm(){
-        $ID = get_the_ID();
-        if (empty($ID)){
-          $submission = \WPCF7_Submission::get_instance();
+    private function getPostID(){
+      $ID = get_the_ID();
+      if ($ID){
+        return $ID;
+      }
+      
+      $submission = \WPCF7_Submission::get_instance();
+      if ($submission){
           $ID = $submission->get_meta('container_post_id');
+          if ($ID){
+            return $ID;
+          }
+      }
+
+      $ID = url_to_postid(wp_get_referer());
+      if ($ID){
+        return $ID;
+      }
+
+      return false;
+    }
+
+
+    private function generateForm(){
+        $ID = $this->getPostID();
+
+        if (! $ID){
+          return null;
         }
 
         $form = '<div class="row">';
