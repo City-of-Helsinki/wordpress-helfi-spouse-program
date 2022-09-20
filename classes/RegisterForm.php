@@ -10,11 +10,14 @@ class RegisterForm{
         add_filter( 'wp_new_user_notification_email', array($this, 'customizeNotificationEmail'), 10, 3 );
         wpcf7_add_form_tag( 'user_email', array($this, 'getRegistrationEmail' ));
 
+        add_action('wpcf7_init', array($this, 'initRegisterFormFields'), 5);
+    }
+    public function initRegisterFormFields(){
         $rff = new RegisterFormFields();
-        $rff->init( $this->isRegistrationForm() );
+        $rff->init( $this );
+
         $this->fields = $rff;
     }
-
     public function getForm(){
         return \WPCF7_ContactForm::get_current();
     }
@@ -61,9 +64,8 @@ class RegisterForm{
     }
 
     public function handleSubmission($contact_form){
-
         if ($this->isRegistrationForm() ) {
-            $this->create_user($contact_form);
+            $uid = $this->create_user($contact_form);
         }
 
         if ($this->hasOption('data_as_attachment') ){
@@ -82,11 +84,12 @@ class RegisterForm{
             'user_email'    => $email,
             'user_pass'     => $password
         );
+
      
         $user_id = wp_insert_user( $user_data );
         wp_new_user_notification( $user_id, $password );
 
-        return $contact_form;
+        return $user_id;
     }
 
     public function dataAsAttachment(){

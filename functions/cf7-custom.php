@@ -63,7 +63,7 @@ add_filter( 'wpcf7_display_message', 'spouse_validation_messages_fail', 10, 2 );
 function spouse_validation_messages_fail( $message, $status ) {
   $submission = WPCF7_Submission::get_instance();
 
-  if ( $submission->is( 'validation_failed' ) ) {
+  if ( $submission && $submission->is( 'validation_failed' ) ) {
     $invalid_fields = $submission->get_invalid_fields();
     $fields = implode(', ',array_keys($invalid_fields));
     $message = 'Your form has invalid values in fields: '. $fields;
