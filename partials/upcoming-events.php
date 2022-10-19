@@ -1,5 +1,5 @@
 <?php
-if(spouse_is_restricted_page() || is_front_page()):
+if(spouse_is_restricted_page() || is_front_page() || is_page("events")):
     $events = spouse_get_events(6);
     if (!empty($events)): ?>
     <div class="col-12 col-sm-12 events-column">
