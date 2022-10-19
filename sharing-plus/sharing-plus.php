@@ -701,7 +701,7 @@ if(!class_exists('Sharing_Plus')):
             $fbshare_share = $share_counts['fbshare'] ? $share_counts['fbshare'] : 0;
 
             if ( $this->selected_theme == 'simple-icons' ) {
-              $_html = '		<button class="sharing_plus_fbshare-icon" target="_blank" data-href="https://www.facebook.com/sharer/sharer.php?u=' . $permalink . '" onclick="javascript:window.open(this.dataset.href, \'\', \'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600\');return false;">
+              $_html = '		<button class="sharing_plus_fbshare-icon" target="" data-href="https://www.facebook.com/sharer/sharer.php?u=' . $permalink . '" onclick="javascript:window.open(this.dataset.href, \'\', \'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600\');return false;">
 						<span class="icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" class="_1pbq" color="#ffffff"><path fill="#ffffff" fill-rule="evenodd" class="icon" d="M8 14H3.667C2.733 13.9 2 13.167 2 12.233V3.667A1.65 1.65 0 0 1 3.667 2h8.666A1.65 1.65 0 0 1 14 3.667v8.566c0 .934-.733 1.667-1.667 1.767H10v-3.967h1.3l.7-2.066h-2V6.933c0-.466.167-.9.867-.9H12v-1.8c.033 0-.933-.266-1.533-.266-1.267 0-2.434.7-2.467 2.133v1.867H6v2.066h2V14z"></path></svg></span>
 						<span class="simplesocialtxt">Share </span>';
 
@@ -712,7 +712,7 @@ if(!class_exists('Sharing_Plus')):
               $_html .= ' </button>';
             } else {
 
-              $_html = '<button class="sharing-plus-social-fb-share" target="_blank" data-href="https://www.facebook.com/sharer/sharer.php?u=' . $permalink . '" onclick="javascript:window.open(this.dataset.href, \'\', \'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600\');return false;"><span class="simplesocialtxt">Facebook </span> ';
+              $_html = '<button class="sharing-plus-social-fb-share" target="" data-href="https://www.facebook.com/sharer/sharer.php?u=' . $permalink . '" onclick="javascript:window.open(this.dataset.href, \'\', \'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600\');return false;"><span class="simplesocialtxt">Facebook </span> ';
 
               if ( $show_count ) {
                 $_html .= '<span class="sharing_plus_counter sharing_plus_fbshare_counter">' . $fbshare_share . '</span>';
@@ -837,13 +837,13 @@ if(!class_exists('Sharing_Plus')):
             break;
           case 'whatsapp':
             if ( $this->selected_theme == 'simple-icons' ) {
-              $arrButtonsCode[] = ' <button  onclick="javascript:window.open(this.dataset.href, \'_blank\' );return false;" class="sharing_plus_whatsapp-icon sharing-plus-social-whatsapp-share" data-href="https://api.whatsapp.com/send?text=' . $permalink . '"><span class="simplesocialtxt">
+              $arrButtonsCode[] = ' <button  onclick="javascript:window.open(this.dataset.href, \'\' );return false;" class="sharing_plus_whatsapp-icon sharing-plus-social-whatsapp-share" data-href="https://api.whatsapp.com/send?text=' . $permalink . '"><span class="simplesocialtxt">
 						<span class="icon"> <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px" y="0px" width="512px" height="512px" viewBox="0 0 90 90" style="enable-background:new 0 0 90 90;" xml:space="preserve" class=""><g><g> <path id="WhatsApp" d="M90,43.841c0,24.213-19.779,43.841-44.182,43.841c-7.747,0-15.025-1.98-21.357-5.455L0,90l7.975-23.522   c-4.023-6.606-6.34-14.354-6.34-22.637C1.635,19.628,21.416,0,45.818,0C70.223,0,90,19.628,90,43.841z M45.818,6.982   c-20.484,0-37.146,16.535-37.146,36.859c0,8.065,2.629,15.534,7.076,21.61L11.107,79.14l14.275-4.537   c5.865,3.851,12.891,6.097,20.437,6.097c20.481,0,37.146-16.533,37.146-36.857S66.301,6.982,45.818,6.982z M68.129,53.938   c-0.273-0.447-0.994-0.717-2.076-1.254c-1.084-0.537-6.41-3.138-7.4-3.495c-0.993-0.358-1.717-0.538-2.438,0.537   c-0.721,1.076-2.797,3.495-3.43,4.212c-0.632,0.719-1.263,0.809-2.347,0.271c-1.082-0.537-4.571-1.673-8.708-5.333   c-3.219-2.848-5.393-6.364-6.025-7.441c-0.631-1.075-0.066-1.656,0.475-2.191c0.488-0.482,1.084-1.255,1.625-1.882   c0.543-0.628,0.723-1.075,1.082-1.793c0.363-0.717,0.182-1.344-0.09-1.883c-0.27-0.537-2.438-5.825-3.34-7.977   c-0.902-2.15-1.803-1.792-2.436-1.792c-0.631,0-1.354-0.09-2.076-0.09c-0.722,0-1.896,0.269-2.889,1.344   c-0.992,1.076-3.789,3.676-3.789,8.963c0,5.288,3.879,10.397,4.422,11.113c0.541,0.716,7.49,11.92,18.5,16.223   C58.2,65.771,58.2,64.336,60.186,64.156c1.984-0.179,6.406-2.599,7.312-5.107C68.398,56.537,68.398,54.386,68.129,53.938z"/> </g></g> </svg> </span>
 						<span class="simplesocialtxt">Whatsapp</span>
 						</button>';
             } else {
 
-              $arrButtonsCode[] = '<button onclick="javascript:window.open(this.dataset.href, \'_blank\' );return false;" class="sharing-plus-social-whatsapp-share" data-href="https://api.whatsapp.com/send?text=' . $permalink . '"><span class="simplesocialtxt">WhatsApp</span></button>';
+              $arrButtonsCode[] = '<button onclick="javascript:window.open(this.dataset.href, \'\' );return false;" class="sharing-plus-social-whatsapp-share" data-href="https://api.whatsapp.com/send?text=' . $permalink . '"><span class="simplesocialtxt">WhatsApp</span></button>';
             }
             break;
           case 'viber':
@@ -868,7 +868,7 @@ if(!class_exists('Sharing_Plus')):
             $messenger_share_url = $this->is_mobile() ? "fb-messenger://share/?link=$link?app_id=$this->facebook_app_id" : "http://www.facebook.com/dialog/send?app_id=$this->facebook_app_id&redirect_uri=$link&link=$link&display=popup";
 
             if ( $this->selected_theme == 'simple-icons' ) {
-              $arrButtonsCode[] = '<button  onclick="javascript:window.open(this.dataset.href, \'_blank\',  \'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600\' );return false;" class="sharing-plus-social-viber-share sharing_plus_msng-icon" data-href=' . $messenger_share_url . '>
+              $arrButtonsCode[] = '<button  onclick="javascript:window.open(this.dataset.href, \'\',  \'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600\' );return false;" class="sharing-plus-social-viber-share sharing_plus_msng-icon" data-href=' . $messenger_share_url . '>
 						<span class="icon"> <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="18px" height="19px" viewBox="-889.5 1161 18 19" enable-background="new -889.5 1161 18 19" xml:space="preserve">
 						<path opacity="0.99" fill="#FFFFFF" enable-background="new    " d="M-880.5,1161c-5,0-9,3.8-9,8.5c0,2.4,1,4.5,2.7,6v4.5l3.8-2.3 c0.8,0.2,1.6,0.3,2.5,0.3c5,0,9-3.8,9-8.5S-875.5,1161-880.5,1161z M-879.6,1172.2l-2.4-2.4l-4.3,2.4l4.7-5.2l2.4,2.4l4.2-2.4 L-879.6,1172.2z"/>
 						</svg> </span>
@@ -876,7 +876,7 @@ if(!class_exists('Sharing_Plus')):
 						</button>';
             } else {
 
-              $arrButtonsCode[] = '<button class="sharing-plus-social-msng-share"  onclick="javascript:window.open( this.dataset.href, \'_blank\',  \'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600\' );return false;" data-href="' . $messenger_share_url . '" ><span class="simplesocialtxt">Messenger</span></button> ';
+              $arrButtonsCode[] = '<button class="sharing-plus-social-msng-share"  onclick="javascript:window.open( this.dataset.href, \'\',  \'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600\' );return false;" data-href="' . $messenger_share_url . '" ><span class="simplesocialtxt">Messenger</span></button> ';
             }
             break;
           case 'email':
