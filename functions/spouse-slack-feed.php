@@ -252,7 +252,7 @@ function replace_slack_tags($text) {
   $text = preg_replace_callback(
     '/<(https?:\/\/.+?)\\|([^>]+?)>/',
     function ($matches) {
-      return ' <a target="_top" href="' . $matches['1'] . '" target="_blank">' . $matches[2] . '</a> ';
+      return ' <a target="_top" href="' . $matches['1'] . '" target="">' . $matches[2] . '</a> ';
     },
     $text
   );
@@ -260,7 +260,7 @@ function replace_slack_tags($text) {
   $text = preg_replace_callback(
     '/<(https?:\/\/.+?)>/',
     function ($matches) {
-      return ' <a target="_top" href="' . $matches['1'] . '" target="_blank">' . $matches[1] . '</a> ';
+      return ' <a target="_top" href="' . $matches['1'] . '" target="">' . $matches[1] . '</a> ';
     },
     $text
   );
