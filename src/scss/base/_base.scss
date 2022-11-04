@@ -39,8 +39,12 @@ h1 {
 }
 
 a {
-  &:focus, &:focus-visible { 
+  color: $blue;
+  &:focus, &:focus-visible {
     outline: 1px solid black !important;
+  }
+  &:hover {
+    color: darken($blue, 10%)
   }
 }
 
