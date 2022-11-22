@@ -241,7 +241,7 @@ class RegisterFormFields{
                     $id = sprintf('form-%s', sanitize_title($label));
                     $select = $this->getSelectFields(get_the_ID());
                     $values = array_column($select, 'value');
-                    $form .= '<div class="form-group col-12 form-select-with-messages">';
+                    $form .= '<fieldset class="form-group col-12 form-select-with-messages">';
                     $form .= sprintf('<%1$s for="%2$s">%3$s</%1$s>', $element, $id, $label);
                     $form .= sprintf('[%s %s id:%s include_blank use_label_element class:form-control class:select-has-messages %s]', $field, sanitize_title($label), $id, implode(" ", $values));
 
@@ -251,7 +251,7 @@ class RegisterFormFields{
                         }
                         $form .= '</div>';
                         
-                    $form .= '</div>';
+                    $form .= '</fieldset>';
 
                 } else if( get_row_layout() == 'note'){
                 $form .= sprintf('<div class="col-12">%s</div>', get_sub_field("message"));
