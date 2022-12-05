@@ -30,6 +30,20 @@ function spouse_focus(event){
     if(jQuery(this).closest('a').length){
       jQuery(this).on('click', spouse_focus);
     }
-  })
-}))
+  });
 
+
+
+  jQuery(document).on('click', '.dropdown-menu', function (e) {
+    e.stopPropagation();
+  });
+  
+  // make it as accordion for smaller screens
+  jQuery('.dropright.menu-item a').click(function(e){
+      e.preventDefault();
+        if( jQuery(this).next('.dropdown-menu').length){
+          jQuery(this).next('.dropdown-menu').toggleClass("show");
+          jQuery(this).attr('aria-expanded', jQuery(this).next('.dropdown-menu').hasClass('show') );
+        }
+    });
+}))

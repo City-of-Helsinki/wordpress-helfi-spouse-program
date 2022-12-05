@@ -167,7 +167,12 @@ if ( ! class_exists( 'WP_Bootstrap_Navwalker' ) ) :
 
 			// Add .dropdown or .active classes where they are needed.
 			if ( $this->has_children ) {
-				$classes[] = 'dropdown';
+				if ($depth === 0){
+					$classes[] = 'dropdown';
+				} else{
+					$classes[] = 'dropright';
+				}
+				
 			}
 			if ( in_array( 'current-menu-item', $classes, true ) || in_array( 'current-menu-parent', $classes, true ) ) {
 				$classes[] = 'active';
@@ -218,17 +223,24 @@ if ( ! class_exists( 'WP_Bootstrap_Navwalker' ) ) :
 				$atts['class']         = 'dropdown-toggle nav-link';
 				$atts['id']            = 'menu-item-dropdown-' . $item->ID;
 			} else {
-				if ( true === $this->has_schema ) {
-					$atts['itemprop'] = 'url';
+				if ( $this->has_children ){
+					$atts['aria-expanded'] = 'false';
+					$atts['class']         = 'dropdown-toggle dropdown-item';
+					$atts['id']            = 'menu-item-dropdown-' . $item->ID;
+					$atts['href']          = '#';
+				} else{
+					if ( true === $this->has_schema ) {
+						$atts['itemprop'] = 'url';
+					}
+					$atts['href'] = ! empty( $item->url ) ? $item->url : '#';
+					// For items in dropdowns use .dropdown-item instead of .nav-link.
+					if ( $depth > 0 ) {
+						$atts['class'] = 'dropdown-item';
+					} else {
+						$atts['class'] = 'nav-link';
+					}
 				}
 
-				$atts['href'] = ! empty( $item->url ) ? $item->url : '#';
-				// For items in dropdowns use .dropdown-item instead of .nav-link.
-				if ( $depth > 0 ) {
-					$atts['class'] = 'dropdown-item';
-				} else {
-					$atts['class'] = 'nav-link';
-				}
 			}
 
 			$atts['aria-current'] = $item->current ? 'page' : '';
