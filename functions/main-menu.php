@@ -1,16 +1,14 @@
 <?php
 require_once get_template_directory() . '/class-wp-bootstrap-navwalker.php';
-
 // add main menu
 function spouse_menu() {
   register_nav_menu('main-menu', __( 'Main menu' ));
   register_nav_menu('sidebar-menu', __('Sidebar menu on main page') );
 }
-add_action( 'init', 'spouse_menu' );
+add_action( 'init', 'spouse_menu', 20 );
 add_filter( 'wp_nav_menu_objects', 'spouse_add_main_menu_to_dropdpwn', 10, 2 );
 
 function spouse_add_main_menu_to_dropdpwn( $items, $args ) {
-
     // check we are in the right menu
     if( $args->theme_location == "main-menu" && is_user_logged_in() ) {
     
@@ -18,9 +16,11 @@ function spouse_add_main_menu_to_dropdpwn( $items, $args ) {
         // Create a nav_menu_item object
 
         $menu_class = array( 'menu-item' );
-        $parent_id = PHP_INT_MAX;
+        $parent_id = -1;
         foreach($items as &$item){
-            $item->menu_item_parent = $parent_id;
+            if (0 === (int)$item->menu_item_parent){
+                $item->menu_item_parent = $parent_id;
+            } 
             if ($item->current == true){
                 $item->current_item_ancestor = $parent_id;
                 $menu_class[] = 'active';
@@ -66,7 +66,7 @@ function spouse_get_nav_primary($hasWrapper = true){
     );
     if (!$hasWrapper){
         $args['items_wrap'] = '%3$s';
-        $args['depth'] = 2;
+        $args['depth'] = 3;
     }
 
     $menu = wp_nav_menu($args);
