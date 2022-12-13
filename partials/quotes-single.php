@@ -7,9 +7,9 @@
         </p>
         <div class="footer">
           <?php if (!empty(get_sub_field('quote_thumbnail'))): ?>
-            <img src="<?php the_sub_field('quote_thumbnail') ?>" class="rounded-circle" >
+            <img src="<?php the_sub_field('quote_thumbnail') ?>" class="rounded-circle" alt="" aria-hidden=true>
           <?php else: ?>
-            <img class="rounded-circle placeholder" >
+            <img class="rounded-circle placeholder" alt="" aria-hidden=true>
           <?php endif; ?>
           <span class="author"><?php the_sub_field('quote_name') ?></span>
         </div>
