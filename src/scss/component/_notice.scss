@@ -2,7 +2,7 @@
   overflow: hidden;
   animation: move 2s;
   background-color: $yellow;
-  z-index:-1;
+  z-index: -1;
   padding: 10px 0px 0px 10px;
 
   ul {
@@ -10,7 +10,7 @@
     padding-left: 0px;
   }
 
-  .spouse-close-notification{
+  .spouse-close-notification {
     background-color: #ffffff00 !important;
     border: 0;
     font-size: 1.5rem;
@@ -18,16 +18,16 @@
 }
 
 li.new-news {
-  &.news-visible:after{
+  &.news-visible:after {
     font-family: FontAwesome;
-    content: '\f12a';
+    content: "\f12a";
     font-size: 20px;
     color: red;
     position: absolute;
     top: -5px;
 
     a,
-    p{
+    p {
       opacity: 1;
       animation: opacity 4s;
     }
@@ -35,22 +35,105 @@ li.new-news {
 }
 
 @keyframes move {
-  from{
+  from {
     transform: translateY(-100%);
     opacity: 0;
-    z-index:-1;
+    z-index: -1;
   }
-  to{
+  to {
     transform: translateY(0);
     opacity: 1;
   }
 }
 
 @keyframes opacity {
-  from{
+  from {
     opacity: 0;
   }
-  to{
+  to {
     opacity: 1;
   }
+}
+
+.highlighted-content {
+  padding: 2.5rem 2.875rem;
+  margin: 2rem auto 3rem;
+}
+
+.highlighted-content p {
+  margin-bottom: 1.625rem;
+  font-size: 1rem;
+}
+
+.highlighted-content p > a:first-child {
+}
+
+.highlighted-content p > a:first-child .inline-svg,
+.highlighted-content h1 > a:first-child .inline-svg,
+.highlighted-content h2 > a:first-child .inline-svg,
+.highlighted-content h3 > a:first-child .inline-svg,
+.highlighted-content h4 > a:first-child .inline-svg,
+.highlighted-content h5 > a:first-child .inline-svg,
+.highlighted-content p > strong:first-child > a:first-child .inline-svg,
+.highlighted-content h1 > strong:first-child > a:first-child .inline-svg,
+.highlighted-content h2 > strong:first-child > a:first-child .inline-svg,
+.highlighted-content h3 > strong:first-child > a:first-child .inline-svg,
+.highlighted-content h4 > strong:first-child > a:first-child .inline-svg,
+.highlighted-content h5 > strong:first-child > a:first-child .inline-svg {
+  display: none;
+}
+
+.highlighted-content p > a:first-child:before,
+.highlighted-content h1 > a:first-child:before,
+.highlighted-content h2 > a:first-child:before,
+.highlighted-content h3 > a:first-child:before,
+.highlighted-content h4 > a:first-child:before,
+.highlighted-content h5 > a:first-child:before,
+.highlighted-content p > strong:first-child > a:first-child:before,
+.highlighted-content h1 > strong:first-child > a:first-child:before,
+.highlighted-content h2 > strong:first-child > a:first-child:before,
+.highlighted-content h3 > strong:first-child > a:first-child:before,
+.highlighted-content h4 > strong:first-child > a:first-child:before,
+.highlighted-content h5 > strong:first-child > a:first-child:before {
+  content: "";
+  display: inline-block;
+  height: 1em;
+  width: 1em;
+  margin-right: 0.5em;
+  margin-bottom: -0.1em;
+  background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32.6 32.1" xml:space="preserve" role="presentation"><path style="fill-rule:evenodd;clip-rule:evenodd" d="M32.6 16.1 16.5 0l-2.8 2.8 11.4 11.3H0v4h25L13.7 29.3l2.8 2.8z"></path></svg>');
+}
+
+.highlighted-content p > a.external-link:first-child:before,
+.highlighted-content h1 > a.external-link:first-child:before,
+.highlighted-content h2 > a.external-link:first-child:before,
+.highlighted-content h3 > a.external-link:first-child:before,
+.highlighted-content h4 > a.external-link:first-child:before,
+.highlighted-content h5 > a.external-link:first-child:before,
+.highlighted-content
+  p
+  > strong:first-child
+  > a.external-link:first-child:before,
+.highlighted-content
+  h1
+  > strong:first-child
+  > a.external-link:first-child:before,
+.highlighted-content
+  h2
+  > strong:first-child
+  > a.external-link:first-child:before,
+.highlighted-content
+  h3
+  > strong:first-child
+  > a.external-link:first-child:before,
+.highlighted-content
+  h4
+  > strong:first-child
+  > a.external-link:first-child:before,
+.highlighted-content
+  h5
+  > strong:first-child
+  > a.external-link:first-child:before {
+  -webkit-transform: rotate(-45deg);
+  transform: rotate(-45deg);
 }

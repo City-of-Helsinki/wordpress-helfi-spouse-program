@@ -1,4 +1,4 @@
-<div class="small-images py-2">
+<div class="small-images py-2 pb-5">
     <?php
     while ( have_rows('images') ) : the_row();
         $img = get_sub_field('image');
