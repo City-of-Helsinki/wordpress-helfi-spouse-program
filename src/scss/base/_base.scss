@@ -1,20 +1,20 @@
-body, html {
+body,
+html {
   padding: 0;
 }
 
 body {
-  font-family: 'Lexend', sans-serif !important;
+  font-family: "Lexend", sans-serif !important;
   font-size: 18px;
   padding-top: 60px;
-  &.page-template-login{
+  &.page-template-login {
     padding-top: 0;
   }
 
   .mob-menu-left-bg-holder {
-    font-family: 'Lexend', sans-serif !important;
+    font-family: "Lexend", sans-serif !important;
     font-size: 22px;
   }
-
 }
 
 @media only screen and (max-width: 1024px) {
@@ -24,12 +24,17 @@ body {
   }
 }
 
-h1, h2, h3, .h1, .h2, .h3 {
-  font-family: 'Sora', Arial, sans-serif !important;
+h1,
+h2,
+h3,
+.h1,
+.h2,
+.h3 {
+  font-family: "Sora", Arial, sans-serif !important;
 }
 
 p {
-  font-family: 'Lexend', Arial, sans-serif !important;
+  font-family: "Lexend", Arial, sans-serif !important;
 }
 
 h1 {
@@ -39,12 +44,14 @@ h1 {
 }
 
 a {
-  color: $blue;
-  &:focus, &:focus-visible {
+  color: $black-lighter;
+  text-decoration: underline;
+  &:focus,
+  &:focus-visible {
     outline: 1px solid black !important;
   }
   &:hover {
-    color: darken($blue, 10%)
+    color: darken($blue, 10%);
   }
 }
 
@@ -58,9 +65,6 @@ a {
   }
 }
 
-#main-content{
-  padding-bottom: 3rem;
-}
 iframe {
   width: 100%;
   max-width: 100%;
@@ -75,16 +79,16 @@ iframe {
 }
 
 .hero-image {
-  height:70vh;
-  padding:0;
+  height: 70vh;
+  padding: 0;
   background-size: cover;
-  background-position-y:100%;
-  position:relative;
-  width:auto;
+  background-position-y: 100%;
+  position: relative;
+  width: auto;
   .wave {
-    position:absolute;
-    bottom:-200px;
-    transform:scale(1, 0.5);
+    position: absolute;
+    bottom: -200px;
+    transform: scale(1, 0.5);
   }
 }
 
@@ -107,8 +111,19 @@ iframe {
 .sharing_plus_buttons.sharing-plus-social-round-icon button {
   &:focus,
   &:active {
-    background: #0077B5;
+    background: #0077b5;
     color: white !important;
   }
 }
 
+.inline-svg {
+  position: relative;
+  display: inline-block;
+  width: 1em;
+  height: 1em;
+  margin-right: 10px;
+}
+
+.rotate-45 {
+  transform: rotate(-45deg);
+}

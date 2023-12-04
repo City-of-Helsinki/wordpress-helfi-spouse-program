@@ -1,0 +1,144 @@
+.container {
+  position: relative;
+}
+
+.anchor-tag {
+  position: absolute;
+  top: -80px;
+}
+
+/* Image + text box */
+.lift-100-wide {
+  h3 {
+    font-weight: 700;
+  }
+
+  ul {
+    list-style: none;
+  }
+
+  li {
+    font-weight: 700;
+  }
+
+  @media screen and (max-width: 768px) {
+    h3 {
+      font-weight: 500;
+    }
+
+    .lift-100-wide__card {
+      padding: 1.5rem;
+    }
+  }
+
+  @media screen and (min-width: 992px) {
+    position: relative;
+
+    &__card {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      min-height: 250px;
+    }
+
+    &--left {
+      .lift-100-wide__card {
+        right: 0;
+        margin-right: 0;
+      }
+    }
+
+    &--right {
+      .lift-100-wide__bg-img {
+        margin-left: calc(100% / 3);
+      }
+    }
+  }
+
+  .arrow {
+    color: $black !important;
+    text-decoration: none;
+    width: 1.5rem;
+    height: 1.5rem;
+
+    &:hover,
+    &:focus {
+      color: #308176 !important;
+      text-decoration: underline;
+    }
+  }
+}
+
+@media screen and (min-width: 992px) {
+  .lift-100-wide.lift-100-wide-drop.lift-100-wide--right
+    .lift-100-wide__bg-img {
+    margin-left: calc(100% / 2);
+  }
+}
+
+/* Anchorlink navigation */
+.anchorlink-container {
+  margin-bottom: 3rem;
+
+  .anchorlink-navigation {
+    margin: 0 auto;
+
+    ul {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      list-style-type: none;
+      margin: 0;
+      padding: 10px 0;
+    }
+
+    a {
+      display: block;
+      position: relative;
+      color: #212529;
+      text-decoration: none;
+      font-weight: 500;
+      padding: 0.35rem 1rem;
+
+      &:hover,
+      &:focus {
+        text-decoration: underline;
+
+        .inline-svg {
+          svg {
+            top: 6px;
+            left: 0;
+          }
+        }
+      }
+    }
+
+    .inline-svg {
+      svg {
+        top: 2px;
+        transform: rotate(90deg);
+        transition: top ease 0.3s;
+      }
+    }
+  }
+}
+
+/* Video */
+.video-wrapper {
+  position: relative;
+}
+
+.video-wrapper img {
+  max-width: 100%;
+  height: auto;
+}
+
+.video-wrapper .play-btn {
+  position: absolute;
+  max-width: 150px;
+  left: 50%;
+  top: 50%;
+  margin-left: -75px;
+  margin-top: -50px;
+  opacity: 0.5;
+}

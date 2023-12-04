@@ -22,6 +22,18 @@
 
                 get_template_part( 'partials/flexible/content_editor' );
 
+            elseif( get_row_layout() == 'anchor_navigation' ): 
+
+                get_template_part( 'partials/flexible/anchor_navigation' );
+
+            elseif( get_row_layout() == 'video' ): 
+
+                get_template_part( 'partials/flexible/video' );
+
+            elseif( get_row_layout() == 'testimonials' ): 
+
+                get_template_part( 'partials/flexible/testimonials' );
+
             endif;
 
         endwhile;

@@ -383,3 +383,28 @@ function spouse_customize_app_password_availability( $available, $user) {
   return $available;
 }
 add_filter('wp_is_application_passwords_available_for_user', 'spouse_customize_app_password_availability', 10, 2);
+
+
+
+function spouse_acf_input_admin_footer() {
+    
+  ?>
+  <script type="text/javascript">
+  (function($) {
+      acf.add_filter('color_picker_args', function( args, $field ){
+          
+          // Add colors to color palette
+          args.palettes = ["#01a090", "#4dbdb1", "#bac1f2", "#231f20", "#ffffff"]
+          
+          
+          // return
+          return args;
+                  
+      });
+})(jQuery); 
+</script>
+<?php
+      
+}
+
+add_action('acf/input/admin_footer', 'spouse_acf_input_admin_footer');
