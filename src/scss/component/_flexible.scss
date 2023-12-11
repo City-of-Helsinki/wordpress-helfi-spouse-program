@@ -76,6 +76,14 @@
   }
 }
 
+.lift-100-wide .clipped {
+  margin: 1rem 0;
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  height: auto;
+}
+
 /* Anchorlink navigation */
 .anchorlink-container {
   margin-bottom: 3rem;

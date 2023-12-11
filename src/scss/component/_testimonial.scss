@@ -4,11 +4,8 @@
       display: flex;
       flex-flow: column;
       height: 100%;
-      box-shadow:
-        0.7px 0.7px 5.3px rgba(0, 0, 0, 0.032),
-        2.2px 2.2px 17.9px rgba(0, 0, 0, 0.02),
-        5px 5px 15px rgba(0, 0, 0, 0.08)
-      ;
+      box-shadow: 0.7px 0.7px 5.3px rgba(0, 0, 0, 0.032),
+        2.2px 2.2px 17.9px rgba(0, 0, 0, 0.02), 5px 5px 15px rgba(0, 0, 0, 0.08);
       max-width: 100% !important;
       background-color: white;
       border-radius: 6px;
@@ -16,10 +13,10 @@
       margin-bottom: 2rem;
       .card-body {
         blockquote {
-          .quote-text{
+          .quote-text {
             position: relative;
             padding-top: 4rem;
-              &::before {
+            &::before {
               content: "“";
               display: block;
               color: $opal;
@@ -36,7 +33,7 @@
               width: 3rem;
 
               &.placeholder {
-                content: url('./src/scss/icons/user.svg');
+                content: url("./src/scss/icons/user.svg");
               }
             }
             .author {
@@ -47,6 +44,60 @@
         }
         .quote-name {
           color: $gray;
+        }
+      }
+    }
+  }
+}
+
+.testimonials-flexible.testimonials {
+  .row {
+    .card {
+      box-shadow: none;
+      border-radius: 0;
+      border: 0;
+      .card-body {
+        border-left: 5px solid #01a090;
+        padding-top: 0;
+        padding-bottom: 0;
+
+        blockquote {
+          .quote-text {
+            padding-top: 2.5rem;
+
+            &::before {
+              top: 0;
+              left: 0;
+              line-height: 1em;
+            }
+          }
+        }
+      }
+    }
+    .testimonial-single {
+      .card {
+        .card-body {
+          blockquote {
+            .quote-text {
+              padding-top: 0;
+              font-size: 1.75rem;
+              line-height: 1.2;
+              font-style: italic;
+
+              &::before {
+                display: none;
+              }
+            }
+            .footer {
+              img {
+                display: none;
+              }
+              .author {
+                font-size: 1rem;
+                color: #212529;
+              }
+            }
+          }
         }
       }
     }

@@ -1,7 +1,12 @@
 <?php
-    $id_name = wp_strip_all_tags( get_sub_field('it_title') );
+    if(get_sub_field('it_title')){
+        $id_name = wp_strip_all_tags( get_sub_field('it_title') );
+    }else{
+        $id_name = wp_strip_all_tags( get_sub_field("it_text_body") );
+    }
     $id_name = preg_replace('/[^A-Za-z0-9\-]/', '', $id_name);
     $id_name = substr($id_name, 0, 12);
+    $img_id = 'img_' . $id_name;
     $highlightTextColor = "#212529";
     $highlightColor = get_sub_field('it_background_color');
     if(get_sub_field('it_text_color')){
@@ -25,6 +30,7 @@
     <?php  echo '#' . $id_name; ?> .lift-100-wide__links a.arrow{
         color: <?php echo $highlightTextColor; ?> !important;
     }
+
 </style>
 
 <?php
@@ -40,26 +46,79 @@ if(get_sub_field('it_style')){
     <div id="<?php echo $id_name; ?>" class="lift-100-wide lift-100-wide-drop lift-100-wide--<?php echo $side; ?> w-100 h-100 my-5" style="background-color: <?php echo $highlightColor; ?>;">
         <div class="container">
             <div class="row position-relative">
-                <img style="border-radius: 50%; margin-top: 20px; margin-bottom: 20px;" class="lift-100-wide__bg-img h-100 col-lg-6 p-0" alt="" src="<?php the_sub_field("it_background_image");?>">
-                <div class="lift-100-wide__card p-lg-4 p-sm-3 col-lg-6 d-flex flex-column justify-content-center" style="color: <?php echo $highlightTextColor; ?>;" >
-                    <h3 class="lift-100-wide__title"><?php echo $card_title ; ?></h3>
-                    <p class="lift-100-wide__text"><?php the_sub_field("it_text_body"); ?></p>
-                    <div class="lift-100-wide__links">
-                        <ul class="m-0 p-0">
-                        <?php while( have_rows('it_links') ): the_row();
-                            $link = get_sub_field("it_link");
-                            $text = get_sub_field("it_link_text");
-                            $arialabel = '';
-                            if(str_contains($text, 'more')):
-                                $arialabel = 'aria-label="More about '.  $card_title .'"';
-                            elseif(str_contains($text, 'lisää')):
-                                $arialabel = 'aria-label="Lisää aiheesta '.  $card_title .'"';
-                            endif;
-                            printf('<li class="my-2"><a class="arrow" %s href="%s">%s</a></li>', $arialabel, $link, $text);
-                        endwhile; ?>
-                        </ul>
+
+                <?php if($side == 'right'): ?>
+                    <div class="p-lg-4 p-3 col-lg-6 d-flex flex-column justify-content-center" style="color: <?php echo $highlightTextColor; ?>;" >
+                        <h3 class="lift-100-wide__title"><?php echo $card_title ; ?></h3>
+                        <p class="lift-100-wide__text"><?php the_sub_field("it_text_body"); ?></p>
+                        <div class="lift-100-wide__links">
+                            <ul class="m-0 p-0">
+                            <?php while( have_rows('it_links') ): the_row();
+                                $link = get_sub_field("it_link");
+                                $text = get_sub_field("it_link_text");
+                                $arialabel = '';
+                                if(str_contains($text, 'more')):
+                                    $arialabel = 'aria-label="More about '.  $card_title .'"';
+                                elseif(str_contains($text, 'lisää')):
+                                    $arialabel = 'aria-label="Lisää aiheesta '.  $card_title .'"';
+                                endif;
+                                printf('<li class="my-2"><a class="arrow" %s href="%s">%s</a></li>', $arialabel, $link, $text);
+                            endwhile; ?>
+                            </ul>
+                        </div>
                     </div>
+                <?php endif; ?>
+
+                <div class="p-lg-4 <?php if($side == 'right'){ echo 'pl-lg-5'; }else{ echo 'pr-lg-5'; } ?> p-sm-3 col-lg-6 d-flex flex-column justify-content-center" >
+                    <?php if(get_sub_field("it_background_image")):?>
+                        <figure class="clipped">
+                            <svg class="clipped__media" viewBox="0 0 600 600">
+                                <defs>
+                                <clipPath id="<?php echo $img_id; ?>" clipPathUnits="userSpaceOnUse">
+                                    <path d="m351.82,600.2H18.17C8.13,600.21,0,592.08,0,582.04V248.39C.01,27.54,267.03-83.06,423.19,73.1l103.91,103.91c156.17,156.16,45.57,423.18-175.28,423.19Z" />
+                                </clipPath>
+                                </defs>
+                                <image
+                                width="100%"
+                                height="100%"
+                                preserveAspectRatio="xMinYMin slice"
+                                xlink:href="<?php the_sub_field("it_background_image");?>"
+                                clip-path="url(#<?php echo $img_id; ?>)"
+                                />
+                            </svg>
+                        </figure>
+                    <?php else: ?>
+                        <figure class="clipped">
+                            <svg class="clipped__media" viewBox="0 0 600 600">
+                                <defs><style>.<?php echo $img_id; ?>{fill:<?php echo get_sub_field('heart_shape_background_color'); ?>;}</style></defs>
+                                <path class="<?php echo $img_id; ?>" d="m351.82,600.2H18.17C8.13,600.21,0,592.08,0,582.04V248.39C.01,27.54,267.03-83.06,423.19,73.1l103.91,103.91c156.17,156.16,45.57,423.18-175.28,423.19Z" />
+                            </svg>
+                        </figure>
+                    <?php endif; ?>
                 </div>
+
+                <?php if($side == 'left'): ?>
+                    <div class="p-lg-4 p-3 col-lg-6 d-flex flex-column justify-content-center" style="color: <?php echo $highlightTextColor; ?>;" >
+                        <h3 class="lift-100-wide__title"><?php echo $card_title ; ?></h3>
+                        <p class="lift-100-wide__text"><?php the_sub_field("it_text_body"); ?></p>
+                        <div class="lift-100-wide__links">
+                            <ul class="m-0 p-0">
+                            <?php while( have_rows('it_links') ): the_row();
+                                $link = get_sub_field("it_link");
+                                $text = get_sub_field("it_link_text");
+                                $arialabel = '';
+                                if(str_contains($text, 'more')):
+                                    $arialabel = 'aria-label="More about '.  $card_title .'"';
+                                elseif(str_contains($text, 'lisää')):
+                                    $arialabel = 'aria-label="Lisää aiheesta '.  $card_title .'"';
+                                endif;
+                                printf('<li class="my-2"><a class="arrow" %s href="%s">%s</a></li>', $arialabel, $link, $text);
+                            endwhile; ?>
+                            </ul>
+                        </div>
+                    </div>
+                <?php endif; ?>
+
             </div>
         </div>
     </div>
