@@ -205,6 +205,36 @@
                             "preview_size": "medium"
                         },
                         {
+                            "key": "field_657323604da52",
+                            "label": "Heart shape background color",
+                            "name": "heart_shape_background_color",
+                            "aria-label": "",
+                            "type": "color_picker",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": [
+                                [
+                                    {
+                                        "field": "field_6551fe4411746",
+                                        "operator": "==empty"
+                                    },
+                                    {
+                                        "field": "field_6560788b9468f",
+                                        "operator": "==",
+                                        "value": "1"
+                                    }
+                                ]
+                            ],
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "default_value": "#4dbdb1",
+                            "enable_opacity": 0,
+                            "return_format": "string"
+                        },
+                        {
                             "key": "field_6551ff7e11747",
                             "label": "Image position",
                             "name": "it_image_position",
@@ -1079,5 +1109,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1701344997
+    "modified": 1702044631
 }
