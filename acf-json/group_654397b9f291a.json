@@ -46,7 +46,7 @@
                         {
                             "key": "field_655e0930d1f83",
                             "label": "Anchor tag",
-                            "name": "anchor_tag",
+                            "name": "ce_anchor_tag",
                             "aria-label": "",
                             "type": "text",
                             "instructions": "Don't use special characters or spaces",
@@ -132,7 +132,7 @@
                         {
                             "key": "field_655e09b1d1f84",
                             "label": "Anchor tag",
-                            "name": "anchor_tag",
+                            "name": "hl_anchor_tag",
                             "aria-label": "",
                             "type": "text",
                             "instructions": "Don't use special characters or spaces",
@@ -395,7 +395,7 @@
                         {
                             "key": "field_655e09c1d1f85",
                             "label": "Anchor tag",
-                            "name": "anchor_tag",
+                            "name": "it_anchor_tag",
                             "aria-label": "",
                             "type": "text",
                             "instructions": "Don't use special characters or spaces",
@@ -699,7 +699,7 @@
                         {
                             "key": "field_655e09c9d1f86",
                             "label": "Anchor tag",
-                            "name": "anchor_tag",
+                            "name": "newsletter_anchor_tag",
                             "aria-label": "",
                             "type": "text",
                             "instructions": "Don't use special characters or spaces",
@@ -905,7 +905,7 @@
                         {
                             "key": "field_65674c3e34c29",
                             "label": "Anchor tag",
-                            "name": "anchor_tag",
+                            "name": "video_anchor_tag",
                             "aria-label": "",
                             "type": "text",
                             "instructions": "",
@@ -1033,7 +1033,7 @@
                             "required": 0,
                             "conditional_logic": 0,
                             "wrapper": {
-                                "width": "",
+                                "width": "50",
                                 "class": "",
                                 "id": ""
                             },
@@ -1042,9 +1042,47 @@
                             "return_format": "string"
                         },
                         {
+                            "key": "field_65a6842790b51",
+                            "label": "Name color",
+                            "name": "tm_name_color",
+                            "aria-label": "",
+                            "type": "color_picker",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "50",
+                                "class": "",
+                                "id": ""
+                            },
+                            "default_value": "#231f20",
+                            "enable_opacity": 0,
+                            "return_format": "string"
+                        },
+                        {
+                            "key": "field_65a6847990b52",
+                            "label": "Quote thumbnail shape",
+                            "name": "tm_quote_thumbnail_shape",
+                            "aria-label": "",
+                            "type": "true_false",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "message": "",
+                            "default_value": 0,
+                            "ui_on_text": "Heart shape",
+                            "ui_off_text": "Round",
+                            "ui": 1
+                        },
+                        {
                             "key": "field_656876ce625e1",
                             "label": "Anchor tag",
-                            "name": "anchor_tag",
+                            "name": "tm_anchor_tag",
                             "aria-label": "",
                             "type": "text",
                             "instructions": "",
@@ -1109,5 +1147,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1702044631
+    "modified": 1705482466
 }

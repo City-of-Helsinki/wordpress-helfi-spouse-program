@@ -1,7 +1,13 @@
 <?php
     $border_color = "";
+    $name_color = "";
+    $quote_thumbnail_shape = get_sub_field('tm_quote_thumbnail_shape'); 
+    $x = 1;
     if(get_sub_field('tm_line_color')){
         $border_color = "border-color: " . get_sub_field('tm_line_color') . ";";
+    }
+    if(get_sub_field('tm_name_color')){
+        $name_color = "color: " . get_sub_field('tm_name_color') . ";";
     }
 ?>
 <div class="testimonials testimonials-flexible container mb-5">
@@ -37,19 +43,38 @@
                             <?php 
                             $image = get_sub_field('tm_quote_thumbnail');
                             $size = 'medium'; // (thumbnail, medium, large, full or custom size)
-                            if( $image ) {
-                                echo wp_get_attachment_image( $image, $size, "", array('class' => 'rounded-circle') );
-                            }
+                            $quote_thumbnail_url = wp_get_attachment_image_url($image);
                             ?>
+                            <?php if($quote_thumbnail_shape): ?>
+                                <figure class="clipped d-inline-block">
+                                    <svg class="clipped__media" viewBox="0 0 600 600" width="48" height="48">
+                                        <defs>
+                                        <clipPath id="quote-heart-img<?php echo $x; ?>" clipPathUnits="userSpaceOnUse">
+                                            <path d="m351.82,600.2H18.17C8.13,600.21,0,592.08,0,582.04V248.39C.01,27.54,267.03-83.06,423.19,73.1l103.91,103.91c156.17,156.16,45.57,423.18-175.28,423.19Z" />
+                                        </clipPath>
+                                        </defs>
+                                        <image
+                                        width="100%"
+                                        height="100%"
+                                        preserveAspectRatio="xMinYMin slice"
+                                        xlink:href="<?php echo $quote_thumbnail_url; ?>"
+                                        clip-path="url(#quote-heart-img<?php echo $x; ?>)"
+                                        />
+                                    </svg>
+                                </figure>
+                            <?php elseif($image):
+                                echo wp_get_attachment_image( $image, $size, "", array('class' => 'rounded-circle') );
+                            endif; ?>
                         <?php else: ?>
                             <img class="rounded-circle placeholder" >
                         <?php endif; ?>
-                        <span class="author"><?php the_sub_field('tm_quote_name') ?></span>
+                        <span class="author"  style="<?php echo $name_color; ?>"><?php the_sub_field('tm_quote_name') ?></span>
                         </div>
                     </blockquote>
                     </div>
                 </div>
             </div>
+            <?php $x++; ?>
         <?php endwhile; ?>
       </div>
     </div>
