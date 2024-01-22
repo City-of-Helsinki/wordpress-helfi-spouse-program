@@ -62,13 +62,15 @@ function detectExternalLinks(item) {
     if (isValidUrl(links[i])) {
       let domain = new URL(links[i]);
       let linkHostname = domain.hostname.replace("www.", "");
+      var childImg = links[i].getElementsByTagName("img");
       if (
         linkHostname &&
         locationHostname !== linkHostname &&
         !linkHostname.includes("spouseprogram.fi") &&
         !links[i].classList.contains("venobox") &&
         !links[i].classList.contains("fancybox-youtube") &&
-        !links[i].classList.contains("button")
+        !links[i].classList.contains("button") &&
+        !childImg.length
       ) {
         addExternalLinkStyling(links[i]);
       } else {
