@@ -356,7 +356,7 @@ function get_the_background_image_style( $size = 'full'){
 
 function get_hero_text(){
   $hero = get_field('hero_text');
-  return preg_replace('/_(.*?)_/', '<span class="highlight">$1</span>', $hero);
+  return $hero ? preg_replace('/_(.*?)_/', '<span class="highlight">$1</span>', $hero) : '';
 }
 
 add_action( 'admin_head', function () {
