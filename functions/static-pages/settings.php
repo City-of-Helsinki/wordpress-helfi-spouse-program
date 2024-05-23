@@ -127,6 +127,8 @@ function get_static_pages_options(): array {
 		$options[$page->ID] = $page->post_title;
 	}
 
+	asort($options);
+
 	return $options;
 }
 
@@ -135,8 +137,6 @@ function query_published_pages(): array {
 		'post_type' => 'page',
 		'post_status' => 'publish',
 		'posts_per_page' => 500,
-		'orderby' => 'ASC',
-		'order' => 'title',
 		'no_found_rows' => true,
 		'update_post_meta_cache' => false,
 		'update_post_term_cache' => false,
