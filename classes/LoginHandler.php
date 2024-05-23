@@ -58,12 +58,8 @@ class LoginHandler
 
             // The rest are redirected to the login page
 			$login_url = apply_filters( 'spouse_program_static_page_url', '', 'login' );
-            if ( $login_url && ! empty( $redirect_to ) ) {
-                $login_url = add_query_arg( 'redirect_to', $redirect_to, $login_url );
-            }
-
 			if ($login_url) {
-				wp_redirect( $login_url );
+				wp_redirect( add_query_arg( 'redirect_to', $_REQUEST['redirect_to'] ?? '', $login_url ) );
 	            exit;
 			}
         }
