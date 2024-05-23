@@ -2,8 +2,10 @@
 
 namespace Spouse;
 
-class LoginHandler{
-    public static function init(){
+class LoginHandler
+{
+    public static function init()
+	{
         $self = new self();
         add_action( 'login_form_login', array( $self, 'redirect_to_custom_login' ) );
         add_filter( 'authenticate', array( $self, 'maybe_redirect_at_authenticate' ), 101, 3 );
@@ -18,7 +20,8 @@ class LoginHandler{
         PasswordResetForm::init( $self );
     }
 
-    public function redirect_logged_in_user( $redirect_to = null ) {
+    public function redirect_logged_in_user( $redirect_to = null )
+	{
         $user = wp_get_current_user();
         if ( user_can( $user, 'manage_options' ) ) {
             if ( $redirect_to ) {
@@ -30,7 +33,9 @@ class LoginHandler{
             //wp_redirect( home_url( 'member-account' ) );
         }
     }
-    public function redirect_after_login( $redirect_to, $requested_redirect_to, $user ) {
+
+    public function redirect_after_login( $redirect_to, $requested_redirect_to, $user )
+	{
         $redirect_url = home_url();
 
         if ( ! isset( $user->ID ) ) {
@@ -55,7 +60,8 @@ class LoginHandler{
         return wp_validate_redirect( $redirect_url, home_url() );
     }
 
-    public function redirect_to_custom_login() {
+    public function redirect_to_custom_login()
+	{
         if ( $_SERVER['REQUEST_METHOD'] == 'GET' ) {
             $redirect_to = isset( $_REQUEST['redirect_to'] ) ? $_REQUEST['redirect_to'] : null;
 
@@ -69,7 +75,9 @@ class LoginHandler{
             exit;
         }
     }
-    public function maybe_redirect_at_authenticate( $user, $username, $password ) {
+
+    public function maybe_redirect_at_authenticate( $user, $username, $password )
+	{
         // Check if the earlier authenticate filter (most likely,
         // the default WordPress authentication) functions have found errors
         if ( $_SERVER['REQUEST_METHOD'] === 'POST' ) {
@@ -84,12 +92,15 @@ class LoginHandler{
 
         return $user;
     }
-    public function redirect_after_logout() {
+
+    public function redirect_after_logout()
+	{
         wp_safe_redirect( home_url()  );
         exit;
     }
 
-    public function addBtnClassesToCF7Buttons($elements){
+    public function addBtnClassesToCF7Buttons($elements)
+	{
         return str_replace(
             array(
                 'wpcf7-submit',
