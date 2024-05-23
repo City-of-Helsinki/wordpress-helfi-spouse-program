@@ -34,7 +34,14 @@ function spouse_program_init(){
 			'event-previewbox',
 			'spouse-emailfrom',
 			'spouse-notice',
-			'shortcode'
+			'shortcode',
+			'static-pages' . DIRECTORY_SEPARATOR . 'config',
+			'static-pages' . DIRECTORY_SEPARATOR . 'settings',
+			'static-pages' . DIRECTORY_SEPARATOR . 'admin-action',
+			'static-pages' . DIRECTORY_SEPARATOR . 'admin-notice',
+			'static-pages' . DIRECTORY_SEPARATOR . 'post-state',
+			'static-pages' . DIRECTORY_SEPARATOR . 'handlers',
+			'static-pages' . DIRECTORY_SEPARATOR . 'init',
 		);
 	}
 	$files = array_merge($files, array(

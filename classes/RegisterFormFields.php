@@ -2,49 +2,54 @@
 
 namespace Spouse;
 
-class RegisterFormFields{
+class RegisterFormFields
+{
     private ?RegisterForm $rForm = null;
 
-    public function init( RegisterForm $rForm ){
+    public function init( RegisterForm $rForm )
+    {
         $this->rForm = $rForm;
         add_action( 'wpcf7_init', array($this, 'addCustomRegistrationTag' ), 10 );
         add_filter( 'wpcf7_validate_registration', array($this, 'validationFilter'), 20, 2 );
-
     }
 
-    public function addCustomRegistrationTag() {
+    public function addCustomRegistrationTag()
+    {
         wpcf7_add_form_tag( 'registration', array($this, 'registrationTagHandler' ));
     }
 
- 
-    public function registrationTagHandler( $tag ) {
+    public function registrationTagHandler( $tag )
+    {
         $form = $this->generateForm();
         $form = wpcf7_do_shortcode( $form );
-    
+
         return $form;
     }
 
-    public function getFormTags(){
+    public function getFormTags()
+    {
         $tags = $this->generateForm();
         $manager = \WPCF7_FormTagsManager::get_instance();
         $scan = $manager->scan( $tags);
         return $scan;
     }
 
-    public function getEmailField(){
+    public function getEmailField()
+    {
         $fields = $this->getFormTags();
         foreach($fields as $field){
-            if ($field->type == 'email*'){
+            if ($field->type === 'email*'){
                 return $field->name;
             }
         }
-        
+
         return false;
     }
 
-    public function validationFilter( $result, $tag ) {
+    public function validationFilter( $result, $tag )
+    {
         $tags = $this->getFormTags();
-        
+
         foreach($tags as $tag){
           if (in_array($tag->type, array('text', 'text*', 'email') ) ) {
             $result = $this->wpcf7_text_validation_filter( $result, $tag );
@@ -57,34 +62,35 @@ class RegisterFormFields{
             }
           }
         }
-        
+
 
         return $result;
     }
 
-    private function wpcf7_textarea_validation_filter( $result, $tag ) {
+    private function wpcf7_textarea_validation_filter( $result, $tag )
+    {
       $type = $tag->type;
       $name = $tag->name;
-    
+
       $value = isset( $_POST[$name] )
         ? wp_unslash( (string) $_POST[$name] )
         : '';
-    
+
       if ( $tag->is_required() and '' === $value ) {
         $result->invalidate( $tag, wpcf7_get_message( 'invalid_required' ) );
       }
-    
+
       if ( '' !== $value ) {
         $maxlength = $tag->get_maxlength_option();
         $minlength = $tag->get_minlength_option();
-    
+
         if ( $maxlength and $minlength
         and $maxlength < $minlength ) {
           $maxlength = $minlength = null;
         }
-    
+
         $code_units = wpcf7_count_code_units( $value );
-    
+
         if ( false !== $code_units ) {
           if ( $maxlength and $maxlength < $code_units ) {
             $result->invalidate( $tag, wpcf7_get_message( 'invalid_too_long' ) );
@@ -93,23 +99,24 @@ class RegisterFormFields{
           }
         }
       }
-    
+
       return $result;
     }
 
-    private function wpcf7_text_validation_filter( $result, $tag ) {
+    private function wpcf7_text_validation_filter( $result, $tag )
+    {
       $name = $tag->name;
-    
+
       $value = isset( $_POST[$name] )
         ? trim( wp_unslash( strtr( (string) $_POST[$name], "\n", " " ) ) )
         : '';
-    
+
       if ( 'text' == $tag->basetype ) {
         if ( $tag->is_required() and '' === $value ) {
           $result->invalidate( $tag, wpcf7_get_message( 'invalid_required' ) );
         }
       }
-    
+
       if ( 'email' == $tag->basetype ) {
         if ( $tag->is_required() and '' === $value ) {
           $result->invalidate( $tag, wpcf7_get_message( 'invalid_required' ) );
@@ -117,7 +124,7 @@ class RegisterFormFields{
           $result->invalidate( $tag, wpcf7_get_message( 'invalid_email' ) );
         }
       }
-    
+
       if ( 'url' == $tag->basetype ) {
         if ( $tag->is_required() and '' === $value ) {
           $result->invalidate( $tag, wpcf7_get_message( 'invalid_required' ) );
@@ -125,7 +132,7 @@ class RegisterFormFields{
           $result->invalidate( $tag, wpcf7_get_message( 'invalid_url' ) );
         }
       }
-    
+
       if ( 'tel' == $tag->basetype ) {
         if ( $tag->is_required() and '' === $value ) {
           $result->invalidate( $tag, wpcf7_get_message( 'invalid_required' ) );
@@ -133,17 +140,17 @@ class RegisterFormFields{
           $result->invalidate( $tag, wpcf7_get_message( 'invalid_tel' ) );
         }
       }
-    
+
       if ( '' !== $value ) {
         $maxlength = $tag->get_maxlength_option();
         $minlength = $tag->get_minlength_option();
-    
+
         if ( $maxlength and $minlength and $maxlength < $minlength ) {
           $maxlength = $minlength = null;
         }
-    
+
         $code_units = wpcf7_count_code_units( $value );
-    
+
         if ( false !== $code_units ) {
           if ( $maxlength and $maxlength < $code_units ) {
             $result->invalidate( $tag, wpcf7_get_message( 'invalid_too_long' ) );
@@ -152,11 +159,12 @@ class RegisterFormFields{
           }
         }
       }
-    
+
       return $result;
     }
-    
-    public function validate_registration_email($result, $tag){
+
+    public function validate_registration_email($result, $tag)
+    {
       $name = $tag->name;
 
       $value = isset( $_POST[$name] )
@@ -166,16 +174,17 @@ class RegisterFormFields{
       if ( email_exists($value) ){
         $result->invalidate( $tag, "Email already exists" );
       }
-      
+
       return $result;
     }
 
-    private function getPostID(){
+    private function getPostID()
+    {
       $ID = get_the_ID();
       if ($ID){
         return $ID;
       }
-      
+
       $submission = \WPCF7_Submission::get_instance();
       if ($submission){
           $ID = $submission->get_meta('container_post_id');
@@ -192,8 +201,8 @@ class RegisterFormFields{
       return false;
     }
 
-
-    private function generateForm(){
+    private function generateForm()
+    {
         $ID = $this->getPostID();
 
         if (! $ID){
@@ -209,13 +218,13 @@ class RegisterFormFields{
                   $isRequired = get_sub_field('is_required');
                   $size = get_sub_field('size');
                   $field = 'text';
-        
+
                   if (get_row_layout() == 'textfield' && $multiline == true){
                     $field = 'textarea';
                   } elseif (get_row_layout() == 'email') {
                     $field = 'email';
                   }
-        
+
                   if ($isRequired){
                     $field .= '*';
                   }
@@ -223,7 +232,7 @@ class RegisterFormFields{
                   if ($size == 's'){
                     $sizeClass = sprintf('class="%s"', 'col-md-6');
                   }
-                  $form .= sprintf('<div %s><label>%s [%s %s]</label></div>', $sizeClass, $label, $field, sanitize_title($label)); 
+                  $form .= sprintf('<div %s><label>%s [%s %s]</label></div>', $sizeClass, $label, $field, sanitize_title($label));
                 } else if( get_row_layout() == 'select'){
                     $isRequired = $this->isRequired(get_the_ID());
 
@@ -234,7 +243,7 @@ class RegisterFormFields{
                     if ($field == 'select'){
                       $element = 'label';
                     }
-                    
+
                     if ($isRequired && $field != 'radio'){
                         $field .= '*';
                     }
@@ -250,7 +259,7 @@ class RegisterFormFields{
                                 $form .= sprintf('<div class="select-message d-none">%s</div>', $s["message"]);
                         }
                         $form .= '</div>';
-                        
+
                     $form .= '</fieldset>';
 
                 } else if( get_row_layout() == 'note'){
@@ -259,14 +268,18 @@ class RegisterFormFields{
           endwhile;
         endif;
         $form .= '</div>';
-      
+
         return $form;
       }
-      private function isRequired($post_id){
+
+      private function isRequired($post_id)
+      {
         return get_sub_field('is_required', $post_id);
       }
 
-      private function getSelectFields($post_id){
+
+      private function getSelectFields($post_id)
+      {
 
             if( have_rows('options', $post_id) ):
                 while( have_rows('options', $post_id) ) : the_row();
