@@ -8,16 +8,26 @@ class RegisterForm{
     public  function init(){
         add_action("wpcf7_before_send_mail", array($this, "handleSubmission"));
         add_filter( 'wp_new_user_notification_email', array($this, 'customizeNotificationEmail'), 10, 3 );
-        wpcf7_add_form_tag( 'user_email', array($this, 'getRegistrationEmail' ));
+
+		$this->registerCustomFormTags();
 
         add_action('wpcf7_init', array($this, 'initRegisterFormFields'), 5);
     }
+
+	public function registerCustomFormTags()
+	{
+		if ( function_exists( 'wpcf7_add_form_tag' ) ) {
+			wpcf7_add_form_tag( 'user_email', array($this, 'getRegistrationEmail' ));
+		}
+	}
+
     public function initRegisterFormFields(){
         $rff = new RegisterFormFields();
         $rff->init( $this );
 
         $this->fields = $rff;
     }
+
     public function getForm(){
         return \WPCF7_ContactForm::get_current();
     }
@@ -71,11 +81,11 @@ class RegisterForm{
         if ($this->hasOption('data_as_attachment') ){
             $this->dataAsAttachment();
         }
-        
+
         return $contact_form;
     }
 
-    public function create_user($contact_form){     
+    public function create_user($contact_form){
         $password = wp_generate_password( 20, false );
         $email = $this->getEmailFromSubmission();
 
@@ -85,7 +95,7 @@ class RegisterForm{
             'user_pass'     => $password
         );
 
-     
+
         $user_id = wp_insert_user( $user_data );
         wp_new_user_notification( $user_id, $password );
 
@@ -108,14 +118,14 @@ class RegisterForm{
         if (!empty($customMessage["email_body_text"])){
             $message = $customMessage["email_body_text"] . "\r\n\r\n" . $message;
         }
-        
+
         $subject = $customMessage["email_subject"];
         if (!empty($subject)){
             $wp_new_user_notification_email["subject"] = $subject;
         }
 
         $wp_new_user_notification_email["message"] = $message;
-        
+
         return $wp_new_user_notification_email;
     }
 }
