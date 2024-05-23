@@ -1,11 +1,12 @@
 <?php
 namespace Spouse;
 
-class RegisterForm{
+class RegisterForm
+{
     private $fields = null;
 
-
-    public  function init(){
+    public  function init()
+    {
         add_action("wpcf7_before_send_mail", array($this, "handleSubmission"));
         add_filter( 'wp_new_user_notification_email', array($this, 'customizeNotificationEmail'), 10, 3 );
 
@@ -21,22 +22,26 @@ class RegisterForm{
 		}
 	}
 
-    public function initRegisterFormFields(){
+    public function initRegisterFormFields()
+    {
         $rff = new RegisterFormFields();
         $rff->init( $this );
 
         $this->fields = $rff;
     }
 
-    public function getForm(){
+    public function getForm()
+    {
         return \WPCF7_ContactForm::get_current();
     }
 
-    public function isRegistrationForm(){
+    public function isRegistrationForm()
+    {
         return $this->hasOption('registration_form');
     }
 
-    public function hasOption($option){
+    public function hasOption($option)
+    {
         $form = $this->getForm();
         if (!$form)
             return false;
@@ -47,11 +52,13 @@ class RegisterForm{
         return false;
     }
 
-    private function getFormSubmission(){
+    private function getFormSubmission()
+    {
         return \WPCF7_Submission::get_instance();
     }
 
-    private function getEmailFromSubmission(){
+    private function getEmailFromSubmission()
+    {
         $form = $this->getFormSubmission();
         $values = $form->get_posted_data();
         $emailField = $this->fields->getEmailField();
@@ -63,17 +70,20 @@ class RegisterForm{
         return false;
     }
 
-    private function getRegistrationEmail(){
+    private function getRegistrationEmail()
+    {
         return $this->getEmailFromSubmission();
     }
 
-    private function getPostedData(){
+    private function getPostedData()
+    {
         $form = $this->getFormSubmission();
         $posted_data = $form->get_posted_data();
         return $posted_data;
     }
 
-    public function handleSubmission($contact_form){
+    public function handleSubmission($contact_form)
+    {
         if ($this->isRegistrationForm() ) {
             $uid = $this->create_user($contact_form);
         }
@@ -85,7 +95,8 @@ class RegisterForm{
         return $contact_form;
     }
 
-    public function create_user($contact_form){
+    public function create_user($contact_form)
+    {
         $password = wp_generate_password( 20, false );
         $email = $this->getEmailFromSubmission();
 
@@ -102,7 +113,8 @@ class RegisterForm{
         return $user_id;
     }
 
-    public function dataAsAttachment(){
+    public function dataAsAttachment()
+    {
         $attachment = new RegisterFormAttachment();
         $attachmentPath = $attachment->generateExcelFromSubmission( $this->getPostedData() );
 
@@ -112,7 +124,8 @@ class RegisterForm{
         return $attachmentPath;
     }
 
-    public function customizeNotificationEmail($wp_new_user_notification_email, $user, $blogname){
+    public function customizeNotificationEmail($wp_new_user_notification_email, $user, $blogname)
+    {
         $customMessage = get_field('registration_setttings', 'option');
         $message = $wp_new_user_notification_email["message"];
         if (!empty($customMessage["email_body_text"])){
