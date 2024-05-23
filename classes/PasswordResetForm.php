@@ -26,24 +26,26 @@ class PasswordResetForm extends LoginFormHandler
             // Verify key / login combo
             $user = check_password_reset_key( $_REQUEST['key'], $_REQUEST['login'] );
             if ( ! $user || is_wp_error( $user ) ) {
-                if ( $user && $user->get_error_code() === 'expired_key' ) {
-                    $redirect_url = apply_filters( 'spouse_program_static_page_url', '', 'login' );
-                    $redirect_url = add_query_arg( 'login', 'expiredkey', $redirect_url);
-                    wp_redirect( $redirect_url );
-                } else {
-                    $redirect_url = apply_filters( 'spouse_program_static_page_url', '', 'login' );
-                    $redirect_url = add_query_arg( 'login', 'invalidkey', $redirect_url);
-                    wp_redirect( $redirect_url );
-                }
-                exit;
+				$redirect_url = apply_filters( 'spouse_program_static_page_url', '', 'login' );
+
+				if ( $redirect_url ) {
+					$key_value = ($user && $user->get_error_code() === 'expired_key') ? 'expiredkey' : 'invalidkey';
+
+					wp_redirect( add_query_arg( 'login', $key_value, $redirect_url) );
+					exit;
+				}
             }
 
             $redirect_url = apply_filters( 'spouse_program_static_page_url', '', 'password-reset' );
-            $redirect_url = add_query_arg( 'login', esc_attr( $_REQUEST['login'] ), $redirect_url );
-            $redirect_url = add_query_arg( 'key', esc_attr( $_REQUEST['key'] ), $redirect_url );
-
-            wp_redirect( $redirect_url );
-            exit;
+			if ( $redirect_url ) {
+				wp_redirect(
+					add_query_arg( array(
+						'login' => esc_attr( $_REQUEST['login'] ),
+						'key' => esc_attr( $_REQUEST['key'] ),
+					), $redirect_url )
+				);
+				exit;
+			}
         }
     }
 
@@ -87,16 +89,14 @@ class PasswordResetForm extends LoginFormHandler
             $user = check_password_reset_key( $rp_key, $rp_login );
 
             if ( ! $user || is_wp_error( $user ) ) {
-                if ( $user && $user->get_error_code() === 'expired_key' ) {
-                    $redirect_url = apply_filters( 'spouse_program_static_page_url', '', 'login' );
-                    $redirect_url = add_query_arg( 'login', 'expiredkey', $redirect_url);
-                    wp_redirect( $redirect_url );
-                } else {
-                    $redirect_url = apply_filters( 'spouse_program_static_page_url', '', 'login' );
-                    $redirect_url = add_query_arg( 'login', 'invalidkey', $redirect_url);
-                    wp_redirect( $redirect_url );
-                }
-                exit;
+				$redirect_url = apply_filters( 'spouse_program_static_page_url', '', 'login' );
+
+				if ( $redirect_url ) {
+					$key_value = ($user && $user->get_error_code() === 'expired_key') ? 'expiredkey' : 'invalidkey';
+
+					wp_redirect( add_query_arg( 'login', $key_value, $redirect_url) );
+					exit;
+				}
             }
 
             if ( isset( $_POST['pass1'] ) ) {
@@ -104,31 +104,38 @@ class PasswordResetForm extends LoginFormHandler
                     // Passwords don't match
                     $redirect_url = apply_filters( 'spouse_program_static_page_url', '', 'password-reset' );
 
-                    $redirect_url = add_query_arg( 'key', $rp_key, $redirect_url );
-                    $redirect_url = add_query_arg( 'login', $rp_login, $redirect_url );
-                    $redirect_url = add_query_arg( 'error', 'password_reset_mismatch', $redirect_url );
-
-                    wp_redirect( $redirect_url );
-                    exit;
+					if ( $redirect_url ) {
+						wp_redirect( add_query_arg( array(
+							'key' => $rp_key,
+							'login' => $rp_login,
+							'error' => 'password_reset_mismatch',
+						), $redirect_url ) );
+						exit;
+					}
                 }
 
                 if ( empty( $_POST['pass1'] ) ) {
                     // Password is empty
                     $redirect_url = apply_filters( 'spouse_program_static_page_url', '', 'password-reset' );
 
-                    $redirect_url = add_query_arg( 'key', $rp_key, $redirect_url );
-                    $redirect_url = add_query_arg( 'login', $rp_login, $redirect_url );
-                    $redirect_url = add_query_arg( 'error', 'password_reset_empty', $redirect_url );
-
-                    wp_redirect( $redirect_url );
-                    exit;
+					if ( $redirect_url ) {
+						wp_redirect( add_query_arg( array(
+							'key' => $rp_key,
+							'login' => $rp_login,
+							'error' => 'password_reset_empty',
+						), $redirect_url ) );
+						exit;
+					}
                 }
 
                 // Parameter checks OK, reset password
                 reset_password( $user, $_POST['pass1'] );
                 $redirect_url = apply_filters( 'spouse_program_static_page_url', '', 'login' );
-                $redirect_url = add_query_arg( 'password', 'changed', $redirect_url );
-                wp_redirect( $redirect_url );
+
+				if ($redirect_url) {
+					wp_redirect( add_query_arg( 'password', 'changed', $redirect_url ) );
+					exit;
+				}
             } else {
                 echo "Invalid request.";
             }
