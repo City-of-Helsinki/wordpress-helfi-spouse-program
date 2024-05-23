@@ -32,11 +32,11 @@ class LoginHandler{
     }
     public function redirect_after_login( $redirect_to, $requested_redirect_to, $user ) {
         $redirect_url = home_url();
-     
+
         if ( ! isset( $user->ID ) ) {
             return $redirect_url;
         }
-     
+
         if ( user_can( $user, 'manage_options' ) ) {
             // Use the redirect_to parameter if one is set, otherwise redirect to admin dashboard.
             if ( $requested_redirect_to == '' ) {
@@ -46,43 +46,42 @@ class LoginHandler{
             }
         } else {
             if ( $requested_redirect_to == '' ) {
-                $redirect_url = LoginStaticPagesGenerator::url('main-page');
+                $redirect_url = apply_filters( 'spouse_program_static_page_url', '', 'main-page' );
             } else {
                 $redirect_url = $requested_redirect_to;
             }
         }
-     
+
         return wp_validate_redirect( $redirect_url, home_url() );
     }
 
     public function redirect_to_custom_login() {
-        LoginStaticPagesGenerator::generate();
         if ( $_SERVER['REQUEST_METHOD'] == 'GET' ) {
             $redirect_to = isset( $_REQUEST['redirect_to'] ) ? $_REQUEST['redirect_to'] : null;
-     
+
             // The rest are redirected to the login page
-            $login_url = LoginStaticPagesGenerator::url('login');
+			$login_url = apply_filters( 'spouse_program_static_page_url', '', 'login' );
             if ( ! empty( $redirect_to ) ) {
                 $login_url = add_query_arg( 'redirect_to', $redirect_to, $login_url );
             }
-     
+
             wp_redirect( $login_url );
             exit;
         }
     }
     public function maybe_redirect_at_authenticate( $user, $username, $password ) {
-        // Check if the earlier authenticate filter (most likely, 
+        // Check if the earlier authenticate filter (most likely,
         // the default WordPress authentication) functions have found errors
         if ( $_SERVER['REQUEST_METHOD'] === 'POST' ) {
             if ( is_wp_error( $user ) ) {
-                $login_url = LoginStaticPagesGenerator::url('login');
+                $login_url = apply_filters( 'spouse_program_static_page_url', '', 'login' );
                 $login_url = add_query_arg( 'login', 'invalid', $login_url );
-     
+
                 wp_redirect( $login_url );
                 exit;
             }
         }
-     
+
         return $user;
     }
     public function redirect_after_logout() {
