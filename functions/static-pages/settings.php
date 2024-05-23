@@ -70,6 +70,7 @@ function register_static_pages_settings(): void {
 			$settings_page,
 			$settings_section,
 			array(
+				'key' => $key,
 				'name' => $setting_name,
 				'value' => get_static_page_id( $key ),
 				'options' => $page_options,
@@ -88,6 +89,15 @@ function render_static_page_setting_field( array $args ): void {
 		esc_attr( $args['name'] ),
 		get_select_options_html( $args['options'], $args['value'] )
 	);
+
+	$url = apply_filters( 'spouse_program_static_page_url', '', $args['key'] );
+	if ( $url ) {
+		printf(
+			'<p class="description"><a href="%s" target="_blank">%s<a/></p>',
+			esc_url( $url ),
+			esc_html__( 'View page', 'spouse' )
+		);
+	}
 }
 
 function get_select_options_html( array $options, $current ): string {
