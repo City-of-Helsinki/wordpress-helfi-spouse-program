@@ -5,7 +5,7 @@ require_once('functions/autoloader.php');
 function spouse_setup_theme(){
   add_theme_support( 'widgets' );
   add_theme_support( 'post-thumbnails' );
-  add_theme_support( 'title-tag' ); 
+  add_theme_support( 'title-tag' );
   add_theme_support( 'custom-logo', array(
     'flex-height' => true,
     'flex-width'  => true
@@ -323,12 +323,12 @@ function wp_custom_archive($args = '') {
 
 \Spouse\LoginHandler::init();
 
-function spouse_login_url(){
-  return \Spouse\LoginStaticPagesGenerator::url('login');
+function spouse_login_url(): string {
+    return apply_filters( 'spouse_program_static_page_url', '', 'login' );
 }
 
-function spouse_register_url(){
-  return \Spouse\LoginStaticPagesGenerator::url('register');
+function spouse_register_url(): string {
+    return apply_filters( 'spouse_program_static_page_url', '', 'register' );
 }
 
 add_action('acf/init', 'my_acf_op_init');
@@ -387,24 +387,24 @@ add_filter('wp_is_application_passwords_available_for_user', 'spouse_customize_a
 
 
 function spouse_acf_input_admin_footer() {
-    
+
   ?>
   <script type="text/javascript">
   (function($) {
       acf.add_filter('color_picker_args', function( args, $field ){
-          
+
           // Add colors to color palette
           args.palettes = ["#01a090", "#4dbdb1", "#bac1f2", "#231f20", "#ffffff"]
-          
-          
+
+
           // return
           return args;
-                  
+
       });
-})(jQuery); 
+})(jQuery);
 </script>
 <?php
-      
+
 }
 
 add_action('acf/input/admin_footer', 'spouse_acf_input_admin_footer');
