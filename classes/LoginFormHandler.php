@@ -14,6 +14,7 @@ abstract class LoginFormHandler
             add_filter( 'template_include', array($this, 'loadTemplate'), 99 );
         }
     }
+
     public function setupForm()
 	{
         $page_id = apply_filters( 'spouse_program_static_page_id', 0, $this->slugKey );
