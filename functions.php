@@ -324,7 +324,7 @@ function wp_custom_archive($args = '') {
 \Spouse\LoginHandler::init();
 
 function spouse_login_url(): string {
-    return apply_filters( 'spouse_program_static_page_url', '', 'login' );
+    return apply_filters( 'spouse_program_static_page_url', wp_login_url(), 'login' );
 }
 
 function spouse_register_url(): string {

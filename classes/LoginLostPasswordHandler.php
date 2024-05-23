@@ -31,8 +31,10 @@ class LoginLostPasswordHandler extends LoginFormHandler
             }
 
             $redirect_url = apply_filters( 'spouse_program_static_page_url', '', $this->slugKey );
-            wp_redirect($redirect_url);
-            exit;
+			if ($redirect_url) {
+				wp_redirect($redirect_url);
+				exit;
+			}
         }
     }
 
@@ -54,15 +56,17 @@ class LoginLostPasswordHandler extends LoginFormHandler
             if ( is_wp_error( $errors ) ) {
                 // Errors found
                 $redirect_url = apply_filters( 'spouse_program_static_page_url', '', 'password-lost' );
-                $redirect_url = add_query_arg( 'errors', 1, $redirect_url );
+                $redirect_url = $redirect_url ? add_query_arg( 'errors', 1, $redirect_url ) : '';
             } else {
                 // Email sent
                 $redirect_url = apply_filters( 'spouse_program_static_page_url', '', 'login' );
-                $redirect_url = add_query_arg( 'checkemail', 'confirm', $redirect_url );
+                $redirect_url = $redirect_url ? add_query_arg( 'checkemail', 'confirm', $redirect_url ) : '';
             }
 
-            wp_redirect( $redirect_url );
-            exit;
+			if ($redirect_url) {
+				wp_redirect($redirect_url);
+				exit;
+			}
         }
     }
 }
