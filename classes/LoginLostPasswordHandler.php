@@ -9,7 +9,7 @@ class LoginLostPasswordHandler extends LoginFormHandler{
 
     public static function init(LoginHandler $loginHandler){
         $self = new self();
-        $self->loginHandler = $loginHandler;    
+        $self->loginHandler = $loginHandler;
             add_action( 'login_form_lostpassword', array( $self, 'redirectCustomLostPassword' ) );
             add_action('template_redirect', array($self, 'setupForm'), 10);
             add_action( 'login_form_lostpassword', array( $self, 'do_password_lost' ) );
@@ -23,8 +23,8 @@ class LoginLostPasswordHandler extends LoginFormHandler{
                 $this->loginHandler->redirect_logged_in_user();
                 exit;
             }
-     
-            $redirect_url = LoginStaticPagesGenerator::url($this->slugKey);
+
+            $redirect_url = apply_filters( 'spouse_program_static_page_url', '', $this->slugKey );
             wp_redirect($redirect_url);
             exit;
         }
@@ -45,14 +45,14 @@ class LoginLostPasswordHandler extends LoginFormHandler{
             $errors = retrieve_password();
             if ( is_wp_error( $errors ) ) {
                 // Errors found
-                $redirect_url = LoginStaticPagesGenerator::url('password-lost');
+                $redirect_url = apply_filters( 'spouse_program_static_page_url', '', 'password-lost' );
                 $redirect_url = add_query_arg( 'errors', 1, $redirect_url );
             } else {
                 // Email sent
-                $redirect_url = LoginStaticPagesGenerator::url('login');
+                $redirect_url = apply_filters( 'spouse_program_static_page_url', '', 'login' );
                 $redirect_url = add_query_arg( 'checkemail', 'confirm', $redirect_url );
             }
-     
+
             wp_redirect( $redirect_url );
             exit;
         }
