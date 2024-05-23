@@ -43,18 +43,9 @@ class LoginHandler
         }
 
         if ( user_can( $user, 'manage_options' ) ) {
-            // Use the redirect_to parameter if one is set, otherwise redirect to admin dashboard.
-            if ( $requested_redirect_to == '' ) {
-                $redirect_url = admin_url();
-            } else {
-                $redirect_url = $requested_redirect_to;
-            }
+			$redirect_url = $requested_redirect_to ?: admin_url();
         } else {
-            if ( $requested_redirect_to == '' ) {
-                $redirect_url = apply_filters( 'spouse_program_static_page_url', '', 'main-page' );
-            } else {
-                $redirect_url = $requested_redirect_to;
-            }
+			$redirect_url = $requested_redirect_to ?: apply_filters( 'spouse_program_static_page_url', '', 'main-page' );
         }
 
         return wp_validate_redirect( $redirect_url, home_url() );
@@ -62,17 +53,19 @@ class LoginHandler
 
     public function redirect_to_custom_login()
 	{
-        if ( $_SERVER['REQUEST_METHOD'] == 'GET' ) {
+        if ( $_SERVER['REQUEST_METHOD'] === 'GET' ) {
             $redirect_to = isset( $_REQUEST['redirect_to'] ) ? $_REQUEST['redirect_to'] : null;
 
             // The rest are redirected to the login page
 			$login_url = apply_filters( 'spouse_program_static_page_url', '', 'login' );
-            if ( ! empty( $redirect_to ) ) {
+            if ( $login_url && ! empty( $redirect_to ) ) {
                 $login_url = add_query_arg( 'redirect_to', $redirect_to, $login_url );
             }
 
-            wp_redirect( $login_url );
-            exit;
+			if ($login_url) {
+				wp_redirect( $login_url );
+	            exit;
+			}
         }
     }
 
@@ -83,10 +76,11 @@ class LoginHandler
         if ( $_SERVER['REQUEST_METHOD'] === 'POST' ) {
             if ( is_wp_error( $user ) ) {
                 $login_url = apply_filters( 'spouse_program_static_page_url', '', 'login' );
-                $login_url = add_query_arg( 'login', 'invalid', $login_url );
 
-                wp_redirect( $login_url );
-                exit;
+				if ($login_url) {
+					wp_redirect( add_query_arg( 'login', 'invalid', $login_url ) );
+	                exit;
+				}
             }
         }
 
