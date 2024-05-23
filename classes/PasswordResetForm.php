@@ -2,11 +2,13 @@
 
 namespace Spouse;
 
-class PasswordResetForm extends LoginFormHandler{
+class PasswordResetForm extends LoginFormHandler
+{
     public $slugKey = 'password-reset';
     public $template = 'template-login.php';
 
-    public static function init(LoginHandler $loginHandler){
+    public static function init(LoginHandler $loginHandler)
+    {
         $self = new self();
         $self->loginHandler = $loginHandler;
 
@@ -18,8 +20,9 @@ class PasswordResetForm extends LoginFormHandler{
 
     }
 
-    public function redirect_to_custom_password_reset() {
-        if ( 'GET' == $_SERVER['REQUEST_METHOD']) {
+    public function redirect_to_custom_password_reset()
+    {
+        if ( 'GET' === $_SERVER['REQUEST_METHOD']) {
             // Verify key / login combo
             $user = check_password_reset_key( $_REQUEST['key'], $_REQUEST['login'] );
             if ( ! $user || is_wp_error( $user ) ) {
@@ -44,7 +47,8 @@ class PasswordResetForm extends LoginFormHandler{
         }
     }
 
-    public function renderForm() {
+    public function renderForm()
+    {
         // Parse shortcode attributes
         $default_attributes = array( 'show_title' => false );
         $attributes = shortcode_atts( $default_attributes, $attributes );
@@ -73,8 +77,10 @@ class PasswordResetForm extends LoginFormHandler{
             }
         }
     }
-    public function do_password_reset() {
-        if ( 'POST' == $_SERVER['REQUEST_METHOD'] ) {
+
+    public function do_password_reset()
+    {
+        if ( 'POST' === $_SERVER['REQUEST_METHOD'] ) {
             $rp_key = $_REQUEST['rp_key'];
             $rp_login = $_REQUEST['rp_login'];
 
