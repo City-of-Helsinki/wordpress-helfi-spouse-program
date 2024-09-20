@@ -61,8 +61,10 @@ li.new-news {
 }
 
 .highlighted-content p {
-  margin-bottom: 1.625rem;
   font-size: 1rem;
+  margin-top: 1.25rem;
+	margin-bottom: 0;
+	padding-left: 0;
 }
 
 .highlighted-content p > a:first-child {

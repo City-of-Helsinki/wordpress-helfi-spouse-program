@@ -1,5 +1,7 @@
 .testimonials {
   .row {
+    justify-content: space-evenly;
+
     .card {
       display: flex;
       flex-flow: column;
@@ -47,6 +49,9 @@
         }
       }
     }
+  }
+  .col-md-4 {
+    flex: 0 0 100%;
   }
 }
 
