@@ -1,6 +1,5 @@
 .testimonials {
   .row {
-    justify-content: space-evenly;
 
     .card {
       display: flex;
@@ -14,7 +13,11 @@
       overflow: hidden;
       margin-bottom: 2rem;
       .card-body {
+        display: flex;
         blockquote {
+          display: flex;
+          flex: 1;
+          flex-direction: column;
           .quote-text {
             position: relative;
             padding-top: 4rem;
@@ -29,6 +32,7 @@
             }
           }
           .footer {
+            margin-top: auto;
             img {
               object-fit: cover;
               height: 3rem;
