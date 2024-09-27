@@ -25,7 +25,7 @@
             $single_class = "testimonial-single";
         }
           while (have_rows('tm_quotes')): the_row(); ?>
-            <div class="<?php if($count != 1){ echo 'col-md-4 '; } ?> col-sm-12 testimonial <?php echo $single_class; ?> mb-2">
+            <div class="<?php if($count == 2){ echo 'col-md-6 '; } if($count > 2) {echo 'col-md-4';} ?> col-sm-12 testimonial <?php echo $single_class; ?> mb-2">
                 <div class="card h-100 mb-2">
                     <div class="card-body" style="<?php echo $border_color; ?>">
                     <blockquote class="quote card-text">
@@ -47,7 +47,7 @@
                             ?>
                             <?php if($quote_thumbnail_shape): ?>
                                 <figure class="clipped d-inline-block">
-                                    <svg class="clipped__media" viewBox="0 0 600 600" width="48" height="48">
+                                    <svg class="clipped__media" viewBox="0 0 600 600" width="64" height="64">
                                         <defs>
                                         <clipPath id="quote-heart-img<?php echo $x; ?>" clipPathUnits="userSpaceOnUse">
                                             <path d="m351.82,600.2H18.17C8.13,600.21,0,592.08,0,582.04V248.39C.01,27.54,267.03-83.06,423.19,73.1l103.91,103.91c156.17,156.16,45.57,423.18-175.28,423.19Z" />
