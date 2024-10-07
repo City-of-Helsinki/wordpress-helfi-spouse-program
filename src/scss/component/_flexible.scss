@@ -154,3 +154,14 @@
 .rounded-corners {
   border-radius: 2rem;
 }
+
+@media screen and (max-width: 992px) {
+  .lift-100-wide {
+    img.rounded-corners {
+      border-radius: 2rem 2rem 0 0;
+    }
+    &__card.rounded-corners {
+      border-radius: 0 0 2rem 2rem;
+    }
+  }
+}
