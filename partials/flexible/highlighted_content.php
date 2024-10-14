@@ -21,7 +21,7 @@
             echo '<div id="' . get_sub_field('anchor_tag') . '" class="anchor-tag"></div>';
         }
         ?>
-        <div class="highlighted-content" style="background-color: <?php echo $highlightColor; ?>; color: <?php echo $highlightTextColor; ?>;">
+        <div class="highlighted-content <?php echo(get_sub_field('hl_rounded_corners') ? 'rounded-corners' : '');?>" style="background-color: <?php echo $highlightColor; ?>; color: <?php echo $highlightTextColor; ?>;">
             <?php the_sub_field('hl_content'); ?>
         </div>
     </div>
