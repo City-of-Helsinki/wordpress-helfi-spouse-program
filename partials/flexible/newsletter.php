@@ -43,14 +43,14 @@ if(!$full_width){
   echo '<div class="container mb-5">';
 }
 ?>
-<div class="newsletter container-fluid" id="newsletter" style="<?php echo $background_color; ?> <?php echo $text_color; ?>">
+<div class="newsletter container-fluid <?php echo ($full_width ? 'newsletter-full-width' : ''); ?>" id="newsletter" style="<?php echo $background_color; ?> <?php echo $text_color; ?>">
   <?php
   if(get_sub_field('anchor_tag')){
     echo '<div id="' . get_sub_field('anchor_tag') . '" class="anchor-tag"></div>';
   }
   ?>
   <div class="row justify-content-center">
-    <div class="col-12 col-lg-5 col-md-6 py-lg-5 py-md-4 py-3">
+    <div class="col-12 col-md-6 <?php echo ($full_width ? ' col-lg-8 ' : ''); ?>py-lg-5 py-md-4 py-3">
       <?php
       echo $newsletter_message;
       if (!$hide_newsletter_form): ?>
