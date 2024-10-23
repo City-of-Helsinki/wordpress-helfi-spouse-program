@@ -175,3 +175,12 @@
   margin-left: -50vw;
   margin-right: -50vw;
 }
+
+/* Spacer */
+.spacer:after {
+  content: "";
+}
+
+.separator {
+  border-top: 3px solid $gray;
+}
