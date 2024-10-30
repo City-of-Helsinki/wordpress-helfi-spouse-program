@@ -50,7 +50,7 @@ if(!$full_width){
   }
   ?>
   <div class="row justify-content-center">
-    <div class="col-12 col-md-6 <?php echo ($full_width ? ' col-lg-8 ' : ''); ?>py-lg-5 py-md-4 py-3">
+    <div class="col-12 col-lg-5 col-md-6 py-lg-5 py-md-4 py-3">
       <?php
       echo $newsletter_message;
       if (!$hide_newsletter_form): ?>
