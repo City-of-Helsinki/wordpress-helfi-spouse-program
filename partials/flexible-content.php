@@ -42,6 +42,10 @@
 
                 get_template_part( 'partials/flexible/separator' );
 
+            elseif( get_row_layout() == 'accordion' ): 
+
+                get_template_part( 'partials/flexible/accordion' );
+
             endif;
 
         endwhile;
