@@ -181,6 +181,25 @@
   content: "";
 }
 
+/* Separator */
+
 .separator {
   border-top: 3px solid $gray;
+}
+
+/* Accordion */
+.accordion {
+  &-item {
+    [id="question-"] {
+      span::before {
+        content: "";
+        border-left: 7px solid #f0e856;
+      }
+    }
+    [id="answer-"] {
+      background-color: $white;
+      border: none;
+      background: none;
+    }
+  }
 }
