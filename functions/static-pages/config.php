@@ -37,6 +37,11 @@ function static_pages(): array {
 			'slug' => 'main-page',
 			'title' => __( 'Welcome', 'spouse' ),
 			'content' => ''
+		),
+		'main-page' => array(
+			'slug' => 'activities-list',
+			'title' => __( 'Acticities', 'spouse' ),
+			'content' => ''
 		)
 	);
 }
