@@ -10,8 +10,8 @@ add_shortcode('spouse-events', 'spouse_show_eventboxes');
  *    $atts['count'] : int - number of posts to show. -1 = all
  * @return void
  */
-function spouse_show_eventboxes($atts = []){
-  $count = 5;
+function spouse_show_eventboxes($atts){ 
+  $count = -1;
   if(isset($atts['count']) && $atts['count'] != 0) {
     $count = $atts['count'];
   }
@@ -24,90 +24,101 @@ function spouse_show_eventboxes($atts = []){
 }
 
 function spouse_get_events($count) {
-  $args = [
-    'post_type' => 'eventbrite_events',
+  $args = array (
+    'post_type' => 'event',
     'post_status' => 'publish',
     'numberposts' => $count,
-    'orderby' => 'date',
+    'meta_key' => 'start_time',
+    'orderby' => 'meta_value',
     'order' => 'ASC',
-  ];
+  );
 
   $posts = wp_get_recent_posts($args, OBJECT);
 
   return $posts;
 }
 
-function spouse_print_events($events = []){
-  foreach($events as $event){
+function spouse_print_events($events) {
+  ?>
+  <div class="col-12 col-sm-12 d-flex events-wrapper">
+  <?php
 
-    $color = '#fff';
+  if ( is_array($events) ) {
+    foreach( $events as $event ) {
 
-    $startDate = null;
+      $terms = get_the_terms($event->ID, 'target_group');
+      $event_color = get_field('event_color', $event->ID );
+      $color = '#fff';
+      $category = '';
+      if($terms && $term = reset($terms)) {
+        $category = $term->name;
+        if (!empty($event_color)) {
+          $color = $event_color;
+        }
+        elseif ($category === 'Community') {
+          $color = '#bac1f2';
+        }
+        elseif ($category === 'Career support') {
+          $color = '#fbd0c8';
+        }
+        elseif ($category === 'Company partner') {
+          $color = '#f8f3ab';
+        } 
+      }
 
-    $terms = get_the_terms($event->ID, 'eventbrite_category');
+      if( get_field( 'start_time', $event->ID) ) {
 
-    $icon = get_field('icon', $event->ID);
+        $start = ( new \DateTime() )->setTimestamp( strtotime( get_field( 'start_time', $event->ID )));
+        $end = ( new \DateTime() )->setTimestamp( strtotime( get_field( 'end_time', $event->ID )));
 
-    $category = '';
-    if($terms && $term = reset($terms)) {
-      $color = get_field('event_color', $term);
-      $category = $term->name;
-    }
+        $start_date = $start->format('l j F Y');
+        $start_date_short = $start->format('j F Y');
+        $end_date_short = $end->format('j F Y');
+        $start_time = $start->format('H.i');
+        $end_time = $end->format('H.i');
+      }
 
-    if($dateData = get_post_meta($event->ID, 'event_start_date')) {
+      $aria_title = "$category. $event->post_title. { $start_date } from $start_time to $end_time. ";
+      $event_img = get_the_post_thumbnail_url($event->ID, 'medium');
+      $placeholder_img = 'https://spouseprogram.fi/wp-content/uploads/2024/10/Logo-without-text-and-favicon.png';
 
-      $date = new \DateTime();
-      $date->setTimestamp(strtotime($dateData[0]));
-      $startDate = $date->format('d F');
-
-      $hour = get_post_meta($event->ID, 'event_start_hour')[0];
-      $minute = get_post_meta($event->ID, 'event_start_minute')[0];
-
-      $endHour = get_post_meta($event->ID, 'event_end_hour')[0];
-      $endMinute = get_post_meta($event->ID, 'event_end_minute')[0];
-      $meridian = get_post_meta($event->ID, 'event_start_meridian')[0];
-      $endMeridian = get_post_meta($event->ID, 'event_end_meridian')[0];
-
-      $startTime = "$hour:$minute $meridian";
-      $endTime = "$endHour:$endMinute $endMeridian";
-
-      $userLoggedIn = is_user_logged_in();
-
-      $ariaTitle = "$category. $event->post_title. {$date->format('F, d')} from $startTime to $endTime. ";
-      $ariaTitle .= $userLoggedIn ? '' : __('Sign in to see more');
-    }
-    ?>
-    <div class="col-lg-4 col-12 col-sm-12 d-flex">
-    <?php if($userLoggedIn): ?>
-      <a href="<?php echo get_permalink($event) ?>" <?php if($ariaTitle): ?>aria-label="<?php echo $ariaTitle; ?>" <?php endif; ?>>
-          <div class="event clearfix">
-    <?php else: ?>
-          <div <?php if(!$userLoggedIn): ?>tabindex="0"<?php endif; ?> <?php if($ariaTitle): ?>aria-label="<?php echo $ariaTitle; ?>" <?php endif; ?> class="event clearfix">
-    <?php endif; ?>
-
-      <div class="event-content-wrap card border-0 shadow flex-fill">
-          <div class="event-color" <?php if(isset($color) && $color): ?>style="background-color:<?php echo $color; ?>" <?php endif; ?>></div>
-          <div class="event-content">
-            <div class="event-img"  style="background-image: url(<?php echo get_the_post_thumbnail_url($event->ID, 'medium') ?>);"></div>
-              <p class="event-category"><?php echo $category ?></p>
+      ?>
+      <div class="events-column">
+        <div class="event clearfix" <?php if(isset($color)): ?>style="background-color:<?php echo $color; ?>" <?php endif; ?>>
+          <a href="<?php echo get_permalink($event) ?>" <?php if($aria_title): ?>aria-label="<?php echo $aria_title; ?>" <?php endif; ?>>
+          <div class="event-content-wrap card border-0 flex-fill">       
+            <div class="event-content">
+              <?php if( !empty($event_img) ) : ?>
+                <div class="event-img" style="background-image: url(<?php echo $event_img ?>);"></div>
+              <?php elseif(empty($event_img) && !empty($category)) : ?>
+                <div class="event-no-image" style="background-color: <?php echo $color ?>;"><span class="event-category"><?php echo $category ?> Activity</span></div>
+              <?php else : ?>
+                <div class="event-no-image-cat" style="background-image: url(<?php echo $placeholder_img ?>);"></div>
+              <?php endif; ?>
               <div class="text-content card-body">
-                  <div class="event-schedule">
-                    <p class="start-date"> <?php echo $startDate; ?></p>
-                    <p class="duration"> <?php echo $startTime; ?> - <?php echo $endTime; ?></p>
-                  </div>
-                  <p class="post-title"><?php echo $event->post_title ?></p>
+                <p class="post-title"><?php echo $event->post_title ?></p>
+                <div class="event-schedule">
+                <?php if($start_date_short !== $end_date_short): ?>
+                  <p class="start-date"> <?php echo $start_date_short . ' ' . $start_time; ?> &ndash; </p>
+                  <p class="start-date"> <?php echo $end_date_short . ' ' . $end_time; ?></p>
+                <?php else: ?>
+                  <p class="start-date"> <?php echo $start_date; ?></p>
+                  <p class="duration"> <?php echo $start_time; ?> &ndash; <?php echo $end_time; ?></p>
+                <?php endif; ?>
+              </div>             
               </div>
-          </div>
-          <div class="event-icon"><img src="<?php echo $icon ?>"></div>
+            </div>
+          </div>          
+          </a>
+        </div>
       </div>
-    <?php if(is_user_logged_in()): ?>
-      </div>
-    </a>
-    <?php else: ?>
-    </div>
-    <?php endif; ?>
-    </div>
-    <?php
-
+      <?php
+    }
   }
+  ?>
+  </div>
+  <?php
 }
+
+
+

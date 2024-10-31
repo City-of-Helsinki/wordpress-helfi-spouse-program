@@ -140,6 +140,51 @@ function spouse_create_posttypes() {
 }
 add_action( 'init', 'spouse_create_posttypes' );
 
+// Init Event CPT
+function spouse_create_event_post_type() {
+  register_post_type('event',
+      array(
+          'labels'      => array(
+              'name'          => __('Activities', 'spouse'),
+              'singular_name' => __('Activity', 'spouse'),
+          ),
+          'public'      => true,
+          'has_archive' => false,
+          'show_ui' => true,
+          'supports' => array('title', 'thumbnail'),
+          'rewrite'     => array( 'slug' => 'activities' )
+      )
+  );
+}
+add_action('init', 'spouse_create_event_post_type');
+
+// Create "Target Group" taxonomy for events
+function spouse_create_event_taxonomies() {
+  register_taxonomy('target_group', array('post', 'event'), array(
+    'hierarchical' => true,
+    'labels' => array(
+      'name' => _x( 'Target group', 'taxonomy general name' ),
+      'singular_name' => _x( 'Target group', 'taxonomy singular name' ),
+      'search_items' =>  __( 'Search Target groups' ),
+      'all_items' => __( 'All Target groups' ),
+      'parent_item' => __( 'Parent Target group' ),
+      'parent_item_colon' => __( 'Parent Target group:' ),
+      'edit_item' => __( 'Edit Target group' ),
+      'update_item' => __( 'Update Target group' ),
+      'add_new_item' => __( 'Add New Target group' ),
+      'new_item_name' => __( 'New Target group Name' ),
+      'menu_name' => __( 'Target groups' ),
+    ),
+
+    'rewrite' => array(
+      'slug' => 'target_group',
+      'with_front' => false,
+      'hierarchical' => true
+    ),
+  ));
+}
+add_action( 'init', 'spouse_create_event_taxonomies');
+
 function spouse_access_control_check(){
     global $post;
     global $wp;
