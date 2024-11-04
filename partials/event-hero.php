@@ -11,29 +11,27 @@ $placeholder_img = 'https://spouseprogram.fi/wp-content/uploads/2024/10/Logo-wit
 $startDate = $start->format('l j F Y');
 $startTime = $start->format('H.i');
 $endTime   = $end->format('H.i');
-
 $terms = get_the_terms($id, 'target_group');
+$category = '';
 
     if($terms && $term = reset($terms)) {   
-
         $category = $term->name;
+    }
 
-        if (!empty($event_color)) {
-            $color = $event_color;
-        }
-        elseif ($category === 'Community') {
-            $color = '#bac1f2';
-        }
-        elseif ($category === 'Career support') {
-            $color = '#fbd0c8';
-         }
-        elseif ($category === 'Company partner') {
-            $color = '#f8f3ab';
-        } 
-        else {
-            $color = '#92c8c2';
-        }
-      }
+    if (!empty($event_color)) {
+        $color = $event_color;
+    }
+    elseif ($category === 'Community') {
+        $color = '#bac1f2';
+    }
+    elseif ($category === 'Career support') {
+        $color = '#fbd0c8';
+    }
+    elseif ($category === 'Company partner') {
+        $color = '#f8f3ab';
+    } else {
+        $color = '#4dbdb1';
+    }
 ?>
 <div class="event-navigation"><a href="<?php echo site_url('/activities'); ?>" class="go-back"><span class="dashicons dashicons-arrow-left-alt2"></span></a> </div>
 <div class="event-top">
@@ -52,19 +50,17 @@ $terms = get_the_terms($id, 'target_group');
         </div>
         <div class="event-meta">
             <?php
-            if (isset($category)) :
+            if (!empty($category)) :
             ?>
             <div class="event-category"><span class="category-btn" style="background-color: <?php echo $color; ?>;"><?php echo $category; ?></span></div>
             <?php endif; ?>  
-
-            <div class="event-info"><span class="meta-title">Date:</span><span class="meta-info"><?php echo $startDate; ?></span></div>
-            <div class="event-info"><span class="meta-title">Time:</span><span class="meta-info"><?php echo $startTime . ' &ndash; ' . $endTime; ?></span></div>
-            <div class="event-info"><span class="meta-title">Place:</span><span class="meta-info"><?php echo get_field('location', $id); ?></span></div>
-                        
-            <?php if( ! empty($event_url)): ?>
-            <div class="event-read-more btn">
-                <a href="<?php echo get_field('event_url', $id ); ?>" target="_blank"><?php echo $event_url_text; ?></a>
+            <div class="meta-table">
+                <div class="event-info"><span class="meta-title">Date:</span><span class="meta-info"><?php echo $startDate; ?></span></div>
+                <div class="event-info"><span class="meta-title">Time:</span><span class="meta-info"><?php echo $startTime . ' &ndash; ' . $endTime; ?></span></div>
+                <div class="event-info"><span class="meta-title">Place:</span><span class="meta-info"><?php echo get_field('location', $id); ?></span></div>
             </div>
+            <?php if( ! empty($event_url)): ?>    
+                <a class="event-read-more btn" href="<?php echo get_field('event_url', $id ); ?>" target="_blank"><?php echo $event_url_text; ?></a>
             <?php endif; ?>
             </div>
         </div>
