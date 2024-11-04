@@ -48,22 +48,25 @@ function spouse_print_events($events) {
 
       $terms = get_the_terms($event->ID, 'target_group');
       $event_color = get_field('event_color', $event->ID );
-      $color = '#fff';
       $category = '';
+
       if($terms && $term = reset($terms)) {
         $category = $term->name;
-        if (!empty($event_color)) {
-          $color = $event_color;
-        }
-        elseif ($category === 'Community') {
-          $color = '#bac1f2';
-        }
-        elseif ($category === 'Career support') {
-          $color = '#fbd0c8';
-        }
-        elseif ($category === 'Company partner') {
-          $color = '#f8f3ab';
-        } 
+      }
+
+      if (!empty($event_color)) {
+        $color = $event_color;
+      }
+      elseif ($category === 'Community') {
+        $color = '#bac1f2';
+      }
+      elseif ($category === 'Career support') {
+        $color = '#fbd0c8';
+      }
+      elseif ($category === 'Company partner') {
+        $color = '#f8f3ab';
+      } else {
+        $color = '#fff';
       }
 
       if( get_field( 'start_time', $event->ID) ) {

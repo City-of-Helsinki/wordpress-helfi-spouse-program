@@ -439,8 +439,7 @@ function spouse_acf_input_admin_footer() {
       acf.add_filter('color_picker_args', function( args, $field ){
 
           // Add colors to color palette
-          args.palettes = ["#01a090", "#4dbdb1", "#bac1f2", "#231f20", "#ffffff"]
-
+          args.palettes = ["#01a090", "#4dbdb1", "#f8f3ab", "#fbd0c8", "#bac1f2", "#231f20", "#ffffff"]
 
           // return
           return args;
