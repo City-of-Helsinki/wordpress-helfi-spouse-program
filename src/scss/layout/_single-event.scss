@@ -150,11 +150,6 @@
               background-color: darken($btn-primary, 5%);
               outline: $black 1px solid;
             }
-
-            &:before {
-              display: none;
-            }
-            
           }
         }
       }

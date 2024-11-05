@@ -10,11 +10,3 @@
   clip: rect(1px, 1px, 1px, 1px);
   white-space: nowrap;
 }
-
-a {
-  &[target="_blank"]::before {
-    content: "\f08e";
-    font-family: FontAwesome, sans-serif;
-    margin: 0 5px 0 3px;
-  }
-}
