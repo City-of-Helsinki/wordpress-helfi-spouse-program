@@ -18,7 +18,13 @@
         <div id="main-menu" class="collapse navbar-collapse ml-2">
             <ul class="nav navbar-nav">
             <?php
-                echo spouse_main_menu();
+                wp_nav_menu(
+                    array(
+                        'menu' => 'main-menu',
+                        'menu_class'        => 'nav navbar-nav',
+                        'fallback_cb'       => 'WP_Bootstrap_Navwalker::fallback',
+                        'walker'            => new WP_Bootstrap_Navwalker(),
+                ));
             ?>
             </ul>
             <div class="navbar-login-nav ml-auto ">
