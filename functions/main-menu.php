@@ -4,7 +4,6 @@ require_once get_template_directory() . '/class-wp-bootstrap-navwalker.php';
 // add main menu
 function spouse_menu() {
   register_nav_menu('main-menu', __( 'Main menu' ));
-  register_nav_menu('sidebar-menu', __('Sidebar menu on main page') );
 }
 add_action( 'init', 'spouse_menu' );
 add_filter( 'wp_nav_menu_objects', 'spouse_add_main_menu_to_dropdpwn', 10, 2 );

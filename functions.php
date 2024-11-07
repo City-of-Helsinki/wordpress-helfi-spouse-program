@@ -48,7 +48,6 @@ if ( function_exists('register_sidebar') ) {
   ];
   $otherWidgets = [
     'social_title' => 'Social sharing title',
-    'sidebar_menu' => 'Sidebar menu on main page'
   ];
   foreach($footerWidgets as $key => $widget){
     register_sidebar([
