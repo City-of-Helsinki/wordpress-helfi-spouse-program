@@ -1,0 +1,709 @@
+{
+  "key": "group_events_flexible",
+  "title": "Flexible components",
+  "fields": [
+    {
+      "key": "field_654397ba74bd3",
+      "label": "Block Elements",
+      "name": "block_elements",
+      "aria-label": "",
+      "type": "flexible_content",
+      "instructions": "",
+      "required": 0,
+      "conditional_logic": 0,
+      "wrapper": {
+        "width": "",
+        "class": "",
+        "id": ""
+      },
+      "layouts": {
+        "layout_6554720a00e31": {
+          "key": "layout_6554720a00e32",
+          "name": "content_editor",
+          "label": "Content editor",
+          "display": "block",
+          "sub_fields": [
+            {
+              "key": "field_6554721300e34",
+              "label": "Content",
+              "name": "ce_content",
+              "aria-label": "",
+              "type": "wysiwyg",
+              "instructions": "",
+              "required": 0,
+              "conditional_logic": 0,
+              "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+              },
+              "default_value": "",
+              "tabs": "all",
+              "toolbar": "full",
+              "media_upload": 1,
+              "delay": 0
+            },
+            {
+              "key": "field_655e0930d1f84",
+              "label": "Anchor tag",
+              "name": "anchor_tag",
+              "aria-label": "",
+              "type": "text",
+              "instructions": "Don't use special characters or spaces",
+              "required": 0,
+              "conditional_logic": 0,
+              "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+              },
+              "default_value": "",
+              "maxlength": "",
+              "placeholder": "",
+              "prepend": "",
+              "append": ""
+            }
+          ],
+          "min": "",
+          "max": ""
+        },
+        "layout_6551fda311744": {
+          "key": "layout_6551fda311745",
+          "name": "image_text_box",
+          "label": "Image + text box",
+          "display": "block",
+          "sub_fields": [
+            {
+              "key": "field_6560788b9468g",
+              "label": "Style",
+              "name": "it_style",
+              "aria-label": "",
+              "type": "true_false",
+              "instructions": "",
+              "required": 0,
+              "conditional_logic": 0,
+              "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+              },
+              "message": "",
+              "default_value": 0,
+              "ui_on_text": "Heart shaped",
+              "ui_off_text": "Rectangle",
+              "ui": 1
+            },
+            {
+              "key": "field_6551fe4411747",
+              "label": "Background image",
+              "name": "it_background_image",
+              "aria-label": "",
+              "type": "image",
+              "instructions": "",
+              "required": 0,
+              "conditional_logic": 0,
+              "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+              },
+              "return_format": "url",
+              "library": "all",
+              "min_width": "",
+              "min_height": "",
+              "min_size": "",
+              "max_width": "",
+              "max_height": "",
+              "max_size": "",
+              "mime_types": "",
+              "preview_size": "medium"
+            },
+            {
+              "key": "field_657323604da53",
+              "label": "Heart shape background color",
+              "name": "heart_shape_background_color",
+              "aria-label": "",
+              "type": "color_picker",
+              "instructions": "",
+              "required": 0,
+              "conditional_logic": [
+                [
+                  {
+                    "field": "field_6551fe4411747",
+                    "operator": "==empty"
+                  },
+                  {
+                    "field": "field_6560788b9468g",
+                    "operator": "==",
+                    "value": "1"
+                  }
+                ]
+              ],
+              "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+              },
+              "default_value": "#4dbdb1",
+              "enable_opacity": 0,
+              "return_format": "string"
+            },
+            {
+              "key": "field_6551ff7e11748",
+              "label": "Image position",
+              "name": "it_image_position",
+              "aria-label": "",
+              "type": "true_false",
+              "instructions": "Choose whether the image is on the left or right side of the text box.",
+              "required": 0,
+              "conditional_logic": 0,
+              "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+              },
+              "message": "",
+              "default_value": 0,
+              "ui_on_text": "Left",
+              "ui_off_text": "Right",
+              "ui": 1
+            },
+            {
+              "key": "field_6552002c11749",
+              "label": "Title",
+              "name": "it_title",
+              "aria-label": "",
+              "type": "text",
+              "instructions": "",
+              "required": 0,
+              "conditional_logic": 0,
+              "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+              },
+              "default_value": "",
+              "maxlength": "",
+              "placeholder": "",
+              "prepend": "",
+              "append": ""
+            },
+            {
+              "key": "field_6552003911750",
+              "label": "Text body",
+              "name": "it_text_body",
+              "aria-label": "",
+              "type": "wysiwyg",
+              "instructions": "",
+              "required": 0,
+              "conditional_logic": 0,
+              "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+              },
+              "default_value": "",
+              "tabs": "all",
+              "toolbar": "full",
+              "media_upload": 0,
+              "delay": 0
+            },
+            {
+              "key": "field_655200ac1174b",
+              "label": "Links",
+              "name": "it_links",
+              "aria-label": "",
+              "type": "repeater",
+              "instructions": "",
+              "required": 0,
+              "conditional_logic": 0,
+              "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+              },
+              "layout": "table",
+              "min": 0,
+              "max": 0,
+              "collapsed": "",
+              "button_label": "Lisää rivi",
+              "rows_per_page": 20,
+              "sub_fields": [
+                {
+                  "key": "field_655200c51174c",
+                  "label": "Link",
+                  "name": "it_link",
+                  "aria-label": "",
+                  "type": "url",
+                  "instructions": "",
+                  "required": 0,
+                  "conditional_logic": 0,
+                  "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                  },
+                  "default_value": "",
+                  "placeholder": "",
+                  "parent_repeater": "field_655200ac1174b"
+                },
+                {
+                  "key": "field_655200ec1174d",
+                  "label": "Link text",
+                  "name": "it_link_text",
+                  "aria-label": "",
+                  "type": "text",
+                  "instructions": "",
+                  "required": 0,
+                  "conditional_logic": 0,
+                  "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                  },
+                  "default_value": "",
+                  "maxlength": "",
+                  "placeholder": "",
+                  "prepend": "",
+                  "append": "",
+                  "parent_repeater": "field_655200ac1174q"
+                }
+              ]
+            },
+            {
+              "key": "field_655200fc1174e",
+              "label": "Background color",
+              "name": "it_background_color",
+              "aria-label": "",
+              "type": "color_picker",
+              "instructions": "",
+              "required": 0,
+              "conditional_logic": 0,
+              "wrapper": {
+                "width": "50",
+                "class": "",
+                "id": ""
+              },
+              "default_value": "#4dbdb1",
+              "enable_opacity": 0,
+              "return_format": "string"
+            },
+            {
+              "key": "field_6552015f1174f",
+              "label": "Text color",
+              "name": "it_text_color",
+              "aria-label": "",
+              "type": "color_picker",
+              "instructions": "",
+              "required": 0,
+              "conditional_logic": 0,
+              "wrapper": {
+                "width": "50",
+                "class": "",
+                "id": ""
+              },
+              "default_value": "#212529",
+              "enable_opacity": 0,
+              "return_format": "string"
+            },
+            {
+              "key": "field_655e09c1d1f86",
+              "label": "Anchor tag",
+              "name": "anchor_tag",
+              "aria-label": "",
+              "type": "text",
+              "instructions": "Don't use special characters or spaces",
+              "required": 0,
+              "conditional_logic": 0,
+              "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+              },
+              "default_value": "",
+              "maxlength": "",
+              "placeholder": "",
+              "prepend": "",
+              "append": ""
+            }
+          ],
+          "min": "",
+          "max": ""
+        },
+        "layout_6551fda311745": {
+          "key": "layout_6551fda311746",
+          "name": "banner",
+          "label": "Activity banner",
+          "display": "block",
+          "sub_fields": [
+            {
+              "key": "field_6551fe4411748",
+              "label": "Background image",
+              "name": "banner_background_image",
+              "aria-label": "",
+              "type": "image",
+              "instructions": "",
+              "required": 0,
+              "conditional_logic": 0,
+              "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+              },
+              "return_format": "url",
+              "library": "all",
+              "min_width": "",
+              "min_height": "",
+              "min_size": "",
+              "max_width": "",
+              "max_height": "",
+              "max_size": "",
+              "mime_types": "",
+              "preview_size": "large"
+            },
+            {
+              "key": "field_6551ff7e11749",
+              "label": "Image only?",
+              "name": "banner_image_only",
+              "aria-label": "",
+              "type": "true_false",
+              "instructions": "Choose whether this banner is for image only or full banner with text.",
+              "required": 0,
+              "conditional_logic": 0,
+              "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+              },
+              "message": "",
+              "default_value": 0,
+              "ui_on_text": "Image Only",
+              "ui_off_text": "Full Banner",
+              "ui": 1
+            },
+            {
+              "key": "field_657323604da59",
+              "label": "Banner background color",
+              "name": "banner_background_color",
+              "aria-label": "",
+              "type": "color_picker",
+              "instructions": "",
+              "required": 0,
+              "conditional_logic": [
+                [
+                  {
+                    "field": "field_6551ff7e11749",
+                    "operator": "==",
+                    "value": "0"
+                  }
+                ]
+              ],
+              "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+              },
+              "default_value": "#4dbdb1",
+              "enable_opacity": 0,
+              "return_format": "string"
+            },
+            {
+              "key": "field_6552002c11750",
+              "label": "Title",
+              "name": "banner_title",
+              "aria-label": "",
+              "type": "text",
+              "instructions": "",
+              "required": 0,
+              "conditional_logic": [
+                [
+                  {
+                    "field": "field_6551ff7e11749",
+                    "operator": "==",
+                    "value": "0"
+                  }
+                ]
+              ],
+              "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+              },
+              "default_value": "",
+              "maxlength": "",
+              "placeholder": "",
+              "prepend": "",
+              "append": ""
+            },
+            {
+              "key": "field_6552003911751",
+              "label": "Text body",
+              "name": "banner_text_body",
+              "aria-label": "",
+              "type": "wysiwyg",
+              "instructions": "",
+              "required": 0,
+              "conditional_logic": [
+                [
+                  {
+                    "field": "field_6551ff7e11749",
+                    "operator": "==",
+                    "value": "0"
+                  }
+                ]
+              ],
+              "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+              },
+              "default_value": "",
+              "tabs": "all",
+              "toolbar": "full",
+              "media_upload": 0,
+              "delay": 0
+            },
+            {
+              "key": "field_655200ac1174c",
+              "label": "Extra fields",
+              "name": "banner_extra_fields",
+              "aria-label": "",
+              "type": "repeater",
+              "instructions": "",
+              "required": 0,
+              "conditional_logic": [
+                [
+                  {
+                    "field": "field_6551ff7e11749",
+                    "operator": "==",
+                    "value": "0"
+                  }
+                ]
+              ],
+              "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+              },
+              "layout": "table",
+              "min": 0,
+              "max": 0,
+              "collapsed": "",
+              "button_label": "Lisää rivi",
+              "rows_per_page": 20,
+              "sub_fields": [
+                {
+                  "key": "field_655200c51174x",
+                  "label": "Extra field prefix",
+                  "name": "banner_extra_field_prefix",
+                  "aria-label": "",
+                  "type": "text",
+                  "instructions": "Add event round nro. etc. extra information.",
+                  "required": 0,
+                  "conditional_logic": 0,
+                  "wrapper": {
+                    "width": "30",
+                    "class": "",
+                    "id": ""
+                  },
+                  "default_value": "",
+                  "placeholder": "",
+                  "parent_repeater": "field_655200ac1174c"
+                },
+                {
+                  "key": "field_655200c51174y",
+                  "label": "Extra field",
+                  "name": "banner_extra_field",
+                  "aria-label": "",
+                  "type": "text",
+                  "instructions": "Add event round header etc. extra information.",
+                  "required": 0,
+                  "conditional_logic": 0,
+                  "wrapper": {
+                    "width": "70",
+                    "class": "",
+                    "id": ""
+                  },
+                  "default_value": "",
+                  "placeholder": "",
+                  "parent_repeater": "field_655200ac1174c"
+                }
+              ]
+            },
+            {
+              "key": "field_6552015f1174g",
+              "label": "Text color",
+              "name": "banner_text_color",
+              "aria-label": "",
+              "type": "color_picker",
+              "instructions": "",
+              "required": 0,
+              "conditional_logic": [
+                [
+                  {
+                    "field": "field_6551ff7e11749",
+                    "operator": "==",
+                    "value": "0"
+                  }
+                ]
+              ],
+              "wrapper": {
+                "width": "50",
+                "class": "",
+                "id": ""
+              },
+              "default_value": "#fff",
+              "enable_opacity": 0,
+              "return_format": "string"
+            },
+            {
+              "key": "field_6552015f1174h",
+              "label": "Banner accent color",
+              "name": "banner_accent_color",
+              "aria-label": "",
+              "type": "color_picker",
+              "instructions": "",
+              "required": 0,
+              "conditional_logic": [
+                [
+                  {
+                    "field": "field_6551ff7e11749",
+                    "operator": "==",
+                    "value": "0"
+                  }
+                ]
+              ],
+              "wrapper": {
+                "width": "50",
+                "class": "",
+                "id": ""
+              },
+              "default_value": "#f7a091",
+              "enable_opacity": 0,
+              "return_format": "string"
+            }
+          ],
+          "min": "",
+          "max": ""
+        },
+        "layout_656740672b411": {
+          "key": "layout_656740672b412",
+          "name": "video",
+          "label": "Video",
+          "display": "block",
+          "sub_fields": [
+            {
+              "key": "field_656740742b414",
+              "label": "Text content",
+              "name": "text_content",
+              "aria-label": "",
+              "type": "wysiwyg",
+              "instructions": "If left empty the video thumbnail will be full width.",
+              "required": 0,
+              "conditional_logic": 0,
+              "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+              },
+              "default_value": "",
+              "tabs": "all",
+              "toolbar": "full",
+              "media_upload": 1,
+              "delay": 0
+            },
+            {
+              "key": "field_656741192b415",
+              "label": "Video thumbnail",
+              "name": "video_thumbnail",
+              "aria-label": "",
+              "type": "image",
+              "instructions": "",
+              "required": 0,
+              "conditional_logic": 0,
+              "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+              },
+              "return_format": "id",
+              "library": "all",
+              "min_width": "",
+              "min_height": "",
+              "min_size": "",
+              "max_width": "",
+              "max_height": "",
+              "max_size": "",
+              "mime_types": "",
+              "preview_size": "medium"
+            },
+            {
+              "key": "field_6567414b2b416",
+              "label": "Youtube video id",
+              "name": "youtube_video_id",
+              "aria-label": "",
+              "type": "text",
+              "instructions": "For example: tPREwaPc7zc",
+              "required": 0,
+              "conditional_logic": 0,
+              "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+              },
+              "default_value": "",
+              "maxlength": "",
+              "placeholder": "",
+              "prepend": "",
+              "append": ""
+            },
+            {
+              "key": "field_65674c3e34c30",
+              "label": "Anchor tag",
+              "name": "anchor_tag",
+              "aria-label": "",
+              "type": "text",
+              "instructions": "",
+              "required": 0,
+              "conditional_logic": 0,
+              "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+              },
+              "default_value": "",
+              "maxlength": "",
+              "placeholder": "",
+              "prepend": "",
+              "append": ""
+            }
+          ],
+          "min": "",
+          "max": ""
+        }
+      },
+      "min": "",
+      "max": "",
+      "button_label": "Lisää rivi"
+    }
+  ],
+  "location": [
+    [
+      {
+        "param": "post_type",
+        "operator": "==",
+        "value": "event"
+      }
+    ]
+  ],
+  "menu_order": 0,
+  "position": "normal",
+  "style": "default",
+  "label_placement": "top",
+  "instruction_placement": "label",
+  "hide_on_screen": "",
+  "active": true,
+  "description": "",
+  "show_in_rest": 0,
+  "modified": 1730285996
+}
