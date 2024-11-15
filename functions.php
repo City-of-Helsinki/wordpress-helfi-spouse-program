@@ -459,7 +459,7 @@ function spouse_notification( $wp_customize ) {
   $wp_customize->add_setting( 'notification_enabled', array( 'default' => false ) );
   $wp_customize->add_setting( 'notification_title', array( 'default' => '') );
   $wp_customize->add_setting( 'notification_body', array( 'default' => '' ) );
-  $wp_customize->add_setting( 'notification_visibility', array( 'default' => '') );
+  $wp_customize->add_setting( 'notification_visibility', array( 'default' => false) );
 
   // Section
   $wp_customize->add_section(
