@@ -454,3 +454,69 @@ function spouse_acf_input_admin_footer() {
 }
 add_action('acf/input/admin_footer', 'spouse_acf_input_admin_footer');
 
+function spouse_notification( $wp_customize ) {
+  //Setting
+  $wp_customize->add_setting( 'notification_enabled', array( 'default' => false ) );
+  $wp_customize->add_setting( 'notification_title', array( 'default' => '') );
+  $wp_customize->add_setting( 'notification_body', array( 'default' => '' ) );
+  $wp_customize->add_setting( 'notification_visibility', array( 'default' => '') );
+
+  // Section
+  $wp_customize->add_section(
+    'sp-notifications',
+    array(
+      'title' => __('Notification', 'spouse'),
+      'priority' => 30,
+      'description' => __( 'Enter notification title and description' , 'spouse' )
+    )
+  );
+
+  //Control
+  $wp_customize->add_control(
+    new WP_Customize_Control(
+      $wp_customize, 'notification_enabled',
+      array(
+        'label' => __( 'Enabled', 'spouse'),
+        'section' => 'sp-notifications',
+        'settings' => 'notification_enabled',
+        'type' => 'checkbox'
+      )
+    )
+  );
+  
+  $wp_customize->add_control(
+    new WP_Customize_Control(
+      $wp_customize, 'notification_title',
+      array(
+        'label' => __( 'Title', 'spouse'),
+        'section' => 'sp-notifications',
+        'settings' => 'notification_title'
+      )
+    )
+  );
+  $wp_customize->add_control(
+    new WP_Customize_Control(
+      $wp_customize, 'notification_body',
+      array(
+        'label' => __( 'Message', 'spouse'),
+        'section' => 'sp-notifications',
+        'settings' => 'notification_body'
+      )
+    )
+  );
+
+  $wp_customize->add_control(
+    new WP_Customize_Control(
+      $wp_customize, 'notification_visibility',
+      array(
+        'label' => __( 'Show on front page', 'spouse'),
+        'section' => 'sp-notifications',
+        'settings' => 'notification_visibility',
+        'type' => 'checkbox'
+      )
+    )
+  );
+
+}
+
+add_action( 'customize_register', 'spouse_notification' );
