@@ -1,27 +1,12 @@
 {
     "key": "group_events_meta",
     "title": "Events",
-    "id": "acf_events",
-    "location": [
-        [
-            {
-                "param": "post_type",
-                "operator": "==",
-                "value": "event"
-            }
-        ]
-    ],
-    "options": {
-        "position": "normal",
-        "layout": "no_box",
-        "hide_on_screen": []
-    },
-    "menu_order": 0,
     "fields": [
         {
             "key": "field_5d0a1cf593531",
             "label": "Start time",
             "name": "start_time",
+            "aria-label": "",
             "type": "date_time_picker",
             "instructions": "",
             "required": 1,
@@ -39,6 +24,7 @@
             "key": "field_5d0a1dba3d4ff",
             "label": "End time",
             "name": "end_time",
+            "aria-label": "",
             "type": "date_time_picker",
             "instructions": "",
             "required": 1,
@@ -53,10 +39,11 @@
             "first_day": 1
         },
         {
-            "key": "field_5d0a1e97e4b50",
+            "key": "field_5d0a1e97e4b51",
             "label": "Location",
             "name": "location",
-            "type": "text",
+            "aria-label": "",
+            "type": "taxonomy",
             "instructions": "",
             "required": 1,
             "conditional_logic": 0,
@@ -65,16 +52,22 @@
                 "class": "",
                 "id": ""
             },
-            "default_value": "",
-            "placeholder": "Mannerheiminkatu 10 C 2, 00100, Helsinki",
-            "prepend": "",
-            "append": "",
-            "maxlength": ""
+            "taxonomy": "location",
+            "add_term": 1,
+            "save_terms": 1,
+            "load_terms": 1,
+            "return_format": "object",
+            "field_type": "select",
+            "allow_null": 0,
+            "bidirectional": 0,
+            "multiple": 0,
+            "bidirectional_target": []
         },
         {
             "key": "field_5ecd6fe2c1a99",
             "label": "Event color",
             "name": "event_color",
+            "aria-label": "",
             "type": "color_picker",
             "instructions": "",
             "required": 0,
@@ -92,8 +85,9 @@
             "key": "field_5d0a1ecce4b52",
             "label": "Event url",
             "name": "event_url",
+            "aria-label": "",
             "type": "url",
-            "instructions": "Full address to an external location (starting with https://)",
+            "instructions": "Full address to an external location (starting with https:\/\/)",
             "required": 0,
             "conditional_logic": 0,
             "wrapper": {
@@ -108,6 +102,7 @@
             "key": "field_5da9a4b695ecd",
             "label": "Read More Text",
             "name": "read_more_text",
+            "aria-label": "",
             "type": "text",
             "instructions": "Text for the external link (event url)",
             "required": 0,
@@ -127,6 +122,7 @@
             "key": "field_60bdd90470168",
             "label": "Event short description",
             "name": "event_short_description",
+            "aria-label": "",
             "type": "text",
             "instructions": "",
             "required": 0,
@@ -143,5 +139,23 @@
             "maxlength": ""
         }
     ],
-    "modified": 1730121378
+    "location": [
+        [
+            {
+                "param": "post_type",
+                "operator": "==",
+                "value": "event"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "seamless",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": true,
+    "description": "",
+    "show_in_rest": 0,
+    "modified": 1731932195
 }

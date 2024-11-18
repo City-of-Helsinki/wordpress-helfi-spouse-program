@@ -46,6 +46,10 @@ function spouse_print_events($events) {
   if ( is_array($events) ) {
     foreach( $events as $event ) {
 
+      if ( strtotime(get_field( 'start_time', $event->ID )) < current_time('timestamp') ) {
+        continue;
+      }
+
       $terms = get_the_terms($event->ID, 'target_group');
       $event_color = get_field('event_color', $event->ID );
       $category = '';

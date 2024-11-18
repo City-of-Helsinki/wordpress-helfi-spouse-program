@@ -51,6 +51,7 @@ if ( function_exists('register_sidebar') ) {
   ];
   $otherWidgets = [
     'social_title' => 'Social sharing title',
+    'sidebar_menu' => 'Sidebar menu on main page'
   ];
   foreach($footerWidgets as $key => $widget){
     register_sidebar([
@@ -162,7 +163,7 @@ add_action('init', 'spouse_create_event_post_type');
 
 // Create "Target Group" taxonomy for events
 function spouse_create_event_taxonomies() {
-  register_taxonomy('target_group', array('post', 'event'), array(
+  register_taxonomy('target_group', array('event'), array(
     'hierarchical' => true,
     'labels' => array(
       'name' => _x( 'Target group', 'taxonomy general name' ),
@@ -182,6 +183,27 @@ function spouse_create_event_taxonomies() {
       'slug' => 'target_group',
       'with_front' => false,
       'hierarchical' => true
+    ),
+  ));
+
+  register_taxonomy('location', array('event'), array(
+    'hierarchical' => false,
+    'labels' => array(
+      'name' => _x( 'Location', 'taxonomy general name' ),
+      'singular_name' => _x( 'Location', 'taxonomy singular name' ),
+      'search_items' =>  __( 'Search Locations' ),
+      'all_items' => __( 'All Locations' ),
+      'edit_item' => __( 'Edit Location' ),
+      'update_item' => __( 'Update Location' ),
+      'add_new_item' => __( 'Add New Location' ),
+      'new_item_name' => __( 'New Location Name' ),
+      'menu_name' => __( 'Locations' )
+    ),
+
+    'rewrite' => array(
+      'slug' => 'location',
+      'with_front' => false,
+      'hierarchical' => false
     ),
   ));
 }
