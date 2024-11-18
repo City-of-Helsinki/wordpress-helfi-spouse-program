@@ -505,18 +505,6 @@ function spouse_notification( $wp_customize ) {
     )
   );
 
-  $wp_customize->add_control(
-    new WP_Customize_Control(
-      $wp_customize, 'notification_visibility',
-      array(
-        'label' => __( 'Show on front page', 'spouse'),
-        'section' => 'sp-notifications',
-        'settings' => 'notification_visibility',
-        'type' => 'checkbox'
-      )
-    )
-  );
-
 }
 
 add_action( 'customize_register', 'spouse_notification' );

@@ -6,12 +6,12 @@ $notification_visibility = get_theme_mod('notification_visibility');
 ?>
 
 <?php if ( true == $notification_enabled ): ?>
-<div class="alert alert-dismissible fade show container-fluid sp-notifications bg-info rounded-0" role="alert">
+<div id="sp-notification" class="alert alert-dismissible fade show container-fluid sp-notifications rounded-0 mt-3 pt-3" role="alert">
     <div class="sp-notification">
-        <div class="sp-notification-title">
+        <div class="sp-notification-title text-center">
             <?php echo $notification_title; ?>
         </div>
-        <div class="sp-notification-body">
+        <div class="sp-notification-body text-center">
             <?php echo $notification_body; ?>
         </div>
     </div>
