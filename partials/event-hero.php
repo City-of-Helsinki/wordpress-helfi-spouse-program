@@ -5,6 +5,8 @@ $event_url_text = get_field('read_more_text', $id ) ? get_field('read_more_text'
 $event_color = get_field('event_color', $id );
 $start = ( new \DateTime() )->setTimestamp( strtotime( get_field( 'start_time', $id)));
 $end = ( new \DateTime() )->setTimestamp( strtotime( get_field( 'end_time', $id )));
+$location = get_field('location', $id);
+
 $event_img = get_the_post_thumbnail_url(get_the_ID(), 'large');
 $placeholder_img = 'https://spouseprogram.fi/wp-content/uploads/2024/10/Logo-without-text-and-favicon.png';
 
@@ -57,7 +59,7 @@ $category = '';
             <div class="meta-table">
                 <div class="event-info"><span class="meta-title">Date:</span><span class="meta-info"><?php echo $startDate; ?></span></div>
                 <div class="event-info"><span class="meta-title">Time:</span><span class="meta-info"><?php echo $startTime . ' &ndash; ' . $endTime; ?></span></div>
-                <div class="event-info"><span class="meta-title">Place:</span><span class="meta-info"><?php echo get_field('location', $id); ?></span></div>
+                <div class="event-info"><span class="meta-title">Place:</span><span class="meta-info"><?php echo $location->name; ?></span></div>
             </div>
             <?php if( ! empty($event_url)): ?>    
                 <a class="event-read-more btn" href="<?php echo get_field('event_url', $id ); ?>" target="_blank"><?php echo $event_url_text; ?></a>

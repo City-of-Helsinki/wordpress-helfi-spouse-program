@@ -552,7 +552,7 @@
                 "class": "",
                 "id": ""
               },
-              "default_value": "#fff",
+              "default_value": "#212529",
               "enable_opacity": 0,
               "return_format": "string"
             },
@@ -705,5 +705,5 @@
   "active": true,
   "description": "",
   "show_in_rest": 0,
-  "modified": 1730285996
+  "modified": 1731932644
 }
