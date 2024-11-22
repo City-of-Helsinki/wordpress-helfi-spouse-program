@@ -530,3 +530,17 @@ function spouse_notification( $wp_customize ) {
 }
 
 add_action( 'customize_register', 'spouse_notification' );
+
+// [spouse-cta text="some text" href="some url" rectangle="true"]
+function cta($atts) {
+
+	$a = shortcode_atts( array(
+		'text' => '',
+		'href' => '',
+    'rectangle' => false
+	), $atts );
+
+  $cta_button = '<a class="btn btn-outline-dark mx-auto py-3 sp-cta ' . ($a["rectangle"] ? "rounded-0" : "" ) . '" href="' . esc_attr($a["href"]) . '">' . esc_attr($a["text"]) . '</a>';
+  return $cta_button;
+}
+add_shortcode('spouse-cta', 'cta');
