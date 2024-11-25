@@ -61,3 +61,14 @@
 .icon-login{
   background-image: url(./src/scss/icons/log-in-outline.svg)
 }
+
+.sp-cta {
+  &.btn:hover {
+    color: $white !important;
+    text-decoration: underline;
+    
+    svg {
+      fill: $white;
+    }
+  }
+}
