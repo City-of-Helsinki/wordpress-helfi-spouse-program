@@ -6,6 +6,7 @@
             "key": "field_61c2e5cd1ccbb",
             "label": "Registration setttings",
             "name": "registration_setttings",
+            "aria-label": "",
             "type": "group",
             "instructions": "",
             "required": 0,
@@ -21,9 +22,10 @@
                     "key": "field_61c2e5eb1ccbc",
                     "label": "Email Subject",
                     "name": "email_subject",
+                    "aria-label": "",
                     "type": "text",
                     "instructions": "",
-                    "required": 1,
+                    "required": 0,
                     "conditional_logic": 0,
                     "wrapper": {
                         "width": "",
@@ -31,15 +33,16 @@
                         "id": ""
                     },
                     "default_value": "",
+                    "maxlength": "",
                     "placeholder": "",
                     "prepend": "",
-                    "append": "",
-                    "maxlength": ""
+                    "append": ""
                 },
                 {
                     "key": "field_61c2e6061ccbd",
                     "label": "Email Body Text",
                     "name": "email_body_text",
+                    "aria-label": "",
                     "type": "textarea",
                     "instructions": "",
                     "required": 0,
@@ -54,6 +57,49 @@
                     "maxlength": "",
                     "rows": "",
                     "new_lines": ""
+                }
+            ]
+        },
+        {
+            "key": "field_67456d91e6fe4",
+            "label": "Activity System Settings",
+            "name": "activity_setttings",
+            "aria-label": "",
+            "type": "group",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "layout": "block",
+            "sub_fields": [
+                {
+                    "key": "field_67456d91e6fe5",
+                    "label": "Activity Placeholder Image",
+                    "name": "placeholder_image",
+                    "aria-label": "",
+                    "type": "image",
+                    "instructions": "",
+                    "required": 1,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "return_format": "url",
+                    "library": "all",
+                    "min_width": "",
+                    "min_height": "",
+                    "min_size": "",
+                    "max_width": "",
+                    "max_height": "",
+                    "max_size": "",
+                    "mime_types": "",
+                    "preview_size": "medium"
                 }
             ]
         }
@@ -75,5 +121,6 @@
     "hide_on_screen": "",
     "active": true,
     "description": "",
-    "modified": 1640860165
+    "show_in_rest": 0,
+    "modified": 1732616129
 }

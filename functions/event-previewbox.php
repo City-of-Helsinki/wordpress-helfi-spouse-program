@@ -87,7 +87,7 @@ function spouse_print_events($events) {
 
       $aria_title = "$category. $event->post_title. { $start_date } from $start_time to $end_time. ";
       $event_img = get_the_post_thumbnail_url($event->ID, 'medium');
-      $placeholder_img = 'https://spouseprogram.fi/wp-content/uploads/2024/10/Logo-without-text-and-favicon.png';
+      $placeholder_img = get_field('placeholder_image', 'options_activity_setttings');
 
       ?>
       <div class="events-column">
