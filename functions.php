@@ -533,3 +533,19 @@ add_action( 'customize_register', 'spouse_notification' );
 // Disable admin email notifications
 add_filter( 'wp_new_user_notification_email_admin', '__return_false' );
 add_filter( 'send_password_change_email', '__return_false' );
+
+add_action( 'customize_register', 'spouse_notification' );
+
+// [spouse-cta text="some text" href="some url" rectangle="true"]
+function cta($atts) {
+
+	$a = shortcode_atts( array(
+		'text' => '',
+		'href' => '',
+    'rectangle' => false
+	), $atts );
+
+  $cta_button = '<a class="btn btn-outline-dark mr-auto py-3 sp-cta ' . ($a["rectangle"] ? "rounded-0" : "" ) . '" href="' . esc_attr($a["href"]) . '">' . esc_attr($a["text"]) . '</a>';
+  return $cta_button;
+}
+add_shortcode('spouse-cta', 'cta');
