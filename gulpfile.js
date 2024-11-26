@@ -19,7 +19,7 @@ var clean = require('gulp-rimraf');
 // ------------
 // Sass plugins
 // ------------
-var sass = require('gulp-sass');
+var sass = require('gulp-sass')(require('sass'));
 var sassGlob = require('gulp-sass-glob');
 var sourcemaps = require('gulp-sourcemaps');
 var autoprefix = require('gulp-autoprefixer');
@@ -28,7 +28,7 @@ var cleanCss = require('gulp-clean-css');
 // ----------------------------
 // Javascript plugins
 // ----------------------------
-var uglify = require('gulp-uglify');
+var uglify = require('gulp-uglify-es').default;
 
 // ------
 // Config
@@ -45,7 +45,7 @@ var path = {
     assets: './',
   },
   scripts: {
-    src: basePath.src + 'js/',
+    src: 'js/',
     assets: basePath.assets + 'js/',
   },
   images: {
@@ -83,7 +83,7 @@ function browserSyncInit() {
     files: [path.styles.assets + '**/*.css', path.scripts.assets + '**/*.js'],
     proxy: 'http://appserver',
     socket: {
-      domain: 'http://bs.spouse-program.lndo.site',
+      domain: 'http://spouse.lndo.site',
       port: 80
     },
     injectChanges: true,
@@ -172,7 +172,7 @@ gulp.task('watch', gulp.series(runWatch));
 // ---------------------------------------------------
 function copyScripts() {
   return gulp
-    .src(path.scripts.src + '**/*.js')
+    .src(path.scripts.src + '*.js')
     .pipe(path.env === 'production' ? uglify() : noop())
     .pipe(
       rename({
@@ -201,7 +201,7 @@ function copyFonts() {
 // ----------------------
 function runWatch() {
   gulp.watch(path.styles.src + '**/*.scss', compileSASS);
-  gulp.watch(path.scripts.src + '**/*.js', copyScripts);
+  gulp.watch(path.scripts.src + '*.js', copyScripts);
 }
 
 function cleanAssets() {
