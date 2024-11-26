@@ -8,7 +8,7 @@ $end = ( new \DateTime() )->setTimestamp( strtotime( get_field( 'end_time', $id 
 $location = get_field('location', $id);
 
 $event_img = get_the_post_thumbnail_url(get_the_ID(), 'large');
-$placeholder_img = 'https://spouseprogram.fi/wp-content/uploads/2024/10/Logo-without-text-and-favicon.png';
+$placeholder_img = get_field('placeholder_image', 'options_activity_setttings');
 
 $startDate = $start->format('l j F Y');
 $startTime = $start->format('H.i');

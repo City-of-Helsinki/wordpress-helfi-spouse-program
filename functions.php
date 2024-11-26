@@ -528,5 +528,8 @@ function spouse_notification( $wp_customize ) {
   );
 
 }
-
 add_action( 'customize_register', 'spouse_notification' );
+
+// Disable admin email notifications
+add_filter( 'wp_new_user_notification_email_admin', '__return_false' );
+add_filter( 'send_password_change_email', '__return_false' );

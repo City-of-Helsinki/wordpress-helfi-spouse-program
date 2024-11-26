@@ -76,7 +76,7 @@ class RegisterFormFields
         ? wp_unslash( (string) $_POST[$name] )
         : '';
 
-      if ( $tag->is_required() and '' === $value ) {
+      if ( $tag->is_required() && '' === $value ) {
         $result->invalidate( $tag, wpcf7_get_message( 'invalid_required' ) );
       }
 
@@ -84,17 +84,17 @@ class RegisterFormFields
         $maxlength = $tag->get_maxlength_option();
         $minlength = $tag->get_minlength_option();
 
-        if ( $maxlength and $minlength
-        and $maxlength < $minlength ) {
+        if ( $maxlength && $minlength
+        && $maxlength < $minlength ) {
           $maxlength = $minlength = null;
         }
 
         $code_units = wpcf7_count_code_units( $value );
 
         if ( false !== $code_units ) {
-          if ( $maxlength and $maxlength < $code_units ) {
+          if ( $maxlength && $maxlength < $code_units ) {
             $result->invalidate( $tag, wpcf7_get_message( 'invalid_too_long' ) );
-          } elseif ( $minlength and $code_units < $minlength ) {
+          } elseif ( $minlength && $code_units < $minlength ) {
             $result->invalidate( $tag, wpcf7_get_message( 'invalid_too_short' ) );
           }
         }
@@ -112,31 +112,31 @@ class RegisterFormFields
         : '';
 
       if ( 'text' == $tag->basetype ) {
-        if ( $tag->is_required() and '' === $value ) {
+        if ( $tag->is_required() && '' === $value ) {
           $result->invalidate( $tag, wpcf7_get_message( 'invalid_required' ) );
         }
       }
 
       if ( 'email' == $tag->basetype ) {
-        if ( $tag->is_required() and '' === $value ) {
+        if ( $tag->is_required() && '' === $value ) {
           $result->invalidate( $tag, wpcf7_get_message( 'invalid_required' ) );
-        } elseif ( '' !== $value and ! wpcf7_is_email( $value ) ) {
+        } elseif ( '' !== $value && ! wpcf7_is_email( $value ) ) {
           $result->invalidate( $tag, wpcf7_get_message( 'invalid_email' ) );
         }
       }
 
       if ( 'url' == $tag->basetype ) {
-        if ( $tag->is_required() and '' === $value ) {
+        if ( $tag->is_required() && '' === $value ) {
           $result->invalidate( $tag, wpcf7_get_message( 'invalid_required' ) );
-        } elseif ( '' !== $value and ! wpcf7_is_url( $value ) ) {
+        } elseif ( '' !== $value && ! wpcf7_is_url( $value ) ) {
           $result->invalidate( $tag, wpcf7_get_message( 'invalid_url' ) );
         }
       }
 
       if ( 'tel' == $tag->basetype ) {
-        if ( $tag->is_required() and '' === $value ) {
+        if ( $tag->is_required() && '' === $value ) {
           $result->invalidate( $tag, wpcf7_get_message( 'invalid_required' ) );
-        } elseif ( '' !== $value and ! wpcf7_is_tel( $value ) ) {
+        } elseif ( '' !== $value && ! wpcf7_is_tel( $value ) ) {
           $result->invalidate( $tag, wpcf7_get_message( 'invalid_tel' ) );
         }
       }
@@ -145,16 +145,16 @@ class RegisterFormFields
         $maxlength = $tag->get_maxlength_option();
         $minlength = $tag->get_minlength_option();
 
-        if ( $maxlength and $minlength and $maxlength < $minlength ) {
+        if ( $maxlength && $minlength && $maxlength < $minlength ) {
           $maxlength = $minlength = null;
         }
 
         $code_units = wpcf7_count_code_units( $value );
 
         if ( false !== $code_units ) {
-          if ( $maxlength and $maxlength < $code_units ) {
+          if ( $maxlength && $maxlength < $code_units ) {
             $result->invalidate( $tag, wpcf7_get_message( 'invalid_too_long' ) );
-          } elseif ( $minlength and $code_units < $minlength ) {
+          } elseif ( $minlength && $code_units < $minlength ) {
             $result->invalidate( $tag, wpcf7_get_message( 'invalid_too_short' ) );
           }
         }
@@ -170,10 +170,6 @@ class RegisterFormFields
       $value = isset( $_POST[$name] )
         ? trim( wp_unslash( strtr( (string) $_POST[$name], "\n", " " ) ) )
         : '';
-
-      if ( email_exists($value) ){
-        $result->invalidate( $tag, "Email already exists" );
-      }
 
       return $result;
     }

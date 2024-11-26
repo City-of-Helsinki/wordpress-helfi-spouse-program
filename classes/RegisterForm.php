@@ -5,10 +5,10 @@ class RegisterForm
 {
     private $fields = null;
 
-    public  function init()
+    public function init()
     {
-        add_action("wpcf7_before_send_mail", array($this, "handleSubmission"));
-        add_filter( 'wp_new_user_notification_email', array($this, 'customizeNotificationEmail'), 10, 3 );
+        add_action("wpcf7_mail_sent", array($this, "handleSubmission"));
+        // add_filter( 'wp_new_user_notification_email', array($this, 'customizeNotificationEmail'), 10, 3 );
 
 		$this->registerCustomFormTags();
 
@@ -57,88 +57,46 @@ class RegisterForm
         return \WPCF7_Submission::get_instance();
     }
 
-    private function getEmailFromSubmission()
+    private function getRegistrationEmail()
     {
         $form = $this->getFormSubmission();
         $values = $form->get_posted_data();
         $emailField = $this->fields->getEmailField();
 
         $email = sanitize_email($values[$emailField]);
-        if ($email)
+        if ($email) {
             return $email;
-
+        }
         return false;
-    }
-
-    private function getRegistrationEmail()
-    {
-        return $this->getEmailFromSubmission();
-    }
-
-    private function getPostedData()
-    {
-        $form = $this->getFormSubmission();
-        $posted_data = $form->get_posted_data();
-        return $posted_data;
     }
 
     public function handleSubmission($contact_form)
     {
         if ($this->isRegistrationForm() ) {
-            $uid = $this->create_user($contact_form);
-        }
-
-        if ($this->hasOption('data_as_attachment') ){
-            $this->dataAsAttachment();
+            $email = $this->getRegistrationEmail();
+            $this->customizeNotificationEmail($email);
         }
 
         return $contact_form;
     }
 
-    public function create_user($contact_form)
+    private function customizeNotificationEmail($email)
     {
-        $password = wp_generate_password( 20, false );
-        $email = $this->getEmailFromSubmission();
+        $customMessage = get_field('email_body_text', 'options_registration_setttings');
 
-        $user_data = array(
-            'user_login'    => $email,
-            'user_email'    => $email,
-            'user_pass'     => $password
-        );
-
-
-        $user_id = wp_insert_user( $user_data );
-        wp_new_user_notification( $user_id, $password );
-
-        return $user_id;
-    }
-
-    public function dataAsAttachment()
-    {
-        $attachment = new RegisterFormAttachment();
-        $attachmentPath = $attachment->generateExcelFromSubmission( $this->getPostedData() );
-
-        $submission = $this->getFormSubmission();
-        $submission->add_extra_attachments($attachmentPath);
-
-        return $attachmentPath;
-    }
-
-    public function customizeNotificationEmail($wp_new_user_notification_email, $user, $blogname)
-    {
-        $customMessage = get_field('registration_setttings', 'option');
-        $message = $wp_new_user_notification_email["message"];
-        if (!empty($customMessage["email_body_text"])){
-            $message = $customMessage["email_body_text"] . "\r\n\r\n" . $message;
+        if ( !empty($customMessage) ) {
+            $message = $customMessage;
+        } else {
+            return;
         }
 
-        $subject = $customMessage["email_subject"];
-        if (!empty($subject)){
-            $wp_new_user_notification_email["subject"] = $subject;
-        }
+        $customSubject = get_field('email_subject', 'options_registration_setttings');
 
-        $wp_new_user_notification_email["message"] = $message;
-
-        return $wp_new_user_notification_email;
+        if ( !empty($customSubject) ) {
+            $subject = $customSubject;
+        } else {
+            return;
+        }    
+        wp_mail($email, $subject, $message);    
     }
 }
