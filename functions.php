@@ -485,6 +485,7 @@ function spouse_notification( $wp_customize ) {
   $wp_customize->add_setting( 'notification_title', array( 'default' => '') );
   $wp_customize->add_setting( 'notification_body', array( 'default' => '' ) );
   $wp_customize->add_setting( 'notification_visibility', array( 'default' => false) );
+  $wp_customize->add_setting( 'notification_color', array( 'default' => '#f0e856'));
 
   // Section
   $wp_customize->add_section(
@@ -526,6 +527,17 @@ function spouse_notification( $wp_customize ) {
         'label' => __( 'Message', 'spouse'),
         'section' => 'sp-notifications',
         'settings' => 'notification_body'
+      )
+    )
+  );
+
+  $wp_customize->add_control(
+    new WP_Customize_Control(
+      $wp_customize, 'notification_color',
+      array(
+        'label' => __( 'Background color (hex code)', 'spouse'),
+        'section' => 'sp-notifications',
+        'settings' => 'notification_color'
       )
     )
   );
