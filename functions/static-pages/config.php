@@ -18,29 +18,19 @@ function static_pages(): array {
 			'title' => __( 'Sign up', 'spouse' ),
 			'content' => ''
 		),
-		'account' => array(
-			'slug' => 'member-account',
-			'title' => __( 'Your Account', 'spouse' ),
-			'content' => ''
-		),
-		'password-lost' => array(
-			'slug' => 'password-lost',
-			'title' => __( 'Forgot Your Password?', 'spouse' ),
-			'content' => ''
-		),
-		'password-reset' => array(
-			'slug' => 'member-password-reset',
-			'title' => __( 'Pick a New Password', 'spouse' ),
-			'content' => ''
-		),
 		'main-page' => array(
 			'slug' => 'main-page',
 			'title' => __( 'Welcome', 'spouse' ),
 			'content' => ''
 		),
-		'main-page' => array(
+		'activities' => array(
 			'slug' => 'activities-list',
-			'title' => __( 'Acticities', 'spouse' ),
+			'title' => __( 'Activities', 'spouse' ),
+			'content' => ''
+		),
+		'thank-you' => array(
+			'slug' => 'thank-you-page',
+			'title' => __( 'Thank You Page', 'spouse' ),
 			'content' => ''
 		)
 	);

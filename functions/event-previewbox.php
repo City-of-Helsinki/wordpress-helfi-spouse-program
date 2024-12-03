@@ -40,7 +40,7 @@ function spouse_get_events($count) {
 
 function spouse_print_events($events) {
   ?>
-  <div class="col-12 col-sm-12 d-flex events-wrapper">
+  <div class="d-flex events-wrapper">
   <?php
 
   if ( is_array($events) ) {

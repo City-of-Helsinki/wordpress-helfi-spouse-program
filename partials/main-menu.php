@@ -27,6 +27,9 @@
                 ));
             ?>
             </ul>
+            <div class="navbar-login-nav ml-auto ">
+                <?php get_template_part('partials/main-menu-signup'); ?> 
+            </div>
         </div>
     </div>
 </nav>

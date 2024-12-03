@@ -112,25 +112,14 @@ jQuery("document").ready(function () {
     });
   });
 
-  function handleFormSelectWithMessages(i, e) {
-    var el = jQuery(e);
-    el.change(function () {
-      var _index = jQuery("select", el).prop("selectedIndex");
-      jQuery(".select-message", el)
-        .addClass("d-none")
-        .attr("aria-hidden", true);
-      if (_index > 0) {
-        jQuery(jQuery(".select-message", el)[_index - 1])
-          .removeClass("d-none")
-          .attr("aria-hidden", false);
-      }
-    }).change();
-  }
-  jQuery(".form-select-with-messages").each(handleFormSelectWithMessages);
-
   jQuery("[class*=wow-modal-id-]").each(function (index, value) {
     if (jQuery(this).closest("a").length) {
       jQuery(this).on("click", spouse_focus);
     }
   });
+
+  // redirect CF7 Forms
+  document.addEventListener( 'wpcf7mailsent', function( event ) {
+      location = mainVars.thankYouPage;
+  }, false );
 });
