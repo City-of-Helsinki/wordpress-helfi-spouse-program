@@ -11,19 +11,3 @@
 <?php endif; ?>
 
 <?php echo $args["form"] ?>
-
-<div class="login-form-bottom">
-<div class="container">
-    Not registered yet? 
-    <a class="" href="<?php echo spouse_register_url(); ?>">
-      <?php _e( 'Create an account.', 'personalize-login' ); ?>
-    </a>
-  </div>
-  <div class="container">
-    Or
-    <a href="<?php echo wp_lostpassword_url(); ?>">
-      <?php _e( 'lost password?', 'personalize-login' ); ?>
-    </a>
-  </div>
-
-</div>

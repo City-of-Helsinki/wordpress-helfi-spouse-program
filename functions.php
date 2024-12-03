@@ -26,6 +26,8 @@ function change_logo_class( $html ) {
 
 // add styles and javascripts
 function spouse_enqueue_scripts() {
+
+  $thank_you_page = apply_filters( 'spouse_program_static_page_url', '', 'thank-you' );
   wp_enqueue_style('bootstrap', get_template_directory_uri() . '/dist/bootstrap/dist/css/bootstrap.css');
   wp_enqueue_script('bootstrap-js', get_template_directory_uri() . '/dist/bootstrap/dist/js/bootstrap.min.js', array('jquery'));
   
@@ -38,6 +40,7 @@ function spouse_enqueue_scripts() {
     wp_enqueue_script('news-visited', get_template_directory_uri() . '/js/news-visited.js');
   }
   wp_enqueue_script('main', get_template_directory_uri() . '/js/main.js');
+  wp_localize_script('main', 'mainVars', array('thankYouPage' => $thank_you_page));
   wp_enqueue_script('target-blank-accessible', get_template_directory_uri() . '/js/targetblank.js');
 }
 add_action('wp_enqueue_scripts', 'spouse_enqueue_scripts');

@@ -6,10 +6,9 @@ $event_color = get_field('event_color', $id );
 $start = ( new \DateTime() )->setTimestamp( strtotime( get_field( 'start_time', $id)));
 $end = ( new \DateTime() )->setTimestamp( strtotime( get_field( 'end_time', $id )));
 $location = get_field('location', $id);
-
 $event_img = get_the_post_thumbnail_url(get_the_ID(), 'large');
 $placeholder_img = get_field('placeholder_image', 'options_activity_setttings');
-
+$activities_url = apply_filters('spouse_program_static_page_url', '', 'activities');
 $startDate = $start->format('l j F Y');
 $startTime = $start->format('H.i');
 $endTime   = $end->format('H.i');
@@ -35,7 +34,7 @@ $category = '';
         $color = '#4dbdb1';
     }
 ?>
-<div class="event-navigation"><a href="<?php echo site_url('/activities'); ?>" class="go-back"><span class="dashicons dashicons-arrow-left-alt2"></span></a> </div>
+<div class="event-navigation"><a href="<?php echo $activities_url; ?>" class="go-back"><span class="dashicons dashicons-arrow-left-alt2"></span></a> </div>
 <div class="event-top">
     <?php if( $event_img ):?>
         <div class="event-image" style="background-image: url(' <?php echo $event_img; ?>');"></div>
