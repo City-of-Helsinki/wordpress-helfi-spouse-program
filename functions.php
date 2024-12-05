@@ -564,3 +564,20 @@ function cta($atts) {
   return $cta_button;
 }
 add_shortcode('spouse-cta', 'cta');
+
+// Newsletter
+function spouse_create_newsletter_post_type() {
+  register_post_type( 'Newsletter',
+  array(
+    'labels' => array(
+      'name' => __( 'Newsletters' ),
+      'singular_name' => __( 'Newsletter' )
+    ),
+    'public' => true,
+    'has_archive' => true,
+    'rewrite' => array('slug' => 'Newsletter'),
+    'show_in_rest' => true,
+    'supports' => array( 'thumbnail' ),
+  ) );
+}
+add_action( 'init' , 'spouse_create_newsletter_post_type' );
