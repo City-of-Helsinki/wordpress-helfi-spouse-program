@@ -32,6 +32,7 @@ function spouse_program_init(){
 		$files = array(
 			'cf7-custom',
 			'event-previewbox',
+			'newsletters',
 			'spouse-emailfrom',
 			'spouse-notice',
 			'shortcode',
