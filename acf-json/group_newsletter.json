@@ -20,7 +20,8 @@
             "library": "all",
             "min_size": "",
             "max_size": "",
-            "mime_types": ""
+            "mime_types": "",
+            "allow_in_bindings": 1
         }
     ],
     "location": [
@@ -41,5 +42,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1733409055
+    "modified": 1733752383
 }
