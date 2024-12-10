@@ -577,7 +577,7 @@ function spouse_create_newsletter_post_type() {
     'has_archive' => true,
     'rewrite' => array('slug' => 'Newsletter'),
     'show_in_rest' => true,
-    'supports' => array( 'thumbnail' ),
+    'supports' => array( 'title', 'thumbnail' ),
   ) );
 }
 add_action( 'init' , 'spouse_create_newsletter_post_type' );
