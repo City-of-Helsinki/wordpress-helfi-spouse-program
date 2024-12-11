@@ -564,3 +564,28 @@ function cta($atts) {
   return $cta_button;
 }
 add_shortcode('spouse-cta', 'cta');
+
+function spouse_footer_color( $wp_customize ) {
+  $wp_customize->add_setting( 'footer_color', array( 'default' => ''));
+
+  $wp_customize->add_section(
+    'spouse-footer',
+    array(
+      'title' => __('Footer color', 'spouse'),
+      'priority' => 30,
+      'description' => __( 'Set footer color' , 'spouse' )
+    )
+  );
+
+  $wp_customize->add_control(
+    new WP_Customize_Control(
+      $wp_customize, 'notification_color',
+      array(
+        'label' => __( 'Footer color (hex code)', 'spouse'),
+        'section' => 'spouse-footer',
+        'settings' => 'footer_color'
+      )
+    )
+  );
+}
+add_action( 'customize_register', 'spouse_footer_color');
