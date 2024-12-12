@@ -1,29 +1,12 @@
 {
     "key": "group_second_column_layout",
     "title": "Second column layout",
-    "id": "acf_second-column-layout",
-    "location": [
-        [
-            {
-                "param": "page_template",
-                "operator": "==",
-                "value": "two-column-template.php",
-                "order_no": 0,
-                "group_no": 0
-            }
-        ]
-    ],
-    "options": {
-        "position": "normal",
-        "layout": "no_box",
-        "hide_on_screen": []
-    },
-    "menu_order": -50,
     "fields": [
         {
             "key": "field_5ee1e6013f1f3",
             "label": "Second column content",
             "name": "right_column_content",
+            "aria-label": "",
             "type": "repeater",
             "instructions": "Content for the second column",
             "required": false,
@@ -37,15 +20,19 @@
             "row_limit": "",
             "layout": "row",
             "button_label": "Add Row",
+            "min": 0,
+            "max": 0,
+            "collapsed": "",
             "sub_fields": [
                 {
                     "key": "field_5ee1e60c3f1f4",
                     "label": "Content type",
                     "name": "content_type",
+                    "aria-label": "",
                     "type": "select",
                     "instructions": "Content for the first column on the page",
-                    "required": false,
-                    "conditional_logic": false,
+                    "required": 0,
+                    "conditional_logic": 0,
                     "wrapper": {
                         "width": "",
                         "class": "",
@@ -55,21 +42,23 @@
                         "text": "text",
                         "person": "person",
                         "cta-subfield": "button",
-                        "image-and-text": "Image and text",
                         "icons": "icons"
                     },
-                    "default_value": "",
-                    "allow_null": 0,
+                    "default_value": false,
+                    "return_format": "value",
                     "multiple": 0,
+                    "allow_null": 0,
+                    "allow_in_bindings": 1,
                     "ui": 0,
                     "ajax": 0,
                     "placeholder": "",
-                    "return_format": "value"
+                    "parent_repeater": "field_5ee1e6013f1f3"
                 },
                 {
                     "key": "field_5ee1fe1997270",
                     "label": "Text content",
                     "name": "text_content",
+                    "aria-label": "",
                     "type": "wysiwyg",
                     "instructions": "",
                     "required": false,
@@ -91,12 +80,14 @@
                     "toolbar": "full",
                     "media_upload": 1,
                     "tabs": "all",
-                    "delay": 0
+                    "delay": 0,
+                    "parent_repeater": "field_5ee1e6013f1f3"
                 },
                 {
                     "key": "field_5ee1fe3497271",
                     "label": "Person",
                     "name": "person",
+                    "aria-label": "",
                     "type": "post_object",
                     "instructions": "",
                     "required": false,
@@ -121,12 +112,15 @@
                     "allow_null": 0,
                     "multiple": 0,
                     "return_format": "object",
-                    "ui": 1
+                    "ui": 1,
+                    "bidirectional_target": [],
+                    "parent_repeater": "field_5ee1e6013f1f3"
                 },
                 {
                     "key": "field_5ee1fe5e97272",
                     "label": "Functionality",
                     "name": "functionality",
+                    "aria-label": "",
                     "type": "select",
                     "instructions": "",
                     "required": false,
@@ -150,18 +144,20 @@
                         "Sign in button": "Sign in button",
                         "Advanced functionality": "Advanced functionality"
                     },
-                    "default_value": "",
+                    "default_value": false,
                     "allow_null": 0,
                     "multiple": 0,
                     "ui": 0,
                     "ajax": 0,
                     "placeholder": "",
-                    "return_format": "value"
+                    "return_format": "value",
+                    "parent_repeater": "field_5ee1e6013f1f3"
                 },
                 {
                     "key": "field_5ee1fe7397273",
                     "label": "Button text",
                     "name": "button_text",
+                    "aria-label": "",
                     "type": "text",
                     "instructions": "",
                     "required": false,
@@ -184,12 +180,14 @@
                     "prepend": "",
                     "append": "",
                     "formatting": "html",
-                    "maxlength": ""
+                    "maxlength": "",
+                    "parent_repeater": "field_5ee1e6013f1f3"
                 },
                 {
                     "key": "field_5ee1feac97274",
                     "label": "Button url",
                     "name": "button_url",
+                    "aria-label": "",
                     "type": "post_object",
                     "instructions": "",
                     "required": false,
@@ -220,12 +218,15 @@
                     "allow_null": 0,
                     "multiple": 0,
                     "return_format": "object",
-                    "ui": 1
+                    "ui": 1,
+                    "bidirectional_target": [],
+                    "parent_repeater": "field_5ee1e6013f1f3"
                 },
                 {
                     "key": "field_5ee1fee197276",
                     "label": "External url",
                     "name": "external_url",
+                    "aria-label": "",
                     "type": "text",
                     "instructions": "Url to external content",
                     "required": false,
@@ -253,12 +254,14 @@
                     "prepend": "",
                     "append": "",
                     "formatting": "html",
-                    "maxlength": ""
+                    "maxlength": "",
+                    "parent_repeater": "field_5ee1e6013f1f3"
                 },
                 {
                     "key": "field_5ee1ff1297277",
                     "label": "Class",
                     "name": "class",
+                    "aria-label": "",
                     "type": "text",
                     "instructions": "Add class for wow-modal popup",
                     "required": false,
@@ -286,12 +289,14 @@
                     "prepend": "",
                     "append": "",
                     "formatting": "html",
-                    "maxlength": ""
+                    "maxlength": "",
+                    "parent_repeater": "field_5ee1e6013f1f3"
                 },
                 {
                     "key": "field_5ee1ff2097278",
                     "label": "Text",
                     "name": "text-with-image",
+                    "aria-label": "",
                     "type": "wysiwyg",
                     "instructions": "",
                     "required": false,
@@ -313,12 +318,14 @@
                     "toolbar": "full",
                     "media_upload": 0,
                     "tabs": "all",
-                    "delay": 0
+                    "delay": 0,
+                    "parent_repeater": "field_5ee1e6013f1f3"
                 },
                 {
                     "key": "field_5ee1ff4697279",
                     "label": "Image",
                     "name": "image",
+                    "aria-label": "",
                     "type": "image",
                     "instructions": "",
                     "required": false,
@@ -345,12 +352,14 @@
                     "max_width": 0,
                     "max_height": 0,
                     "max_size": 0,
-                    "mime_types": ""
+                    "mime_types": "",
+                    "parent_repeater": "field_5ee1e6013f1f3"
                 },
                 {
                     "key": "field_5ee1ff599727a",
                     "label": "Image position",
                     "name": "image_position",
+                    "aria-label": "",
                     "type": "radio",
                     "instructions": "",
                     "required": false,
@@ -377,12 +386,14 @@
                     "default_value": "",
                     "layout": "vertical",
                     "allow_null": 0,
-                    "return_format": "value"
+                    "return_format": "value",
+                    "parent_repeater": "field_5ee1e6013f1f3"
                 },
                 {
                     "key": "field_5ee9b7cd511b6",
                     "label": "Icons",
                     "name": "icons",
+                    "aria-label": "",
                     "type": "repeater",
                     "instructions": "",
                     "required": false,
@@ -404,11 +415,15 @@
                     "row_limit": "",
                     "layout": "table",
                     "button_label": "Add Row",
+                    "min": 0,
+                    "max": 0,
+                    "collapsed": "",
                     "sub_fields": [
                         {
                             "key": "field_5ee9b7d4511b7",
                             "label": "Image",
                             "name": "image",
+                            "aria-label": "",
                             "type": "image",
                             "instructions": "",
                             "required": false,
@@ -427,12 +442,14 @@
                             "max_width": 0,
                             "max_height": 0,
                             "max_size": 0,
-                            "mime_types": ""
+                            "mime_types": "",
+                            "parent_repeater": "field_5ee9b7cd511b6"
                         },
                         {
                             "key": "field_5ee9b7de511b8",
                             "label": "Title",
                             "name": "title",
+                            "aria-label": "",
                             "type": "text",
                             "instructions": "",
                             "required": false,
@@ -447,12 +464,14 @@
                             "prepend": "",
                             "append": "",
                             "formatting": "html",
-                            "maxlength": ""
+                            "maxlength": "",
+                            "parent_repeater": "field_5ee9b7cd511b6"
                         },
                         {
                             "key": "field_5ee9b7e9511b9",
                             "label": "Url",
                             "name": "url",
+                            "aria-label": "",
                             "type": "text",
                             "instructions": "url where clicking the icon leads",
                             "required": false,
@@ -467,18 +486,34 @@
                             "prepend": "",
                             "append": "",
                             "formatting": "html",
-                            "maxlength": ""
+                            "maxlength": "",
+                            "parent_repeater": "field_5ee9b7cd511b6"
                         }
                     ],
-                    "min": 0,
-                    "max": 0,
-                    "collapsed": ""
+                    "rows_per_page": 20,
+                    "parent_repeater": "field_5ee1e6013f1f3"
                 }
             ],
-            "min": 0,
-            "max": 0,
-            "collapsed": ""
+            "rows_per_page": 20
         }
     ],
-    "modified": 1640853060
+    "location": [
+        [
+            {
+                "param": "page_template",
+                "operator": "==",
+                "value": "two-column-template.php"
+            }
+        ]
+    ],
+    "menu_order": -50,
+    "position": "normal",
+    "style": "seamless",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": true,
+    "description": "",
+    "show_in_rest": 0,
+    "modified": 1734007079
 }
