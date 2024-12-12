@@ -6,6 +6,7 @@
             "key": "field_62309a0f7fcda",
             "label": "Hide Social Media buttons",
             "name": "hide_social_media_buttons",
+            "aria-label": "",
             "type": "true_false",
             "instructions": "",
             "required": 0,
@@ -37,7 +38,8 @@
     "label_placement": "top",
     "instruction_placement": "label",
     "hide_on_screen": "",
-    "active": true,
+    "active": false,
     "description": "",
-    "modified": 1647352490
+    "show_in_rest": false,
+    "modified": 1733990044
 }
