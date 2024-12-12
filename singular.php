@@ -25,9 +25,6 @@ get_header();
             </div>
           </div>
     <?php get_template_part('partials/flexible-content') ?>
-    <?php
-    // show social sharing only if the page is not behind login
-    get_template_part("partials/socials") ?>
 </main><!-- #site-content -->
 <?php
 get_footer();

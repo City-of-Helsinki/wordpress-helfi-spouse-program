@@ -53,7 +53,6 @@ if ( function_exists('register_sidebar') ) {
     'footer_content_right' => 'footer content right',
   ];
   $otherWidgets = [
-    'social_title' => 'Social sharing title',
     'sidebar_menu' => 'Sidebar menu on main page'
   ];
   foreach($footerWidgets as $key => $widget){
