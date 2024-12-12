@@ -12,7 +12,11 @@
       overflow: hidden;
       margin-bottom: 2rem;
       .card-body {
+        display: flex;
         blockquote {
+          display: flex;
+          flex: 1;
+          flex-direction: column;
           .quote-text {
             position: relative;
             padding-top: 4rem;
@@ -27,6 +31,7 @@
             }
           }
           .footer {
+            margin-top: auto;
             img {
               object-fit: cover;
               height: 3rem;
@@ -48,6 +53,10 @@
       }
     }
   }
+}
+
+.col-md-4 {
+  flex: 0 0 100%;
 }
 
 .testimonials-flexible.testimonials {
@@ -89,9 +98,6 @@
               }
             }
             .footer {
-              img {
-                display: none;
-              }
               .author {
                 font-size: 1rem;
                 color: #212529;
