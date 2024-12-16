@@ -105,4 +105,8 @@
 
     } 
   }
+
+  .newsletters-column:first-child .card-body {
+    background-color: $lilac;
+  }
 }
