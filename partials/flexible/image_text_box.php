@@ -143,7 +143,7 @@ if(get_sub_field('it_style')){
                     <img class="p-0 w-100 <?php echo(get_sub_field('it_rounded_corners') ? 'rounded-corners' : '');?>" alt="" src="<?php the_sub_field("it_background_image");?>">
                     <?php if ( true == $show_caption ): ?>
                     <figcaption class="d-flex">
-                        <span class="<?php echo($side == 'left' ? "mr-auto" : "ml-auto"); ?>">
+                        <span class="font-italic <?php echo($side == 'left' ? "mr-auto" : "ml-auto"); ?>">
                             <?php echo (wp_get_attachment_caption( $caption ) ); ?></figcaption>
                         </span>
                     <?php endif; ?>
