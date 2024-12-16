@@ -574,9 +574,6 @@ function spouse_create_newsletter_post_type() {
       'singular_name' => __( 'Newsletter' )
     ),
     'public' => true,
-    'has_archive' => true,
-    'rewrite' => array('slug' => 'Newsletter'),
-    'show_in_rest' => true,
     'supports' => array( 'title', 'thumbnail' ),
   ) );
 }
