@@ -141,12 +141,7 @@ if(get_sub_field('it_style')){
             <div class="row position-relative">
                 <div class="img-wrapper lift-100-wide__bg-img h-100 col-lg-8 p-0">
                     <img class="p-0 w-100 <?php echo(get_sub_field('it_rounded_corners') ? 'rounded-corners' : '');?>" alt="" src="<?php the_sub_field("it_background_image");?>">
-                    <?php if ( true == $show_caption ): ?>
-                    <figcaption class="d-flex">
-                        <span class="font-italic <?php echo($side == 'left' ? "mr-auto" : "ml-auto"); ?>">
-                            <?php echo (wp_get_attachment_caption( $caption ) ); ?></figcaption>
-                        </span>
-                    <?php endif; ?>
+                    
                 </div>
                 <div class="lift-100-wide__card p-lg-4 p-sm-3 col-lg-6 d-flex flex-column justify-content-center <?php echo(get_sub_field('it_rounded_corners') ? 'rounded-corners' : '');?>" style="background-color: <?php echo $highlightColor; ?>" style="background-color: <?php echo $highlightColor; ?>; color: <?php echo $highlightTextColor; ?>;" >
                     <h3 class="lift-100-wide__title"><?php echo $card_title ; ?></h3>
@@ -168,6 +163,13 @@ if(get_sub_field('it_style')){
                     </div>
                 </div>
             </div>
+            <?php if ( true == $show_caption ): ?>
+                <figcaption class="d-flex mt-2">
+                    <span class="font-italic <?php echo($side == 'left' ? "mr-lg-auto" : "ml-lg-auto"); ?>">
+                        <?php echo (wp_get_attachment_caption( $caption ) ); ?>
+                    </span>
+                </figcaption>
+            <?php endif; ?>
         </div>
     </div>
 </div>
