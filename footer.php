@@ -1,4 +1,4 @@
-    <footer id="site-footer">
+    <footer id="site-footer" style="background-color: <?php echo get_theme_mod('footer_color'); ?>;">
         <div class="container">
             <div class="footer-box-container">
                 <div class="footer-box">

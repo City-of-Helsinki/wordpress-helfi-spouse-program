@@ -58,14 +58,19 @@ li.new-news {
 .highlighted-content {
   padding: 2.5rem 2.875rem;
   margin: 2rem auto 3rem;
-}
 
-.highlighted-content p {
-  margin-bottom: 1.625rem;
-  font-size: 1rem;
-}
+  p {
+    margin-bottom: 1.625rem;
+    font-size: 1rem;
+    padding-left: 0;
 
-.highlighted-content p > a:first-child {
+    &:last-child {
+    margin-bottom: 0; 
+    }
+  }
+  h1, h2, h3, h4, h5 {
+    margin-bottom: 1.625rem;
+  }
 }
 
 .highlighted-content p > a:first-child .inline-svg,

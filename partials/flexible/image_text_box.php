@@ -25,6 +25,10 @@
     $show_caption = get_sub_field('it_show_caption');
     $caption = attachment_url_to_postid( get_sub_field('it_background_image') );
 
+    $overlaid = false;
+    if(get_sub_field('it_image_overlaid') || get_sub_field('it_image_overlaid') === null ){
+        $overlaid = true;
+    }
 ?>
 
 <style>
@@ -49,7 +53,7 @@ if(get_sub_field('it_style')){
     ?>
     <div id="<?php echo $id_name; ?>" class="lift-100-wide lift-100-wide-drop lift-100-wide--<?php echo $side; ?> w-100 h-100 my-5 <?php echo(get_sub_field('it_rounded_corners') ? 'rounded-corners' : '');?>" style="background-color: <?php echo $highlightColor; ?>;">
         <div class="container">
-            <div class="row position-relative">
+            <div class="row position-relative <?php echo($overlaid ? 'overlaid' : 'non-overlaid'); ?>">
 
                 <?php if($side == 'right'): ?>
                     <div class="p-lg-4 p-3 col-lg-6 d-flex flex-column justify-content-center" style="color: <?php echo $highlightTextColor; ?>;" >
@@ -138,11 +142,8 @@ if(get_sub_field('it_style')){
     ?>
     <div id="<?php echo $id_name; ?>" class="lift-100-wide lift-100-wide--<?php echo $side; ?> w-100 h-100 my-5">
         <div class="container">
-            <div class="row position-relative">
-                <div class="img-wrapper lift-100-wide__bg-img h-100 col-lg-8 p-0">
-                    <img class="p-0 w-100 <?php echo(get_sub_field('it_rounded_corners') ? 'rounded-corners' : '');?>" alt="" src="<?php the_sub_field("it_background_image");?>">
-                    
-                </div>
+            <div class="row position-relative <?php echo($overlaid ? 'overlaid' : 'non-overlaid'); ?>">
+                <img class="lift-100-wide__bg-img h-100 p-0 <?php echo($overlaid ? 'col-lg-8' : 'col-lg-6') . ' ' . (get_sub_field('it_rounded_corners') ? 'rounded-corners' : '');?>" alt="" src="<?php the_sub_field("it_background_image");?>">
                 <div class="lift-100-wide__card p-lg-4 p-sm-3 col-lg-6 d-flex flex-column justify-content-center <?php echo(get_sub_field('it_rounded_corners') ? 'rounded-corners' : '');?>" style="background-color: <?php echo $highlightColor; ?>" style="background-color: <?php echo $highlightColor; ?>; color: <?php echo $highlightTextColor; ?>;" >
                     <h3 class="lift-100-wide__title"><?php echo $card_title ; ?></h3>
                     <p class="lift-100-wide__text"><?php the_sub_field("it_text_body"); ?></p>

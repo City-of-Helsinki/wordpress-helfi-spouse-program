@@ -245,6 +245,26 @@
                             "ui": 1
                         },
                         {
+                            "key": "field_6551ff7e11799",
+                            "label": "Text overlaid",
+                            "name": "it_image_overlaid",
+                            "aria-label": "",
+                            "type": "true_false",
+                            "instructions": "Choose whether the image is overlaid of the text area.",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "message": "",
+                            "default_value": 0,
+                            "ui_on_text": "Overlaid",
+                            "ui_off_text": "Not overlaid",
+                            "ui": 1
+                        },
+                        {
                             "key": "field_6552002c11748",
                             "label": "Title",
                             "name": "it_title",
