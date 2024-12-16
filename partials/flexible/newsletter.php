@@ -43,7 +43,7 @@ if(!$full_width){
   echo '<div class="container mb-5">';
 }
 ?>
-<div class="newsletter container-fluid <?php echo ($full_width ? 'newsletter-full-width' : ''); ?>" id="newsletter" style="<?php echo $background_color; ?> <?php echo $text_color; ?>">
+<div class="newsletter container-fluid mb-5 <?php echo ($full_width ? 'newsletter-full-width' : ''); ?>" id="newsletter" style="<?php echo $background_color; ?> <?php echo $text_color; ?>">
   <?php
   if(get_sub_field('anchor_tag')){
     echo '<div id="' . get_sub_field('anchor_tag') . '" class="anchor-tag"></div>';
