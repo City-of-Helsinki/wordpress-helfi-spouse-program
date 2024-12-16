@@ -20,7 +20,7 @@ function spouse_get_newsletters() {
     $args = array (
         'post_type' => 'newsletter',
         'post_status' => 'publish',
-        'order' => 'ASC'
+        'order' => 'DESC'
     );
 
     $posts = wp_get_recent_posts( $args, OBJECT );
