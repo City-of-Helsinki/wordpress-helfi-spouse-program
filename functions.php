@@ -564,6 +564,20 @@ function cta($atts) {
 }
 add_shortcode('spouse-cta', 'cta');
 
+// Newsletter
+function spouse_create_newsletter_post_type() {
+  register_post_type( 'Newsletter',
+  array(
+    'labels' => array(
+      'name' => __( 'Newsletters' ),
+      'singular_name' => __( 'Newsletter' )
+    ),
+    'public' => true,
+    'supports' => array( 'title', 'thumbnail' ),
+  ) );
+}
+add_action( 'init' , 'spouse_create_newsletter_post_type' );
+
 function spouse_footer_color( $wp_customize ) {
   $wp_customize->add_setting( 'footer_color', array( 'default' => ''));
 
