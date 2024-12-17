@@ -441,6 +441,27 @@
                             "ui": 0,
                             "ui_on_text": "",
                             "ui_off_text": ""
+                        },
+                        {
+                            "key": "field_675c5a8c9279f",
+                            "label": "Show caption",
+                            "name": "it_show_caption",
+                            "aria-label": "",
+                            "type": "true_false",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "message": "",
+                            "default_value": 0,
+                            "allow_in_bindings": 0,
+                            "ui": 0,
+                            "ui_on_text": "",
+                            "ui_off_text": ""
                         }
                     ],
                     "min": "",
@@ -1355,5 +1376,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1731056504
+    "modified": 1734105799
 }

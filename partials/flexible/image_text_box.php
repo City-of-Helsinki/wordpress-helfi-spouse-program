@@ -22,6 +22,9 @@
         $side = 'left';
     }
 
+    $show_caption = get_sub_field('it_show_caption');
+    $caption = attachment_url_to_postid( get_sub_field('it_background_image') );
+
     $overlaid = false;
     if(get_sub_field('it_image_overlaid') || get_sub_field('it_image_overlaid') === null ){
         $overlaid = true;
@@ -161,6 +164,13 @@ if(get_sub_field('it_style')){
                     </div>
                 </div>
             </div>
+            <?php if ( true == $show_caption ): ?>
+                <figcaption class="d-flex mt-2">
+                    <span class="font-italic <?php echo($side == 'left' ? "mr-lg-auto" : "ml-lg-auto"); ?>">
+                        <?php echo (wp_get_attachment_caption( $caption ) ); ?>
+                    </span>
+                </figcaption>
+            <?php endif; ?>
         </div>
     </div>
 </div>
