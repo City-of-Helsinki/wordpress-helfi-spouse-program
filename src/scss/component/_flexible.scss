@@ -46,12 +46,6 @@
       min-height: 250px;
     }
 
-    .non-overlaid {
-      .lift-100-wide__card {
-        height: 100%;
-      }
-    }
-
     &--left {
         .lift-100-wide__card {
           margin-left: 50%;
@@ -59,17 +53,14 @@
 
         .non-overlaid {
           .lift-100-wide__bg-img {
-  
-            &.rounded-corners {
-              border-radius: 2rem 0 0 2rem;
-            }
+            max-width: calc(100% / 1.5 - 2em);
           }
   
           .lift-100-wide__card {
   
-            &.rounded-corners {
-              border-radius: 0 2rem 2rem 0;
-            }
+          
+            margin-left: calc(100% / 1.5);
+      
           }
         }
     }
@@ -83,19 +74,16 @@
 
       .non-overlaid {
         .lift-100-wide__bg-img {
-          margin-left: 50%;
-
-          &.rounded-corners {
-            border-radius: 0 2rem 2rem 0;
-          }
+          margin-left: calc(100% / 3 + 2em);
+          max-width: calc(100% / 1.5 - 2em);
         }
 
-        .lift-100-wide__card {
+        // .lift-100-wide__card {
 
-          &.rounded-corners {
-            border-radius: 2rem 0 0 2rem;
-          }
-        }
+        //   &.rounded-corners {
+        //     border-radius: 2rem 0 0 2rem;
+        //   }
+        // }
       }
     }
   }

@@ -252,14 +252,23 @@
                             "type": "true_false",
                             "instructions": "Choose whether the image is overlaid of the text area.",
                             "required": 0,
-                            "conditional_logic": 0,
+                            "conditional_logic": [
+                                [
+                                    {
+                                        "field": "field_6560788b9468f",
+                                        "operator": "!=",
+                                        "value": "1"
+                                    }
+                                ]
+                            ],
                             "wrapper": {
                                 "width": "",
                                 "class": "",
                                 "id": ""
                             },
                             "message": "",
-                            "default_value": 0,
+                            "default_value": 1,
+                            "allow_in_bindings": 1,
                             "ui_on_text": "Overlaid",
                             "ui_off_text": "Not overlaid",
                             "ui": 1
@@ -1376,5 +1385,6 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1734105799
+    "modified": 1734534754
+
 }
