@@ -7,4 +7,6 @@ $spacers = array(
 );
 ?>
 
-<div class="spacer m-<?php echo( $spacers[ $spacing ] ); ?>">&nbsp;</div>
+<div class="container">
+    <div class="spacer m-<?php echo( $spacers[ $spacing ] ); ?>">&nbsp;</div>
+</div>
