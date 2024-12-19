@@ -23,6 +23,18 @@
                 elseif( get_row_layout() == 'banner' ): 
 
                     get_template_part( 'partials/flexible/banner' );
+                    
+                elseif( get_row_layout() == 'spacer' ): 
+
+                    get_template_part( 'partials/flexible/spacer' );
+
+                elseif( get_row_layout() == 'separator' ): 
+
+                    get_template_part( 'partials/flexible/separator' );
+
+                elseif( get_row_layout() == 'accordion' ): 
+
+                    get_template_part( 'partials/flexible/accordion' );
 
                 endif;
             
