@@ -80,6 +80,10 @@
 
                     get_template_part( 'partials/flexible/accordion' );
 
+                elseif( get_row_layout() == 'call_to_action' ): 
+
+                    get_template_part( 'partials/flexible/call_to_action' );
+
                 endif;
             endif;
         endwhile;
