@@ -1387,27 +1387,6 @@
                             "placeholder": ""
                         },
                         {
-                            "key": "field_676948eeab6b3",
-                            "label": "Button shape",
-                            "name": "button_shape",
-                            "aria-label": "",
-                            "type": "true_false",
-                            "instructions": "",
-                            "required": 0,
-                            "conditional_logic": 0,
-                            "wrapper": {
-                                "width": "",
-                                "class": "",
-                                "id": ""
-                            },
-                            "message": "Rounded corners",
-                            "default_value": 0,
-                            "allow_in_bindings": 0,
-                            "ui": 0,
-                            "ui_on_text": "",
-                            "ui_off_text": ""
-                        },
-                        {
                             "key": "field_676949a0ab6b4",
                             "label": "Background color",
                             "name": "spouse_cta_background_color",
