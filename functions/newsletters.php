@@ -20,7 +20,7 @@ function spouse_get_newsletters() {
     $args = array (
         'post_type' => 'newsletter',
         'post_status' => 'publish',
-        'posts_per_page' => 6,
+        'posts_per_page' => 4,
         'order' => 'DESC'
     );
 
@@ -44,7 +44,7 @@ function spouse_print_newsletters($newsletters) {
                 ?>
                 <div class="newsletters-column my-3">
                   <div class="newsletter clearfix">
-                    <a href="<?php echo $pdf; ?>">
+                    <a href="<?php echo $pdf; ?>" target="_blank">
                       <div class="newsletter-content-wrap card border-0 flex-fill">
                         <div class="newsletter-content">
                           <?php if( !empty($featured_image) ): ?>
