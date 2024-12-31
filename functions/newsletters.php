@@ -13,7 +13,9 @@ function spouse_show_archive($atts) {
         return '';
     }
 
+    ob_start();
     spouse_print_newsletters($newsletters);
+    return ob_get_clean();
 }
 
 function spouse_get_newsletters() {
