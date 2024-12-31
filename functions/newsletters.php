@@ -20,7 +20,7 @@ function spouse_get_newsletters() {
     $args = array (
         'post_type' => 'newsletter',
         'post_status' => 'publish',
-        'posts_per_page' => 4,
+        'posts_per_page' => 6,
         'order' => 'DESC'
     );
 
