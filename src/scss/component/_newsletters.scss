@@ -1,5 +1,5 @@
 // Newsletters archive
-.newsletters {
+.newsletters, .latest-newsletter {
   flex-wrap: wrap !important;
 
   .newsletters-column {
@@ -109,7 +109,22 @@
     } 
   }
 
-  .newsletters-column:first-child .card-body {
+}
+
+.latest-newsletter {
+  border-bottom: 1px solid $black;
+
+  &:first-child .card-body {
     background-color: $lilac;
   }
+
+  .latest-description {
+    p {
+      font-size: 1.5rem;
+    }
+  }
+}
+
+#load-more-newsletters {
+  background-color: $opal;
 }
