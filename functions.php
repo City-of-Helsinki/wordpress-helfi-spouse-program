@@ -602,3 +602,29 @@ function spouse_footer_color( $wp_customize ) {
   );
 }
 add_action( 'customize_register', 'spouse_footer_color');
+
+function spouse_load_more_newsletters() {
+  $ajaxposts = new WP_Query([
+    'post_type' => 'newsletter',
+    'posts_per_page' => 3,
+    'orderby' => 'date',
+    'order' => 'DESC',
+    'paged' => $_POST['paged'],
+  ]);
+
+  $response = '';
+
+  if($ajaxposts->have_posts()) {
+    while($ajaxposts->have_posts()) : $ajaxposts->the_post();
+      $response .= get_template_part('partials/newsletter-card');
+    endwhile;
+  } else {
+    $response = '';
+  }
+
+  echo $response;
+  exit;
+}
+
+add_action( "wp_ajax_spouse_load_more_newsletters", "spouse_load_more_newsletters" );
+add_action( "wp_ajax_no_priv_spouse_load_more_newsletters", "spouse_load_more_newsletters" );

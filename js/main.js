@@ -97,6 +97,24 @@ function highlightedContentHelperClass(item) {
   }
 }
 
+function loadMoreNewsletters() {
+  let currentPage = 1;
+  currentPage++;
+  jQuery.ajax({
+    type: 'POST',
+    url: '/wp-admin/admin-ajax.php',
+    dataType: 'html',
+    data: {
+      action: 'spouse_load_more_newsletters',
+      paged: currentPage,
+    },
+    success: function (res) {
+      console.log(currentPage);
+      jQuery('#previous-newsletters').append(res);
+    }
+  });
+}
+
 // if link has class wow-modal-id-x, add spouse focus event to it automatically.
 jQuery("document").ready(function () {
   detectExternalLinks("#main-content a");
