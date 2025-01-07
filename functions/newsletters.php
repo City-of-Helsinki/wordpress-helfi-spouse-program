@@ -43,7 +43,7 @@ function spouse_print_newsletters($newsletters) {
             $latest_newsletter_title = $latest_newsletter->post_title;
             ?>
             <div class="d-flex latest-newsletter pb-4">
-                <a class="col-4" href="<?php echo $latest_pdf; ?>" target="_blank">
+                <a class="col-4 col-sm-12 col-lg-4" href="<?php echo $latest_pdf; ?>" target="_blank">
                     <div class="newsletter">
                       <div class="newsletter-content-wrap card border-0 flex-fill">
                           <div class="newsletter-content">
@@ -59,7 +59,7 @@ function spouse_print_newsletters($newsletters) {
                         </div>
                       </div>
                 </a>
-                <div class="latest-description col-8 my-auto">
+                <div class="latest-description col-8 col-lg-8 col-sm-12 my-lg-auto my-sm-3">
                   <h2 class="my-1 mx-3">Read the latest Spouse Program newsletter</h2>
                   <p class="mx-3"><?php echo $latest_newsletter_title; ?></p>
                 </div>
