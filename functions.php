@@ -613,16 +613,25 @@ function spouse_load_more_newsletters() {
   ]);
 
   $response = '';
+  $max_pages = $ajaxposts->max_num_pages;
 
   if($ajaxposts->have_posts()) {
+    ob_start();
     while($ajaxposts->have_posts()) : $ajaxposts->the_post();
       $response .= get_template_part('partials/newsletter-card');
     endwhile;
+    $output = ob_get_contents();
+    ob_end_clean();
   } else {
     $response = '';
   }
 
-  echo $response;
+  $result = [
+    'max' => $max_pages,
+    'html' => $output,
+  ];
+
+  echo json_encode($result);
   exit;
 }
 

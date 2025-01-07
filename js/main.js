@@ -103,14 +103,16 @@ function loadMoreNewsletters() {
   jQuery.ajax({
     type: 'POST',
     url: '/wp-admin/admin-ajax.php',
-    dataType: 'html',
+    dataType: 'json',
     data: {
       action: 'spouse_load_more_newsletters',
       paged: currentPage,
     },
     success: function (res) {
-      console.log(currentPage);
-      jQuery('#previous-newsletters').append(res);
+      if (currentPage >= res.max) {
+        jQuery('#load-more-newsletters').hide();
+      }
+      jQuery('#previous-newsletters').append(res.html);
     }
   });
 }
