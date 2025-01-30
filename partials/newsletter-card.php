@@ -1,7 +1,7 @@
 <?php
-$newsletter_title = get_the_title();
-$newsletter_id = get_the_ID();
-$publish = strtotime( $newsletter_id->post_date );
+$newsletter_id = $args['id'];
+$newsletter_title = get_the_title($newsletter_id);
+$publish = strtotime( get_post_field('post_date', $newsletter_id) );
 $publish_date = ( new \DateTime() )->setTimestamp( $publish )->format( 'j.m.Y' );
 $featured_image = get_the_post_thumbnail_url($newsletter_id);
 $pdf = wp_get_attachment_url(get_post_meta($newsletter_id, 'newsletter_pdf', true));

@@ -618,7 +618,7 @@ function spouse_load_more_newsletters() {
   if($ajaxposts->have_posts()) {
     ob_start();
     while($ajaxposts->have_posts()) : $ajaxposts->the_post();
-      $response .= get_template_part('partials/newsletter-card');
+      $response .= get_template_part('partials/newsletter-card', '', array( 'id' => get_the_ID()));
     endwhile;
     $output = ob_get_contents();
     ob_end_clean();

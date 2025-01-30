@@ -68,7 +68,7 @@ function spouse_print_newsletters($newsletters) {
               <?php
               $older_newsletters = array_slice($newsletters, 1);
               foreach( $older_newsletters as $newsletter ) {
-                  get_template_part('partials/newsletter-card');
+                  get_template_part('partials/newsletter-card', '', array( 'id' => $newsletter->ID));
               }
               ?>
             </div>
