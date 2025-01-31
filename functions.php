@@ -607,9 +607,11 @@ function spouse_load_more_newsletters() {
   $ajaxposts = new WP_Query([
     'post_type' => 'newsletter',
     'posts_per_page' => 3,
+    'offset' => 4,
     'orderby' => 'date',
     'order' => 'DESC',
     'paged' => $_POST['paged'],
+    'no_found_rows' => true
   ]);
 
   $response = '';
