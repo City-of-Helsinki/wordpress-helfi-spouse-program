@@ -605,7 +605,7 @@ add_action( 'customize_register', 'spouse_footer_color');
 
 function spouse_load_more_newsletters() {
   $paged = isset($_POST['paged']) ? intval($_POST['paged']) : 1;
-  $ajaxposts = spouse_get_newsletters($paged); // Käytetään samaa funktiota
+  $ajaxposts = spouse_get_custom_posts($paged, 'newsletter'); // Käytetään samaa funktiota
 
   $response = '';
 

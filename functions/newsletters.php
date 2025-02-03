@@ -7,7 +7,7 @@ add_shortcode('spouse-archive', 'spouse_show_archive');
 
 function spouse_show_archive($atts) {
   $paged = isset($_GET['paged']) ? intval($_GET['paged']) : 1;
-  $newsletters = spouse_get_newsletters($paged);
+   $newsletters = spouse_get_custom_posts( $paged, "newsletter" );
 
   if (!$newsletters->have_posts()) {
       return '';
@@ -18,9 +18,9 @@ function spouse_show_archive($atts) {
   return ob_get_clean();
 }
 
-function spouse_get_newsletters($paged = 1) {
+function spouse_get_custom_posts($paged = 1, $post_type="newsletter" ) {
   $args = array(
-      'post_type'      => 'newsletter',
+      'post_type'      => $post_type,
       'post_status'    => 'publish',
       'posts_per_page' => 4,
       'order'          => 'DESC',
