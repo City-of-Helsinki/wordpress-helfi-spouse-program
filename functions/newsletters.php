@@ -72,7 +72,7 @@ function spouse_print_newsletters($query) {
           ?>
           </div>
           <div class="load-more row mt-3">
-            <button id="load-more-newsletters" class="btn mx-auto" onclick="loadMoreNewsletters('newsletter-card')">See previous letters</button>
+            <button id="load-more-newsletters" class="btn mx-auto" onclick="loadMoreNewsletters()">See previous letters</button>
           </div>
           <?php
       }
