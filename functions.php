@@ -604,18 +604,18 @@ function spouse_footer_color( $wp_customize ) {
 add_action( 'customize_register', 'spouse_footer_color');
 
 function spouse_load_more_newsletters() {
+  $paged = $_POST['paged'];
   $ajaxposts = new WP_Query([
     'post_type' => 'newsletter',
     'posts_per_page' => 3,
-    'offset' => 4,
     'orderby' => 'date',
     'order' => 'DESC',
-    'paged' => $_POST['paged'],
-    'no_found_rows' => true
+    'paged' => $paged,
   ]);
 
   $response = '';
   $max_pages = $ajaxposts->max_num_pages;
+  $current_page = $paged;
 
   if($ajaxposts->have_posts()) {
     ob_start();
@@ -631,6 +631,7 @@ function spouse_load_more_newsletters() {
   $result = [
     'max' => $max_pages,
     'html' => $output,
+    'current_page' => $current_page
   ];
 
   echo json_encode($result);

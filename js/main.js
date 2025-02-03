@@ -97,8 +97,8 @@ function highlightedContentHelperClass(item) {
   }
 }
 
+let currentPage = 1;
 function loadMoreNewsletters() {
-  let currentPage = 1;
   currentPage++;
   jQuery.ajax({
     type: 'POST',
