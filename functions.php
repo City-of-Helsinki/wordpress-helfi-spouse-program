@@ -604,38 +604,26 @@ function spouse_footer_color( $wp_customize ) {
 add_action( 'customize_register', 'spouse_footer_color');
 
 function spouse_load_more_newsletters() {
-  $paged = $_POST['paged'];
-  $ajaxposts = new WP_Query([
-    'post_type' => 'newsletter',
-    'posts_per_page' => 3,
-    'orderby' => 'date',
-    'order' => 'DESC',
-    'paged' => $paged,
-  ]);
+  $paged = isset($_POST['paged']) ? intval($_POST['paged']) : 1;
+  $ajaxposts = spouse_get_newsletters($paged); // Käytetään samaa funktiota
 
   $response = '';
-  $max_pages = $ajaxposts->max_num_pages;
-  $current_page = $paged;
 
-  if($ajaxposts->have_posts()) {
-    ob_start();
-    while($ajaxposts->have_posts()) : $ajaxposts->the_post();
-      $response .= get_template_part('partials/newsletter-card', '', array( 'id' => get_the_ID()));
-    endwhile;
-    $output = ob_get_contents();
-    ob_end_clean();
-  } else {
-    $response = '';
+  if ($ajaxposts->have_posts()) {
+      ob_start();
+      while ($ajaxposts->have_posts()) : $ajaxposts->the_post();
+          get_template_part('partials/newsletter-card');
+      endwhile;
+      $response = ob_get_clean();
+      wp_reset_postdata();
   }
 
   $result = [
-    'max' => $max_pages,
-    'html' => $output,
-    'current_page' => $current_page
+      'max'  => $ajaxposts->max_num_pages,
+      'html' => $response,
   ];
 
-  echo json_encode($result);
-  exit;
+  wp_send_json($result);
 }
 
 add_action( "wp_ajax_spouse_load_more_newsletters", "spouse_load_more_newsletters" );
