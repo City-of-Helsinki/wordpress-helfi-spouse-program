@@ -602,3 +602,29 @@ function spouse_footer_color( $wp_customize ) {
   );
 }
 add_action( 'customize_register', 'spouse_footer_color');
+
+function spouse_load_more_newsletters() {
+  $paged = isset($_POST['paged']) ? intval($_POST['paged']) : 1;
+  $ajaxposts = spouse_get_custom_posts($paged, 'newsletter'); // Käytetään samaa funktiota
+
+  $response = '';
+
+  if ($ajaxposts->have_posts()) {
+      ob_start();
+      while ($ajaxposts->have_posts()) : $ajaxposts->the_post();
+          get_template_part('partials/newsletter-card');
+      endwhile;
+      $response = ob_get_clean();
+      wp_reset_postdata();
+  }
+
+  $result = [
+      'max'  => $ajaxposts->max_num_pages,
+      'html' => $response,
+  ];
+
+  wp_send_json($result);
+}
+
+add_action( "wp_ajax_spouse_load_more_newsletters", "spouse_load_more_newsletters" );
+add_action( "wp_ajax_no_priv_spouse_load_more_newsletters", "spouse_load_more_newsletters" );
