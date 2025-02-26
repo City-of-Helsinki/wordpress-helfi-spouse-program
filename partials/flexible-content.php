@@ -80,6 +80,10 @@
 
                     get_template_part( 'partials/flexible/accordion' );
 
+                elseif( get_row_layout() == 'activities' ): 
+
+                    get_template_part( 'partials/flexible/activities' );
+
                 endif;
             endif;
         endwhile;

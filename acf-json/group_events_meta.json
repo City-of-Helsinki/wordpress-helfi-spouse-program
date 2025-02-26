@@ -16,9 +16,10 @@
                 "class": "",
                 "id": ""
             },
-            "display_format": "j.m.Y H:i",
+            "display_format": "F j, Y g:i a",
             "return_format": "Y-m-d H:i:s",
-            "first_day": 1
+            "first_day": 1,
+            "allow_in_bindings": 1
         },
         {
             "key": "field_5d0a1dba3d4ff",
@@ -34,9 +35,10 @@
                 "class": "",
                 "id": ""
             },
-            "display_format": "j.m.Y H:i",
+            "display_format": "F j, Y g:i a",
             "return_format": "Y-m-d H:i:s",
-            "first_day": 1
+            "first_day": 1,
+            "allow_in_bindings": 1
         },
         {
             "key": "field_5d0a1e97e4b51",
@@ -157,5 +159,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1731932195
+    "modified": 1738923228
 }
