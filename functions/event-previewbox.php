@@ -1,131 +1,119 @@
 <?php
 /**
- * Description: Adds shortcode to display eventbrite events.
+ * Description: Adds shortcode "spouse-events" to display activities.
  */
-
 add_shortcode('spouse-events', 'spouse_show_eventboxes');
 
 /**
  * @param array $atts
  *    $atts['count'] : int - number of posts to show. -1 = all
- * @return void
+ * @return string
  */
-function spouse_show_eventboxes($atts){ 
-  $count = -1;
-  if(isset($atts['count']) && $atts['count'] != 0) {
-    $count = $atts['count'];
-  }
+function spouse_show_eventboxes($atts) { 
 
-  $events = spouse_get_events($count);
-  if(!$events){
-    return '';
-  }
-  spouse_print_events($events);
-}
-
-function spouse_get_events($count) {
-  $args = array (
-    'post_type' => 'event',
-    'post_status' => 'publish',
-    'numberposts' => $count,
-    'meta_key' => 'start_time',
-    'orderby' => 'meta_value',
-    'order' => 'ASC',
-  );
-
-  $posts = wp_get_recent_posts($args, OBJECT);
-
-  return $posts;
-}
-
-function spouse_print_events($events) {
-  ?>
-  <div class="d-flex events-wrapper">
-  <?php
-
-  if ( is_array($events) ) {
-    foreach( $events as $event ) {
-
-      if ( strtotime(get_field( 'start_time', $event->ID )) < current_time('timestamp') ) {
-        continue;
-      }
-
-      $terms = get_the_terms($event->ID, 'target_group');
-      $event_color = get_field('event_color', $event->ID );
-      $category = '';
-
-      if($terms && $term = reset($terms)) {
-        $category = $term->name;
-      }
-
-      if (!empty($event_color)) {
-        $color = $event_color;
-      }
-      elseif ($category === 'Community') {
-        $color = '#bac1f2';
-      }
-      elseif ($category === 'Career support') {
-        $color = '#fbd0c8';
-      }
-      elseif ($category === 'Company partner') {
-        $color = '#f8f3ab';
-      } else {
-        $color = '#fff';
-      }
-
-      if( get_field( 'start_time', $event->ID) ) {
-
-        $start = ( new \DateTime() )->setTimestamp( strtotime( get_field( 'start_time', $event->ID )));
-        $end = ( new \DateTime() )->setTimestamp( strtotime( get_field( 'end_time', $event->ID )));
-
-        $start_date = $start->format('l j F Y');
-        $start_date_short = $start->format('j F Y');
-        $end_date_short = $end->format('j F Y');
-        $start_time = $start->format('H.i');
-        $end_time = $end->format('H.i');
-      }
-
-      $aria_title = "$category. $event->post_title. { $start_date } from $start_time to $end_time. ";
-      $event_img = get_the_post_thumbnail_url($event->ID, 'medium');
-      $placeholder_img = get_field('placeholder_image', 'options_activity_setttings');
-
-      ?>
-      <div class="events-column">
-        <div class="event clearfix" <?php if(isset($color)): ?>style="background-color:<?php echo $color; ?>" <?php endif; ?>>
-          <a href="<?php echo get_permalink($event) ?>" <?php if($aria_title): ?>aria-label="<?php echo $aria_title; ?>" <?php endif; ?>>
-          <div class="event-content-wrap card border-0 flex-fill">       
-            <div class="event-content">
-              <?php if( !empty($event_img) ) : ?>
-                <div class="event-img" style="background-image: url(<?php echo $event_img ?>);"></div>
-              <?php elseif(empty($event_img) && !empty($category)) : ?>
-                <div class="event-no-image" style="background-color: <?php echo $color ?>;"><span class="event-category"><?php echo $category ?> Activity</span></div>
-              <?php else : ?>
-                <div class="event-no-image-cat" style="background-image: url(<?php echo $placeholder_img ?>);"></div>
-              <?php endif; ?>
-              <div class="text-content card-body">
-                <p class="post-title"><?php echo $event->post_title ?></p>
-                <div class="event-schedule">
-                <?php if($start_date_short !== $end_date_short): ?>
-                  <p class="start-date"> <?php echo $start_date_short . ' ' . $start_time; ?> &ndash; </p>
-                  <p class="start-date"> <?php echo $end_date_short . ' ' . $end_time; ?></p>
-                <?php else: ?>
-                  <p class="start-date"> <?php echo $start_date; ?></p>
-                  <p class="duration"> <?php echo $start_time; ?> &ndash; <?php echo $end_time; ?></p>
-                <?php endif; ?>
-              </div>             
-              </div>
-            </div>
-          </div>          
-          </a>
-        </div>
-      </div>
-      <?php
+    $events = spouse_get_events();
+    if (!$events->have_posts()) {
+        return '<div class="d-flex justify-content-center w-100"><h4>Sorry, no activities found at the moment! :(</h4></div>';
     }
+
+    ob_start();
+    spouse_print_events($events);
+    return ob_get_clean();
+}
+
+/**
+ * WP_Query to show all the past activities in ascending order
+ */
+function spouse_get_events() {
+
+    $today = date('Y-m-d H:i:s');
+
+    $args = array(
+        'post_type'      => 'event',
+        'post_status'    => 'publish',
+        'posts_per_page' => -1,
+        'meta_key'       => 'start_time',
+        'orderby'        => 'meta_value',
+        'meta_type'      => 'DATE',
+        'order'          => 'ASC',
+        'paged'          => 1,
+        'meta_query'     => array(
+            array(
+                'key'     => 'start_time',
+                'value'   => $today,
+                'compare' => '<',
+                'type'    => 'DATETIME'
+            )
+    )
+    );
+
+    return new WP_Query($args);
+}
+
+/**
+ * Print past activities sorted by years and months
+ */
+function spouse_print_events($events) {
+  if (!$events->have_posts()) {
+      return;
   }
+
+  $groupedData = [];
+  while ($events->have_posts()) : $events->the_post();
+      $date = strtotime(get_field('start_time'));
+      $year = date('Y', $date);
+      $month = date('F', $date);
+      $groupedData[$year][$month][] = get_the_ID();
+  endwhile;
+  wp_reset_postdata();
+
+  krsort($groupedData);
+
+  foreach ($groupedData as &$months) {
+      uksort($months, function ($a, $b) {
+          return date_parse($a)['month'] <=> date_parse($b)['month'];
+      });
+  }
+  unset($months);
+
+  // First year opened by default
+  $firstYear = key($groupedData);
   ?>
+<div class="event-navigation"><a href="javascript:void(0);" onclick="window.history.back(); return false;" 
+class="go-back"><span class="dashicons dashicons-arrow-left-alt2"></span></a></div>
+  <div id="current-events-container" class="d-flex events-wrapper">
+      <?php foreach ($groupedData as $year => $months) : ?>
+          <div class="year-container">
+              <div class="events-year">
+                  <h2 class="year-toggle <?php echo ($year === $firstYear) ? 'active' : ''; ?>" data-year="<?php echo $year; ?>">
+                            <?php echo $year; ?>
+                            <span class="dashicons dashicons-arrow-down-alt2 arrow <?php echo ($year === $firstYear) ? 'arrow-up' : 'arrow-down'; ?>"></span>
+  
+                  </h2>
+              </div>
+              <div id="year-<?php echo $year; ?>" class="year-content" style="display: <?php echo ($year === $firstYear) ? 'block' : 'none'; ?>;">
+                  <?php foreach ($months as $month => $events_list) : ?>
+                      <div id="<?php echo sanitize_title($month); ?>" class="months-container">
+                          <div class="events-month">
+                              <h3><?php echo $month; ?></h3>
+                          </div>
+                          <?php foreach ($events_list as $event_id) : ?>
+                              <?php
+                              $event_post = get_post($event_id);
+                              if ($event_post) {
+                                  global $post;
+                                  $post = $event_post;
+                                  setup_postdata($post);
+                                  get_template_part('partials/activities-card');
+                                  wp_reset_postdata();
+                              }
+                              ?>
+                          <?php endforeach; ?>
+                      </div>
+                  <?php endforeach; ?>
+              </div>
+          </div>
+      <?php endforeach; ?>
   </div>
   <?php
 }
-
-
-

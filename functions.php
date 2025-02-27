@@ -42,6 +42,10 @@ function spouse_enqueue_scripts() {
   wp_enqueue_script('main', get_template_directory_uri() . '/js/main.js');
   wp_localize_script('main', 'mainVars', array('thankYouPage' => $thank_you_page));
   wp_enqueue_script('target-blank-accessible', get_template_directory_uri() . '/js/targetblank.js');
+  
+  wp_localize_script('main', 'spouseAjax', array(
+    'ajaxurl' => admin_url('admin-ajax.php')
+  ));
 }
 add_action('wp_enqueue_scripts', 'spouse_enqueue_scripts');
 
@@ -569,8 +573,8 @@ function spouse_create_newsletter_post_type() {
   register_post_type( 'Newsletter',
   array(
     'labels' => array(
-      'name' => __( 'Newsletters' ),
-      'singular_name' => __( 'Newsletter' )
+      'name' => __( 'Newsletters', 'spouse' ),
+      'singular_name' => __( 'Newsletter', 'spouse' )
     ),
     'public' => true,
     'supports' => array( 'title', 'thumbnail' ),
@@ -603,28 +607,125 @@ function spouse_footer_color( $wp_customize ) {
 }
 add_action( 'customize_register', 'spouse_footer_color');
 
-function spouse_load_more_newsletters() {
+/**
+ * Load more content by AJAX functions
+ */
+function load_more_content($post_type, $template_part, $query_args_callback) {
   $paged = isset($_POST['paged']) ? intval($_POST['paged']) : 1;
-  $ajaxposts = spouse_get_custom_posts($paged, 'newsletter'); // Käytetään samaa funktiota
+  $args = call_user_func($query_args_callback, $paged);
 
-  $response = '';
+  $query = new WP_Query($args);
 
-  if ($ajaxposts->have_posts()) {
-      ob_start();
-      while ($ajaxposts->have_posts()) : $ajaxposts->the_post();
-          get_template_part('partials/newsletter-card');
-      endwhile;
-      $response = ob_get_clean();
-      wp_reset_postdata();
+  if (!$query->have_posts()) {
+      wp_send_json_error([
+          'message' => __( 'No more content load.', 'spouse' ),
+          'query_args' => $args,
+      ]);
+      wp_die();
   }
 
-  $result = [
-      'max'  => $ajaxposts->max_num_pages,
-      'html' => $response,
-  ];
+  ob_start();
+  $current_month_year = '';
 
-  wp_send_json($result);
+  while ($query->have_posts()) {
+      $query->the_post();
+
+      if ($post_type === 'event') {
+          $start_timestamp = strtotime(get_field('start_time', get_the_ID()));
+          $event_month_year = date('F Y', $start_timestamp);
+
+          if ($event_month_year !== $current_month_year) {
+              if ($current_month_year !== '') {
+                  echo '</div>';
+              }
+              $current_month_year = $event_month_year;
+              echo '<div class="months-container"><div class="events-month"><h3>' . esc_html($current_month_year) . '</h3></div>';
+          }
+      }
+      get_template_part('partials/' . $template_part);
+  }
+
+  if ($post_type === 'event') {
+      echo '</div>';
+  }
+
+  $html = ob_get_clean();
+  $has_more = $query->max_num_pages > $paged;
+
+  wp_send_json_success([
+      'html'      => $html,
+      'next_page' => $paged + 1,
+      'has_more'  => $has_more
+  ]);
+
+  wp_die();
 }
 
-add_action( "wp_ajax_spouse_load_more_newsletters", "spouse_load_more_newsletters" );
-add_action( "wp_ajax_no_priv_spouse_load_more_newsletters", "spouse_load_more_newsletters" );
+// Load more newsletters
+function spouse_load_more_newsletters() {
+  $paged = isset($_POST['paged']) ? intval($_POST['paged']) : 1;
+  $posts_per_page = 3;
+  $offset = ($paged == 1) ? 1 : (($paged - 2) * $posts_per_page) + 4; 
+
+  load_more_content(
+      'newsletter',
+      'newsletter-card',
+      function ($paged) use ($posts_per_page, $offset) {
+          return [
+              'post_type'      => 'newsletter',
+              'post_status'    => 'publish',
+              'posts_per_page' => $posts_per_page,
+              'paged'          => $paged,
+              'offset'         => $offset,
+          ];
+      }
+  );
+}
+
+// Load more activities
+function spouse_load_more_events() {
+  $today = date('Y-m-d H:i:s');
+  $selected_taxonomy = isset($_POST['taxonomy']) ? sanitize_text_field($_POST['taxonomy']) : 'all';
+  $paged = isset($_POST['paged']) ? intval($_POST['paged']) : 1;
+  $count = get_sub_field('ab_posts_amount') ? get_sub_field('ab_posts_amount') : 6;
+
+  load_more_content(
+      'event',
+      'activities-card',
+      function ($paged) use ($today, $selected_taxonomy, $count) {
+          $args = [
+              'post_type'      => 'event',
+              'post_status'    => 'publish',
+              'posts_per_page' => $count,
+              'meta_key'       => 'start_time',
+              'orderby'        => 'meta_value',
+              'order'          => 'ASC',
+              'paged'          => $paged,
+              'meta_query'     => [[
+                  'key'     => 'start_time',
+                  'value'   => $today,
+                  'compare' => '>=',
+                  'type'    => 'DATETIME'
+              ]]
+          ];
+
+          if ($selected_taxonomy !== 'all') {
+              $args['tax_query'] = [[
+                  'taxonomy' => 'target_group',
+                  'field'    => 'slug',
+                  'terms'    => [$selected_taxonomy],
+                  'operator' => 'IN'
+              ]];
+          }
+
+          return $args;
+      }
+  );
+}
+
+// Activities
+add_action('wp_ajax_spouse_load_more_events', 'spouse_load_more_events');
+add_action('wp_ajax_nopriv_spouse_load_more_events', 'spouse_load_more_events');
+// Newsletters
+add_action("wp_ajax_spouse_load_more_newsletters", "spouse_load_more_newsletters");
+add_action("wp_ajax_nopriv_spouse_load_more_newsletters", "spouse_load_more_newsletters");

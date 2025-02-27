@@ -1,5 +1,5 @@
 <?php
-$newsletter_id = $args['id'];
+$newsletter_id = get_the_id();
 $newsletter_title = get_the_title($newsletter_id);
 $publish = strtotime( get_post_field('post_date', $newsletter_id) );
 $publish_date = ( new \DateTime() )->setTimestamp( $publish )->format( 'j.m.Y' );

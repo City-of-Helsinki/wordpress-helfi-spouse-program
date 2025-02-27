@@ -97,26 +97,6 @@ function highlightedContentHelperClass(item) {
   }
 }
 
-let currentPage = 1;
-function loadMoreNewsletters() {
-  currentPage++;
-  jQuery.ajax({
-    type: 'POST',
-    url: '/wp-admin/admin-ajax.php',
-    dataType: 'json',
-    data: {
-      action: 'spouse_load_more_newsletters',
-      paged: currentPage,
-    },
-    success: function (res) {
-      if (currentPage >= res.max) {
-        jQuery('#load-more-newsletters').hide();
-      }
-      jQuery('#previous-newsletters').append(res.html);
-    }
-  });
-}
-
 // if link has class wow-modal-id-x, add spouse focus event to it automatically.
 jQuery("document").ready(function () {
   detectExternalLinks("#main-content a");
@@ -143,3 +123,74 @@ jQuery("document").ready(function () {
       location = mainVars.thankYouPage;
   }, false );
 });
+
+// LOAD MORE CONTENT FUNCTIONS
+function loadMoreContent(contentType) {
+  const config = {
+      events: { buttonId: "load-more-events", actionType: "spouse_load_more_events" },
+      newsletters: { buttonId: "load-more-newsletters", actionType: "spouse_load_more_newsletters" }
+  };
+
+  const { buttonId, actionType } = config[contentType] || {};
+  const buttonElement = document.getElementById(buttonId);
+  if (!buttonElement) return;
+
+  let paged = parseInt(buttonElement.dataset.paged) + 1;
+  let taxonomyFilter = buttonElement.dataset.taxonomy || "all";
+
+  fetch(spouseAjax.ajaxurl, {
+      method: "POST",
+      headers: { "Content-Type": "application/x-www-form-urlencoded" },
+      body: new URLSearchParams({ action: actionType, paged, taxonomy: taxonomyFilter })
+  })
+  .then(response => response.json())
+  .then(data => {
+      if (data.success && data.data.html) {
+          document.querySelector("#load-more-container").insertAdjacentHTML("beforeend", data.data.html);
+          buttonElement.dataset.paged = paged;
+          if (!data.data.has_more) buttonElement.style.display = "none";
+      }
+  })
+  .catch(error => console.error("Error with AJAX request:", error));
+}
+
+// Event listeners for load more functions
+document.addEventListener("DOMContentLoaded", () => {
+  document.querySelectorAll(".taxonomy-filter-button").forEach(button => {
+      button.addEventListener("click", () => {
+          const taxonomy = button.dataset.filter;
+          filterEventsByTaxonomy(taxonomy);
+      });
+  });
+
+  document.addEventListener("click", (e) => {
+      if (e.target.matches("#load-more-events, #load-more-newsletters")) {
+          e.preventDefault();
+          loadMoreContent(e.target.id.includes("events") ? "events" : "newsletters");
+      }
+  });
+
+  // Handle accordions in the activities archive page
+  document.querySelectorAll(".year-toggle").forEach(link => {
+      link.addEventListener("click", () => {
+          const year = link.dataset.year;
+          const content = document.getElementById(`year-${year}`);
+          const arrow = link.querySelector(".arrow");
+
+          document.querySelectorAll(".year-content").forEach(el => el.style.display = el === content && el.style.display !== "block" ? "block" : "none");
+          document.querySelectorAll(".year-toggle").forEach(btn => {
+              const btnArrow = btn.querySelector(".arrow");
+              btn.classList.toggle("active", btn === link && content.style.display === "block");
+              btnArrow.classList.toggle("arrow-up", btn === link && content.style.display === "block");
+              btnArrow.classList.toggle("arrow-down", !(btn === link && content.style.display === "block"));
+          });
+      });
+  });
+});
+
+// Filter events by taxonomy
+function filterEventsByTaxonomy(taxonomy) {
+  const newUrl = new URL(window.location.href);
+  newUrl.searchParams.set("taxonomy", taxonomy);
+  window.location.href = newUrl;
+}

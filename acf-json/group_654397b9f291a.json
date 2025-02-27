@@ -1340,6 +1340,186 @@
                     "sub_fields": [],
                     "min": "",
                     "max": ""
+                },
+                "layout_677653e2ef86f": {
+                    "key": "layout_677653e2ef86f",
+                    "name": "activities",
+                    "label": "Activities",
+                    "display": "block",
+                    "sub_fields": [
+                        {
+                            "key": "field_67bef15554928",
+                            "label": "Header",
+                            "name": "ab_header",
+                            "aria-label": "",
+                            "type": "text",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "default_value": "",
+                            "maxlength": "",
+                            "allow_in_bindings": 0,
+                            "placeholder": "",
+                            "prepend": "",
+                            "append": ""
+                        },
+                        {
+                            "key": "field_677654edef878",
+                            "label": "Posts amount to show",
+                            "name": "ab_posts_amount",
+                            "aria-label": "",
+                            "type": "number",
+                            "instructions": "All activities are shown by default when field in empty.",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "default_value": "",
+                            "min": 1,
+                            "max": "",
+                            "allow_in_bindings": 0,
+                            "placeholder": "",
+                            "step": "",
+                            "prepend": "",
+                            "append": ""
+                        },
+                        {
+                            "key": "field_67765df26db8e",
+                            "label": "Select Target Group",
+                            "name": "ab_target_group",
+                            "aria-label": "",
+                            "type": "taxonomy",
+                            "instructions": "All Target Groups are shown by default when none is selected.",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "taxonomy": "target_group",
+                            "add_term": 0,
+                            "save_terms": 0,
+                            "load_terms": 0,
+                            "return_format": "object",
+                            "field_type": "select",
+                            "allow_null": 1,
+                            "allow_in_bindings": 1,
+                            "bidirectional": 0,
+                            "multiple": 0,
+                            "bidirectional_target": []
+                        },
+                        {
+                            "key": "field_67beee73de331",
+                            "label": "Compact Mode",
+                            "name": "ab_compact_mode",
+                            "aria-label": "",
+                            "type": "true_false",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "message": "Choose this option always when you use this element alongside with other flexible components, e.g. on the front page.",
+                            "default_value": 0,
+                            "allow_in_bindings": 0,
+                            "ui_on_text": "Compact mode",
+                            "ui_off_text": "Normal mode",
+                            "ui": 1
+                        },
+                        {
+                            "key": "field_67765d776db8d",
+                            "label": "Show Filters",
+                            "name": "ab_show_filters",
+                            "aria-label": "",
+                            "type": "true_false",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": [
+                                [
+                                    {
+                                        "field": "field_67beee73de331",
+                                        "operator": "!=",
+                                        "value": "1"
+                                    }
+                                ]
+                            ],
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "message": "",
+                            "default_value": 0,
+                            "allow_in_bindings": 0,
+                            "ui_on_text": "Show filters",
+                            "ui_off_text": "Hide filters",
+                            "ui": 1
+                        },
+                        {
+                            "key": "field_67765d776db9e",
+                            "label": "Show Action Links",
+                            "name": "ab_show_action_container",
+                            "aria-label": "",
+                            "type": "true_false",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": [
+                                [
+                                    {
+                                        "field": "field_67beee73de331",
+                                        "operator": "!=",
+                                        "value": "1"
+                                    }
+                                ]
+                            ],
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "message": "",
+                            "default_value": 0,
+                            "allow_in_bindings": 0,
+                            "ui_on_text": "Show links",
+                            "ui_off_text": "Hide links",
+                            "ui": 1
+                        },
+                        {
+                            "key": "field_677653e3ef876",
+                            "label": "Anchor tag",
+                            "name": "ab_anchor_tag",
+                            "aria-label": "",
+                            "type": "text",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "default_value": "",
+                            "maxlength": "",
+                            "allow_in_bindings": 1,
+                            "placeholder": "",
+                            "prepend": "",
+                            "append": ""
+                        }
+                    ],
+                    "min": "",
+                    "max": ""
                 }
             },
             "min": "",
@@ -1385,6 +1565,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1734534754
-
+    "modified": 1740566986
 }
