@@ -1,3 +1,3 @@
 # wordpress-helfi-spouse-program
-WP Theme for Spouse Program
 
+WP Theme for Spouse Program
