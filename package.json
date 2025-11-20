@@ -14,7 +14,7 @@
 	"dependencies": {
 		"bootstrap": "^4.6.2",
 		"breakpoint-sass": "^2.7.1",
-		"gulp": "git+https://github.com/gulpjs/gulp.git#v4.0.0",
+		"gulp": "^5.0.1",
 		"gulp-autoprefixer": "10.0.0",
 		"gulp-clean-css": "^3.9.2",
 		"gulp-cli": "2.3.0",
