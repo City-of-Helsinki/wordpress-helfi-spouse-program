@@ -4,11 +4,9 @@ namespace Spouse;
 
 class LoginHandler
 {
-    public static function init()
+    public function __construct()
 	{
-        $self = new self();
-
-        add_filter('wpcf7_form_elements', array($self, 'addBtnClassesToCF7Buttons') );
+        add_filter('wpcf7_form_elements', array($this, 'addBtnClassesToCF7Buttons') );
         $registerForm = new RegisterForm();
         $registerForm->init();
     }

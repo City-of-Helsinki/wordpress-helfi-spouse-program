@@ -398,8 +398,7 @@ function wp_custom_archive($args = '') {
   echo $output;
 }
 
-$login_handler = new LoginHandler();
-$login_handler->init();
+new LoginHandler();
 
 function spouse_login_url(): string {
     return apply_filters( 'spouse_program_static_page_url', wp_login_url(), 'login' );
