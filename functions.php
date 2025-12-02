@@ -1,5 +1,7 @@
 <?php
 
+use Spouse\LoginHandler;
+
 require_once('functions/autoloader.php');
 
 function spouse_setup_theme(){
@@ -396,7 +398,8 @@ function wp_custom_archive($args = '') {
   echo $output;
 }
 
-\Spouse\LoginHandler::init();
+$login_handler = new LoginHandler();
+$login_handler->init();
 
 function spouse_login_url(): string {
     return apply_filters( 'spouse_program_static_page_url', wp_login_url(), 'login' );
