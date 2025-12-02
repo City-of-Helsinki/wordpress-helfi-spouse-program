@@ -17,7 +17,7 @@
 
 <body <?php body_class(); ?>>
 
-<a href="#main-content" class="visually-hidden focusable">
+<a id="skip-to-main-content" href="#main-content" class="visually-hidden focusable">
     Skip to main content
 </a>
 
