@@ -742,3 +742,18 @@ add_filter('get_custom_logo', function($html) {
             1
     );
 });
+
+add_filter( 'language_attributes', function( $attr ) {
+    // Get the current post/page ID
+    $post_id = get_queried_object_id();
+
+    // Get ACF page language value (defaults to en-US)
+    $lang = get_field( 'page_language', $post_id );
+
+    // If a value exists, set it as the lang attribute
+    if ( $lang ) {
+        return 'lang="' . esc_attr( $lang ) . '"';
+    }
+
+    return $attr;
+});
