@@ -40,7 +40,7 @@ $post_thumbnail_url = get_the_post_thumbnail_url();
 
                     <?php if($side == 'right'): ?>
                         <div class="p-lg-4 p-3 col-lg-6 d-flex flex-column justify-content-center" style="color: <?php echo $highlightTextColor; ?>;" >
-                            <h3 class="lift-100-wide__title"><?php echo $card_title ; ?></h3>
+                            <h1 class="lift-100-wide__title"><?php echo $card_title ; ?></h1>
                             <p class="lift-100-wide__text"><?php the_field("ingress"); ?></p>
                         </div>
                     <?php endif; ?>

@@ -731,3 +731,33 @@ add_action('wp_ajax_nopriv_spouse_load_more_events', 'spouse_load_more_events');
 // Newsletters
 add_action("wp_ajax_spouse_load_more_newsletters", "spouse_load_more_newsletters");
 add_action("wp_ajax_nopriv_spouse_load_more_newsletters", "spouse_load_more_newsletters");
+
+
+/**
+ * Add an aria-label to the site logo located in header based on where we are on the site
+ */
+add_filter('get_custom_logo', function($html) {
+    $aria_label = is_front_page() ? 'Homepage logo' : 'Return to the front page';
+
+    return preg_replace(
+            '/<a\b(.*?)>/',
+            '<a$1 aria-label="' . esc_attr( $aria_label ) . '">',
+            $html,
+            1
+    );
+});
+
+add_filter( 'language_attributes', function( $attr ) {
+    // Get the current post/page ID
+    $post_id = get_queried_object_id();
+
+    // Get ACF page language value (defaults to en-US)
+    $lang = get_field( 'page_language', $post_id );
+
+    // If a value exists, set it as the lang attribute
+    if ( $lang ) {
+        return 'lang="' . esc_attr( $lang ) . '"';
+    }
+
+    return $attr;
+});

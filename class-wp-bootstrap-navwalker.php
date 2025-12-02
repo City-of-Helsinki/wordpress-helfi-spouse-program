@@ -236,6 +236,8 @@ if ( ! class_exists( 'WP_Bootstrap_Navwalker' ) ) :
 			// Update atts of this item based on any custom linkmod classes.
 			$atts = $this->update_atts_for_linkmod_type( $atts, $linkmod_classes );
 
+            $atts['role'] = 'button';
+
 			// Allow filtering of the $atts array before using it.
 			$atts = apply_filters( 'nav_menu_link_attributes', $atts, $item, $args, $depth );
 

@@ -6,8 +6,12 @@ $notification_visibility = get_theme_mod('notification_visibility');
 $notification_color = get_theme_mod('notification_color');
 ?>
 
-<?php if ( true == $notification_enabled ): ?>
-<div id="sp-notification" style="background-color:<?php echo $notification_color; ?>" class="alert alert-dismissible fade show container-fluid sp-notifications rounded-0 mt-3 pt-3" role="alert">
+<?php if ($notification_enabled): ?>
+<div id="sp-notification"
+     style="background-color:<?php echo $notification_color; ?>"
+     class="alert alert-dismissible fade show container-fluid sp-notifications rounded-0 mt-3 pt-3"
+     aria-label="<?php echo __( 'Temporary notification', 'spouse' ); ?>"
+     role="region">
     <div class="sp-notification">
         <div class="sp-notification-title text-center font-weight-bolder">
             <?php echo $notification_title; ?>
@@ -16,7 +20,7 @@ $notification_color = get_theme_mod('notification_color');
             <?php echo $notification_body; ?>
         </div>
     </div>
-    <button type="button" class="close" data-dismiss="alert" aria-label="<?php echo __('Close', 'spouse' ); ?>">
+    <button type="button" class="close" data-dismiss="alert" aria-label="<?php echo __('Close the notification', 'spouse' ); ?>">
         <span aria-hidden="true">x</span>
     </button>
 </div>

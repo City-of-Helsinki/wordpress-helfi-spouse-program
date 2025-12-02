@@ -186,6 +186,25 @@ document.addEventListener("DOMContentLoaded", () => {
           });
       });
   });
+
+    // Focus the first heading element on the site when skip to main content button is clicked
+    document.getElementById("skip-to-main-content")?.addEventListener("click", (e) => {
+        e.preventDefault();
+
+        const main = document.getElementById("main-content");
+
+        if (!main) {
+            return;
+        }
+
+        const firstHeading = document.querySelector('h1, h2, h3, h4, h5, h6');
+
+        // Target first heading, if not found use the main content area
+        const target = firstHeading || main;
+
+        target.setAttribute('tabindex', '-1');
+        target.focus();
+    });
 });
 
 // Filter events by taxonomy
