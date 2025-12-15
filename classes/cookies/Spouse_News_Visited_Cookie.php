@@ -1,5 +1,9 @@
 <?php
 
+if (!interface_exists('CityOfHelsinki\WordPress\CookieConsent\Features\Interfaces\Known_Cookie_Data')) {
+    return;
+}
+
 use CityOfHelsinki\WordPress\CookieConsent\Features\Interfaces\Known_Cookie_Data;
 
 final class Spouse_News_Visited_Cookie implements Known_Cookie_Data
