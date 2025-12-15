@@ -43,6 +43,7 @@ function spouse_program_init(){
 			'static-pages' . DIRECTORY_SEPARATOR . 'post-state',
 			'static-pages' . DIRECTORY_SEPARATOR . 'handlers',
 			'static-pages' . DIRECTORY_SEPARATOR . 'init',
+            'spouse-cookie-consent'
 		);
 	}
 	$files = array_merge($files, array(

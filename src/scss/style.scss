@@ -14,7 +14,7 @@ Author: Druid Oy
 //
 
 // @charset 'UTF-8';
-
+@import 'lib/fonts/_fonts';
 @import '../../dist/bootstrap/scss/_functions';
 @import '../../dist/bootstrap/scss/_variables';
 @import '../../dist/bootstrap/scss/mixins/_breakpoints';
@@ -30,3 +30,4 @@ Author: Druid Oy
 @import 'layout/*';
 @import 'component/*';
 // @import 'state/*';
+
