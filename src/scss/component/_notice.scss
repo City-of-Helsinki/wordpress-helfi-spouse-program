@@ -19,7 +19,6 @@
 
 li.new-news {
   &.news-visible:after {
-    font-family: FontAwesome;
     content: "\f12a";
     font-size: 20px;
     color: red;
