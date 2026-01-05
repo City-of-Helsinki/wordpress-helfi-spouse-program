@@ -47,10 +47,6 @@ const path = {
         src: basePath.src + 'image/',
         assets: basePath.assets + 'image/',
     },
-    fonts: {
-        src: basePath.src + 'font/',
-        assets: basePath.assets + 'font/',
-    },
     templates: {
         assets: basePath.templates,
     },
@@ -155,14 +151,6 @@ function copyImages() {
     return gulp.src(path.images.src + '**/*').pipe(gulp.dest(path.images.assets));
 }
 
-// ---------------------------------------------------
-// Copy fonts from src to assets if necessary.
-// ---------------------------------------------------
-function copyFonts() {
-    if (!fs.existsSync(path.fonts.src)) return Promise.resolve();
-    return gulp.src(path.fonts.src + '**/*').pipe(gulp.dest(path.fonts.assets));
-}
-
 // ----------------------
 // Function to run watch.
 // ----------------------
@@ -201,12 +189,12 @@ gulp.task('prod', (done) => {
 // -------------------------------------
 gulp.task(
     'development',
-    gulp.series('dev', cleanAssets, compileSASS, copyScripts, copyImages, copyFonts)
+    gulp.series('dev', cleanAssets, compileSASS, copyScripts, copyImages)
 );
 
 gulp.task('default', gulp.series('dev', gulp.parallel(runWatch, browserSyncInit)));
 
 gulp.task(
     'production',
-    gulp.series('prod', cleanAssets, compileSASS, gulp.parallel(copyScripts, copyImages, copyFonts))
+    gulp.series('prod', cleanAssets, compileSASS, gulp.parallel(copyScripts, copyImages))
 );
