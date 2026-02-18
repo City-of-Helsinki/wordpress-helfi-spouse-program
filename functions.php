@@ -7,7 +7,6 @@ require_once('functions/autoloader.php');
 function spouse_setup_theme(){
   add_theme_support( 'widgets' );
   add_theme_support( 'post-thumbnails' );
-  add_theme_support( 'title-tag' );
   add_theme_support( 'custom-logo', array(
     'flex-height' => true,
     'flex-width'  => true
