@@ -31,7 +31,7 @@ function spouse_enqueue_scripts() {
   $thank_you_page = apply_filters( 'spouse_program_static_page_url', '', 'thank-you' );
   wp_enqueue_style('bootstrap', get_template_directory_uri() . '/dist/bootstrap/dist/css/bootstrap.css');
   wp_enqueue_script('bootstrap-js', get_template_directory_uri() . '/dist/bootstrap/dist/js/bootstrap.min.js', array('jquery'));
-  
+
   // Load Dashicons in front-end
   wp_enqueue_style( 'dashicons' );
 
@@ -43,7 +43,7 @@ function spouse_enqueue_scripts() {
   wp_enqueue_script('main', get_template_directory_uri() . '/js/main.js');
   wp_localize_script('main', 'mainVars', array('thankYouPage' => $thank_you_page));
   wp_enqueue_script('target-blank-accessible', get_template_directory_uri() . '/js/targetblank.js');
-  
+
   wp_localize_script('main', 'spouseAjax', array(
     'ajaxurl' => admin_url('admin-ajax.php')
   ));
@@ -397,7 +397,11 @@ function wp_custom_archive($args = '') {
   echo $output;
 }
 
-new LoginHandler();
+add_action( 'init', function() {
+	if ( is_plugin_active( 'contact-form-7/wp-contact-form-7.php' ) ) {
+		new LoginHandler();
+	}
+}, 5 );
 
 function spouse_login_url(): string {
     return apply_filters( 'spouse_program_static_page_url', wp_login_url(), 'login' );
@@ -513,7 +517,7 @@ function spouse_notification( $wp_customize ) {
       )
     )
   );
-  
+
   $wp_customize->add_control(
     new WP_Customize_Control(
       $wp_customize, 'notification_title',
@@ -666,7 +670,7 @@ function load_more_content($post_type, $template_part, $query_args_callback) {
 function spouse_load_more_newsletters() {
   $paged = isset($_POST['paged']) ? intval($_POST['paged']) : 1;
   $posts_per_page = 3;
-  $offset = ($paged == 1) ? 1 : (($paged - 2) * $posts_per_page) + 4; 
+  $offset = ($paged == 1) ? 1 : (($paged - 2) * $posts_per_page) + 4;
 
   load_more_content(
       'newsletter',
