@@ -21,7 +21,7 @@ class RegisterFormFields
     public function registrationTagHandler( $tag )
     {
         $form = $this->generateForm();
-        $form = wpcf7_do_shortcode( $form );
+        $form = wpcf7_replace_all_form_tags( $form );
 
         return $form;
     }
